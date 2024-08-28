@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+<script type="text/javascript" src="js/userInfo.js"></script>
+
+<head>
+    <title>Dashboard</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap">
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" type="text/css" href="css/footer.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+
+<body onload="loadUserInfo();" style="background-color:lightblue;">
+    <div class="content-wrapper">
+        <header>
+            <div class="logo-title">
+                <img src="Images/logo.jpg" class="logo_move">
+            </div>
+                
+            <h1 class="site-title">Dashboard</h1>
+            
+            <div class="nav-items">
+                <div class="dropdown">
+                    <button class="dropbtn">Menu</button>
+                    <div class="dropdown-content">
+                        <a href="aboutUs.html">About Us</a>
+                        <a href="contactUs.html">Contact Us</a>
+                    </div>
+                </div>
+            </div>
+        </header> 
+
+        <main id="dashbox">
+            <form action="php/bookinsert.php" method="post">
+                <button class="buttonstyle">Add Book</button>
+                <p>Add your book so other users can borrow it</p>
+            </form>
+
+            <form action="booksearch.html">
+                <button class="buttonstyle">Search Book</button>
+                <p>Search for a book to borrow</p>
+            </form>
+
+            <form action="php/mybook.php" method="post">
+                <button class="buttonstyle">My Books</button>
+                <p>See my books</p>
+            </form>
+
+            <form action="account.html" method="post">
+                <button class="buttonstyle">My Account</button>
+                <p>See my profile</p>
+            </form>
+
+            <form action="php/logout.php" method="post">
+                <button class="buttonstyle logout-btn">Log Out</button>
+            </form>
+        </main>
+    </div>
+    <footer class="footer">
+        <img src="Images/logo.jpg" alt="Logo">
+        <div class="govt-text">Made with the Government of Alberta</div>
+        <div class="copyright">&copy; Community Book Exchange 2023</div>
+    </footer>
+</body>
+</html>

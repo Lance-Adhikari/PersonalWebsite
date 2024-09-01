@@ -1,68 +1,61 @@
 <!DOCTYPE html>
-<html>
-
-<script type="text/javascript" src="js/userInfo.js"></script>
+<html lang="en">
 
 <head>
-    <title>New Index Page</title>
-    <meta charset="utf-8">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap">
-    <link rel="stylesheet" href="css/header.css">
-    <link rel="stylesheet" href="css/dashboard.css">
-    <link rel="stylesheet" type="text/css" href="css/footer.css">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Name - Home</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
 </head>
 
-<body onload="loadUserInfo();" style="background-color:lightblue;">
-    <div class="content-wrapper">
-        <header>
-            <div class="logo-title">
-                <img src="Images/logo.jpg" class="logo_move">
-            </div>
-                
-            <h1 class="site-title">New Indexx Pages</h1>
-            
-            <div class="nav-items">
-                <div class="dropdown">
-                    <button class="dropbtn">Menu</button>
-                    <div class="dropdown-content">
-                        <a href="aboutUs.html">About Us</a>
-                        <a href="contactUs.html">Contact Us</a>
-                    </div>
-                </div>
-            </div>
-        </header> 
+<body>
+    <!-- Navigation Bar -->
+    <header>
+        <nav>
+            <div class="logo">Your Logo</div>
+            <ul class="nav-links">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About Me</a></li>
+                <li><a href="#">Projects</a></li>
+                <li><a href="#">Blog</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
 
-        <main id="dashbox">
-            <form action="php/bookinsert.php" method="post">
-                <button class="buttonstyle">Add Book</button>
-                <p>Add your book so other users can borrow it</p>
-            </form>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Welcome to My Personal Website</h1>
+            <p>Discover my work, interests, and everything that defines me as a professional and a person.</p>
+            <a href="#" class="btn-primary">Learn More About Me</a>
+        </div>
+    </section>
 
-            <form action="booksearch.html">
-                <button class="buttonstyle">Search Book</button>
-                <p>Search for a book to borrow</p>
-            </form>
+    <!-- About Section -->
+    <section class="about">
+        <div class="container">
+            <h2>About Me</h2>
+            <p>Write a brief introduction about yourself here. Highlight your skills, passions, and what makes you unique.</p>
+            <a href="#" class="btn-secondary">Read More</a>
+        </div>
+    </section>
 
-            <form action="php/mybook.php" method="post">
-                <button class="buttonstyle">My Books</button>
-                <p>See my books</p>
-            </form>
-
-            <form action="account.html" method="post">
-                <button class="buttonstyle">My Account</button>
-                <p>See my profile</p>
-            </form>
-
-            <form action="php/logout.php" method="post">
-                <button class="buttonstyle logout-btn">Log Out</button>
-            </form>
-        </main>
-    </div>
-    <footer class="footer">
-        <img src="Images/logo.jpg" alt="Logo">
-        <div class="govt-text">Made with the Government of Alberta</div>
-        <div class="copyright">&copy; Community Book Exchange 2023</div>
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Your Name. All rights reserved.</p>
+            <ul class="social-links">
+                <li><a href="#">LinkedIn</a></li>
+                <li><a href="#">GitHub</a></li>
+                <li><a href="#">Twitter</a></li>
+            </ul>
+        </div>
     </footer>
 </body>
+
 </html>

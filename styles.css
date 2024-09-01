@@ -77,7 +77,7 @@ nav {
     align-items: center;
     justify-content: center;
     text-align: center;
-    color: #ffffff; /* White text on hero section for contrast */
+    color: black; /* White text on hero section for contrast */
     padding: 0 2rem;
     margin-top: 60px; /* Adjust for fixed header */
     background-color: #007bff; /* Fallback background color */

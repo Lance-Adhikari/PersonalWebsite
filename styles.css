@@ -3,9 +3,9 @@ body {
     margin: 0;
     padding: 0;
     font-family: 'Roboto', sans-serif;
-    color: #333;
+    color: #333; /* Darker text for better readability */
     line-height: 1.6;
-    background-color: #f4f4f4;
+    background-color: #f0f0f0; /* Lighter grey for a softer background */
 }
 
 a {
@@ -21,7 +21,7 @@ ul {
 
 /* Navigation Bar */
 header {
-    background-color: #fff;
+    background-color: #ffffff; /* Pure white background for better contrast */
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     position: fixed;
     width: 100%;
@@ -39,8 +39,15 @@ nav {
 }
 
 .logo {
-    font-size: 1.5rem;
-    font-weight: 700;
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    height: 50px; 
+    width: auto; 
+    max-width: 100px; 
+    object-fit: contain; 
 }
 
 .nav-links {
@@ -52,10 +59,11 @@ nav {
     font-weight: 500;
     padding: 0.5rem 1rem;
     transition: background-color 0.3s ease;
+    color: #007bff; /* Blue color for links */
 }
 
 .nav-links li a:hover {
-    background-color: #f4f4f4;
+    background-color: #e0e0e0; /* Lighter hover background for better visibility */
     border-radius: 5px;
 }
 
@@ -69,23 +77,26 @@ nav {
     align-items: center;
     justify-content: center;
     text-align: center;
-    color: #fff;
+    color: #ffffff; /* White text on hero section for contrast */
     padding: 0 2rem;
     margin-top: 60px; /* Adjust for fixed header */
+    background-color: #007bff; /* Fallback background color */
 }
 
 .hero-content h1 {
     font-size: 3rem;
     margin-bottom: 1rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Slight text shadow for better readability */
 }
 
 .hero-content p {
     font-size: 1.25rem;
     margin-bottom: 2rem;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2); /* Slight text shadow */
 }
 
 .btn-primary {
-    background-color: #007bff;
+    background-color: #28a745; /* Green button for action */
     color: #fff;
     padding: 0.75rem 1.5rem;
     border: none;
@@ -96,12 +107,12 @@ nav {
 }
 
 .btn-primary:hover {
-    background-color: #0056b3;
+    background-color: #218838; /* Darker green on hover */
 }
 
 /* About Section */
 .about {
-    background-color: #fff;
+    background-color: #ffffff; /* White background for a clean look */
     padding: 4rem 2rem;
     text-align: center;
 }
@@ -112,7 +123,7 @@ nav {
 }
 
 .btn-secondary {
-    background-color: #6c757d;
+    background-color: #6c757d; /* Neutral grey button */
     color: #fff;
     padding: 0.75rem 1.5rem;
     border: none;
@@ -124,13 +135,13 @@ nav {
 }
 
 .btn-secondary:hover {
-    background-color: #495057;
+    background-color: #495057; /* Darker grey on hover */
 }
 
 /* Footer */
 footer {
-    background-color: #333;
-    color: #fff;
+    background-color: #222; /* Dark background for footer */
+    color: #fff; /* White text for contrast */
     padding: 2rem 0;
     text-align: center;
 }
@@ -150,10 +161,10 @@ footer .container {
 }
 
 .social-links li a {
-    color: #fff;
+    color: #007bff; /* Blue color for social links */
     transition: color 0.3s ease;
 }
 
 .social-links li a:hover {
-    color: #007bff;
+    color: #0056b3; /* Darker blue on hover */
 }

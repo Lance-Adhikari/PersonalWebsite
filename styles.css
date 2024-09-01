@@ -38,8 +38,15 @@ nav {
 }
 
 .logo {
-    font-size: 1.5rem;
-    font-weight: 700;
+    display: flex; /* Ensures the image is aligned properly */
+    align-items: center; /* Center-align the image vertically */
+}
+
+.logo img {
+    height: 50px; /* Adjust height as needed */
+    width: auto; /* Maintain aspect ratio */
+    max-width: 100px; /* Maximum width for larger screens */
+    object-fit: contain; /* Ensure the image scales properly */
 }
 
 .nav-links {

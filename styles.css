@@ -5,12 +5,13 @@ body {
     font-family: 'Roboto', sans-serif;
     color: #333; /* Darker text for better readability */
     line-height: 1.6;
-    background-color: #f0f0f0; /* Lighter grey for a softer background */
+    background-color: #f5f7fa; /* Light grey background for a modern feel */
+    overflow-x: hidden; /* Prevent horizontal overflow */
 }
 
 a {
     text-decoration: none;
-    color: #333;
+    color: inherit;
 }
 
 ul {
@@ -21,12 +22,13 @@ ul {
 
 /* Navigation Bar */
 header {
-    background-color: #ffffff; /* Pure white background for better contrast */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    background-color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     position: fixed;
     width: 100%;
     top: 0;
     z-index: 1000;
+    transition: all 0.3s ease; /* Smooth transition for sticky effect */
 }
 
 nav {
@@ -39,15 +41,14 @@ nav {
 }
 
 .logo {
-    display: flex;
-    align-items: center;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #007bff; /* Logo color */
+    transition: color 0.3s ease;
 }
 
-.logo img {
-    height: 50px; 
-    width: auto; 
-    max-width: 100px; 
-    object-fit: contain; 
+.logo:hover {
+    color: #0056b3; /* Darker blue on hover */
 }
 
 .nav-links {
@@ -58,63 +59,89 @@ nav {
 .nav-links li a {
     font-weight: 500;
     padding: 0.5rem 1rem;
-    transition: background-color 0.3s ease;
-    color: #007bff; /* Blue color for links */
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    color: #333;
 }
 
 .nav-links li a:hover {
-    background-color: #e0e0e0; /* Lighter hover background for better visibility */
+    background-color: #007bff;
+    color: #fff;
     border-radius: 5px;
+    transform: translateY(-3px); /* Hover lift effect */
 }
 
 /* Hero Section */
 .hero {
-    background-image: url(''); /* Replace with your background image */
-    background-size: cover;
-    background-position: center;
+    background-image: linear-gradient(to right, #007bff, #00d4ff); /* Gradient background */
     height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
-    color: black; /* White text on hero section for contrast */
+    color: #fff;
     padding: 0 2rem;
     margin-top: 60px; /* Adjust for fixed header */
-    background-color: #007bff; /* Fallback background color */
+    position: relative;
+    overflow: hidden;
+}
+
+.hero::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 200%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.1);
+    transform: skewX(-30deg);
+    animation: move-background 10s infinite linear; /* Moving background effect */
+}
+
+@keyframes move-background {
+    0% { left: -100%; }
+    100% { left: 100%; }
 }
 
 .hero-content h1 {
-    font-size: 3rem;
+    font-size: 4rem;
     margin-bottom: 1rem;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Slight text shadow for better readability */
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+    animation: fadeInUp 1s ease-in-out;
 }
 
 .hero-content p {
-    font-size: 1.25rem;
+    font-size: 1.5rem;
     margin-bottom: 2rem;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2); /* Slight text shadow */
+    animation: fadeInUp 1.5s ease-in-out;
+}
+
+@keyframes fadeInUp {
+    0% { opacity: 0; transform: translateY(20px); }
+    100% { opacity: 1; transform: translateY(0); }
 }
 
 .btn-primary {
-    background-color: #28a745; /* Green button for action */
+    background-color: #28a745;
     color: #fff;
     padding: 0.75rem 1.5rem;
     border: none;
-    border-radius: 5px;
-    font-size: 1rem;
+    border-radius: 30px; /* More rounded button */
+    font-size: 1.1rem;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 .btn-primary:hover {
-    background-color: #218838; /* Darker green on hover */
+    background-color: #218838;
+    transform: translateY(-3px); /* Hover lift effect */
 }
 
 /* About Section */
 .about {
-    background-color: #ffffff; /* White background for a clean look */
-    padding: 4rem 2rem;
+    background-color: #ffffff;
+    padding: 6rem 2rem;
     text-align: center;
+    position: relative;
 }
 
 .about .container {
@@ -123,26 +150,27 @@ nav {
 }
 
 .btn-secondary {
-    background-color: #6c757d; /* Neutral grey button */
+    background-color: #6c757d;
     color: #fff;
     padding: 0.75rem 1.5rem;
     border: none;
-    border-radius: 5px;
-    font-size: 1rem;
+    border-radius: 30px;
+    font-size: 1.1rem;
     cursor: pointer;
-    margin-top: 1rem;
-    transition: background-color 0.3s ease;
+    margin-top: 2rem;
+    transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 .btn-secondary:hover {
-    background-color: #495057; /* Darker grey on hover */
+    background-color: #495057;
+    transform: translateY(-3px);
 }
 
 /* Footer */
 footer {
-    background-color: #222; /* Dark background for footer */
-    color: #fff; /* White text for contrast */
-    padding: 2rem 0;
+    background-color: #222;
+    color: #fff;
+    padding: 3rem 0;
     text-align: center;
 }
 
@@ -152,7 +180,7 @@ footer .container {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 1rem;
+    gap: 1.5rem;
 }
 
 .social-links {
@@ -161,10 +189,12 @@ footer .container {
 }
 
 .social-links li a {
-    color: #007bff; /* Blue color for social links */
-    transition: color 0.3s ease;
+    color: #007bff;
+    font-size: 1.1rem;
+    transition: color 0.3s ease, transform 0.3s ease;
 }
 
 .social-links li a:hover {
-    color: #0056b3; /* Darker blue on hover */
+    color: #00d4ff;
+    transform: scale(1.1);
 }

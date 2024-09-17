@@ -3,9 +3,9 @@ body {
     margin: 0;
     padding: 0;
     font-family: 'Roboto', sans-serif;
-    color: #2e2e2e; /* Darker text for better readability */
+    color: #333; /* Darker text for better readability */
     line-height: 1.6;
-    background-color: #f3f4f6; /* Light grey background for a modern feel */
+    background-color: #f5f5f5; /* Very light grey background for a clean, modern feel */
     overflow-x: hidden; /* Prevent horizontal overflow */
 }
 
@@ -22,14 +22,14 @@ ul {
 
 /* Navigation Bar */
 header {
-    background-color: #ff715b; /* Vibrant coral for modern look */
+    background-color: #1a1a1a; /* Dark background for a modern look */
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     position: fixed;
     width: 100%;
     top: 0;
     z-index: 1000;
     transition: all 0.3s ease;
-    padding: 1.5rem 0; /* Larger padding for a bigger header */
+    padding: 1.5rem 0;
 }
 
 nav {
@@ -42,7 +42,7 @@ nav {
 }
 
 .logo {
-    font-size: 2.2rem; /* Larger logo font size */
+    font-size: 2.2rem;
     font-weight: 700;
     color: #fff; /* White logo text */
     transition: color 0.3s ease;
@@ -55,27 +55,27 @@ nav {
 
 .nav-links li a {
     font-weight: 500;
-    padding: 0.75rem 1.25rem; /* Larger padding for nav links */
+    padding: 0.75rem 1.25rem;
     transition: background-color 0.3s ease, transform 0.3s ease;
     color: #fff; /* White text color */
     border-radius: 8px;
 }
 
 .nav-links li a:hover {
-    background-color: #ff957c; /* Lighter coral on hover */
+    background-color: #333; /* Dark grey on hover */
     color: #fff;
     transform: translateY(-4px); /* Hover lift effect */
 }
 
 /* Hero Section */
 .hero {
-    background-image: linear-gradient(to right, #ff715b, #f9d423); /* Modern gradient background */
+    background-color: #1a1a1a; /* Solid dark background */
     height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
-    color: #fff;
+    color: #fff; /* White text */
     padding: 0 2rem;
     margin-top: 90px; /* Adjust for fixed header */
     position: relative;
@@ -101,18 +101,18 @@ nav {
 }
 
 .btn-primary {
-    background-color: #3d7e9a; /* Calm teal color for action buttons */
+    background-color: #4a4a4a; /* Dark grey for buttons */
     color: #fff;
     padding: 0.9rem 1.8rem;
     border: none;
-    border-radius: 25px; /* Rounded button */
+    border-radius: 25px;
     font-size: 1.1rem;
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 .btn-primary:hover {
-    background-color: #30677a; /* Darker teal on hover */
+    background-color: #333; /* Darker grey on hover */
     transform: translateY(-4px); /* Hover lift effect */
 }
 
@@ -132,7 +132,7 @@ nav {
 }
 
 .btn-secondary {
-    background-color: #f9d423; /* Vibrant yellow button */
+    background-color: #4a4a4a; /* Dark grey button */
     color: #fff;
     padding: 0.75rem 1.5rem;
     border: none;
@@ -144,13 +144,13 @@ nav {
 }
 
 .btn-secondary:hover {
-    background-color: #e0bd1f; /* Darker yellow on hover */
+    background-color: #333; /* Darker grey on hover */
     transform: translateY(-4px);
 }
 
 /* Footer */
 footer {
-    background-color: #3d7e9a; /* Calm teal for footer */
+    background-color: #1a1a1a; /* Dark background for footer */
     color: #fff;
     padding: 3rem 0;
     text-align: center;
@@ -171,12 +171,12 @@ footer .container {
 }
 
 .social-links li a {
-    color: #f9d423; /* Yellow for social links */
+    color: #4a4a4a; /* Grey for social links */
     font-size: 1.1rem;
     transition: color 0.3s ease, transform 0.3s ease;
 }
 
 .social-links li a:hover {
-    color: #ff715b; /* Coral on hover */
+    color: #fff; /* White on hover */
     transform: scale(1.1);
 }

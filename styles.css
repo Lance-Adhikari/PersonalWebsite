@@ -42,9 +42,7 @@ nav {
 }
 
 .logo {
-    font-size: 2.2rem;
     font-weight: 700;
-    color: #fff; /* White logo text */
     transition: color 0.3s ease;
     width: 100px; /* Adjusted for smaller logo */
     height: auto; /* Maintain aspect ratio */
@@ -69,85 +67,72 @@ nav {
     transform: translateY(-4px); /* Hover lift effect */
 }
 
-/* Hero Section */
-.hero {
-    background-color: #1a1a1a; /* Solid dark background */
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    color: #fff; /* White text */
-    padding: 0 2rem;
-    margin-top: 70px; /* Adjust for fixed header */
-    position: relative;
-    overflow: hidden;
-}
-
-.hero-content h1 {
-    font-size: 4.5rem;
-    margin-bottom: 1rem;
-    text-shadow: 3px 3px 12px rgba(0, 0, 0, 0.2);
-    animation: fadeInUp 1s ease-in-out;
-}
-
-.hero-content p {
-    font-size: 1.7rem;
-    margin-bottom: 2rem;
-    animation: fadeInUp 1.5s ease-in-out;
-}
-
-@keyframes fadeInUp {
-    0% { opacity: 0; transform: translateY(20px); }
-    100% { opacity: 1; transform: translateY(0); }
-}
-
-.btn-primary {
-    background-color: #4a4a4a; /* Dark grey for buttons */
-    color: #fff;
-    padding: 0.9rem 1.8rem;
-    border: none;
-    border-radius: 25px;
-    font-size: 1.1rem;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.3s ease;
-}
-
-.btn-primary:hover {
-    background-color: #333; /* Darker grey on hover */
-    transform: translateY(-4px); /* Hover lift effect */
-}
-
-/* About Section */
-.about {
+/* Contact Section */
+.contact {
     background-color: #ffffff; /* Clean white background */
     padding: 6rem 2rem;
     text-align: center;
     position: relative;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
     margin: 3rem 0;
 }
 
-.about .container {
+.contact .container {
     max-width: 800px;
     margin: auto;
 }
 
-.btn-secondary {
-    background-color: #4a4a4a; /* Dark grey button */
-    color: #fff;
-    padding: 0.75rem 1.5rem;
-    border: none;
-    border-radius: 25px;
-    font-size: 1.1rem;
-    cursor: pointer;
-    margin-top: 2rem;
-    transition: background-color 0.3s ease, transform 0.3s ease;
+.contact h2 {
+    font-size: 3rem;
+    color: #1a1a1a;
+    margin-bottom: 2rem;
 }
 
-.btn-secondary:hover {
-    background-color: #333; /* Darker grey on hover */
-    transform: translateY(-4px);
+.contact p {
+    font-size: 1.4rem;
+    margin-bottom: 2rem;
+    color: #333;
+}
+
+.contact-details {
+    list-style: none;
+    margin: 2rem 0;
+    padding: 0;
+}
+
+.contact-details li {
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+    color: #333;
+}
+
+.contact-details a {
+    color: #1a1a1a;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.contact-details a:hover {
+    color: #4a4a4a; /* Dark grey on hover */
+}
+
+/* Social Links */
+.social-links {
+    list-style: none;
+    margin: 2rem 0;
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+}
+
+.social-links li a {
+    font-size: 1.2rem;
+    color: #4a4a4a; /* Grey for social links */
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.social-links li a:hover {
+    color: #1a1a1a; /* Darker color on hover */
+    transform: scale(1.1);
 }
 
 /* Footer */
@@ -167,18 +152,18 @@ footer .container {
     gap: 1.5rem;
 }
 
-.social-links {
+footer .social-links {
     display: flex;
     gap: 2rem;
 }
 
-.social-links li a {
-    color: #4a4a4a; /* Grey for social links */
+footer .social-links li a {
+    color: #4a4a4a; /* Grey for footer social links */
     font-size: 1.1rem;
     transition: color 0.3s ease, transform 0.3s ease;
 }
 
-.social-links li a:hover {
+footer .social-links li a:hover {
     color: #fff; /* White on hover */
     transform: scale(1.1);
 }

@@ -29,7 +29,7 @@ header {
     top: 0;
     z-index: 1000;
     transition: all 0.3s ease;
-    padding: 1.5rem 0;
+    padding: 0.75rem 0; /* Adjusted for smaller header */
 }
 
 nav {
@@ -46,8 +46,8 @@ nav {
     font-weight: 700;
     color: #fff; /* White logo text */
     transition: color 0.3s ease;
-    width: 200px;
-    height: 200px;
+    width: 100px; /* Adjusted for smaller logo */
+    height: auto; /* Maintain aspect ratio */
 }
 
 .nav-links {
@@ -79,7 +79,7 @@ nav {
     text-align: center;
     color: #fff; /* White text */
     padding: 0 2rem;
-    margin-top: 90px; /* Adjust for fixed header */
+    margin-top: 70px; /* Adjust for fixed header */
     position: relative;
     overflow: hidden;
 }

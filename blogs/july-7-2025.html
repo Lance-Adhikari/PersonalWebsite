@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Using Python Functions in Cybersecurity</title>
+        <!-- Favicon -->
+        <link rel="icon" type="image/x-icon" href="../assets/favicon.png" />
+        <!-- Custom Google font -->
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@100;200;300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet" />
+        <!-- Bootstrap icons -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css" rel="stylesheet" />
+        <!-- Core theme CSS (includes Bootstrap) -->
+        <link href="blogs.css" rel="stylesheet" />
+    </head>
+
+    <body class="d-flex flex-column h-100 bg-light">
+        <main class="flex-shrink-0">
+            <!-- Navigation -->
+            <nav class="navbar navbar-expand-lg navbar-light bg-white py-3">
+                <div class="container px-5">
+                    <a class="navbar-brand" href="../index.html"><span class="fw-bolder text-primary">Lance Adhikari</span></a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav ms-auto mb-2 mb-lg-0 small fw-bolder">
+                            <li class="nav-item"><a class="nav-link" href="../index.html">Home</a></li>
+                            <li class="nav-item"><a class="nav-link" href="blog-index.html">My Blogs</a></li>
+                            <li class="nav-item"><a class="nav-link" href="../contact.html">Contact</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+
+            <!-- Blog Content Section -->
+            <section class="py-5">
+                <div class="container px-5">
+                    <article class="mb-5">
+                        <h1 class="fw-bolder">Working with Built-in Python Functions</h1>
+                        <p class="text-muted">Published by Lance Adhikari on July 7, 2025 · 10 min read</p>
+                    
+                        <div class="text-center">
+                            <img src="../assets/blog-assets/july,7,2025.jpg" class="img-fluid rounded mt-3" style="max-height: 500px; width: auto; object-fit: cover;" alt="Python Programming">
+                        </div>
+
+                        <p class="mt-4">
+                            Built-in functions are a powerful part of Python. These are functions that are always available and can be used directly to perform common tasks like printing messages, checking data types, or sorting values. In this blog, we’ll explore useful built-in functions including <code>print()</code>, <code>type()</code>, <code>min()</code>, <code>max()</code>, and <code>sorted()</code>, and see how they apply to cybersecurity scenarios.
+                        </p>
+
+                        <h2 class="fw-bold mt-4">Using the <code>print()</code> Function</h2>
+                        <p>
+                            The <code>print()</code> function is used to output content to the screen. It takes one or more arguments and displays them, separated by spaces. This is useful for displaying results, error messages, or debugging information.
+                        </p>
+
+                        <pre class="bg-light p-3 rounded border">
+                            <code>
+                                month = "September"
+                                print("Investigate failed login attempts during", month, "if more than", 100)
+                            </code>
+                        </pre>
+
+                        <p>
+                            Output: <code>Investigate failed login attempts during September if more than 100</code>
+                        </p>
+
+                        <h2 class="fw-bold mt-4">Understanding Data with <code>type()</code></h2>
+                        <p>
+                            The <code>type()</code> function tells you the data type of a variable or value. This helps prevent errors when working with different types like strings, integers, or lists.
+                        </p>
+
+                        <pre class="bg-light p-3 rounded border">
+                            <code>
+                                print(type("This is a string"))
+                            </code>
+                        </pre>
+
+                        <p>
+                            Output: <code>&lt;class 'str'&gt;</code> – meaning the input is a string.
+                        </p>
+
+                        <h2 class="fw-bold mt-4">Combining Functions</h2>
+                        <p>
+                            You can pass the output of one function into another. In the example above, the output of <code>type()</code> was passed into <code>print()</code> to display the result. This is common practice and makes your code more dynamic.
+                        </p>
+
+                        <h2 class="fw-bold mt-4">Finding Values with <code>max()</code> and <code>min()</code></h2>
+                        <p>
+                            The <code>max()</code> function returns the largest value from a group of numbers, while <code>min()</code> returns the smallest. This can help you detect anomalies or extremes in cybersecurity data.
+                        </p>
+
+                        <pre class="bg-light p-3 rounded border">
+                            <code>
+                                time_list = [12, 2, 32, 19, 57, 22, 14]
+                                print(min(time_list))
+                                print(max(time_list))
+                            </code>
+                        </pre>
+
+                        <p>
+                            Output: <code>2</code> and <code>57</code>, representing the shortest and longest login sessions.
+                        </p>
+
+                        <h2 class="fw-bold mt-4">Organizing Data with <code>sorted()</code></h2>
+                        <p>
+                            The <code>sorted()</code> function sorts a list or iterable in ascending order. It doesn’t change the original list but returns a new one. This is useful for organizing data like session durations or alert severity levels.
+                        </p>
+
+                        <pre class="bg-light p-3 rounded border">
+                            <code>
+                                time_list = [12, 2, 32, 19, 57, 22, 14]
+                                print(sorted(time_list))
+                                print(time_list)
+                            </code>
+                        </pre>
+
+                        <p>
+                            Output: <code>[2, 12, 14, 19, 22, 32, 57]</code> and the original list remains unchanged.
+                        </p>
+
+                        <h2 class="fw-bold mt-4">Important Note</h2>
+                        <p>
+                            The <code>sorted()</code> function only works with lists containing one data type. Mixing strings and numbers in the same list will result in an error.
+                        </p>
+
+                        <h2 class="fw-bold mt-4">Key Takeaways</h2>
+                        <p>
+                            Python’s built-in functions make coding easier and faster. Whether you’re printing output, checking types, finding maximums, or sorting data, these tools are especially helpful in cybersecurity for log analysis, anomaly detection, and automation.
+                        </p>
+
+                        <h2 class="fw-bold mt-4">Further Resources</h2>
+                        <p>
+                            Want to learn more? Check out the <a href="https://docs.python.org/3/library/functions.html" target="_blank">Python Standard Library documentation</a> for a full list of built-in functions and how to use them.
+                        </p>
+
+                        <p>
+                            Have questions or thoughts about built-in Python functions in cybersecurity? Reach out and connect—I’d love to hear from you!
+                        </p>
+                    </article>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="bg-white py-4 mt-auto">
+            <div class="container px-5">
+                <div class="row align-items-center justify-content-between flex-column flex-sm-row">
+                    <div class="col-auto"><div class="small m-0">Copyright &copy; Lance Adhikari 2025</div></div>
+                    <div class="col-auto">
+                        <a class="small" href="#!">Privacy</a>
+                        <span class="mx-1">&middot;</span>
+                        <a class="small" href="#!">Terms</a>
+                        <span class="mx-1">&middot;</span>
+                        <a class="small" href="#!">Contact</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+        <!-- Bootstrap core JS -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS -->
+        <script src="js/scripts.js"></script>
+    </body>
+</html>

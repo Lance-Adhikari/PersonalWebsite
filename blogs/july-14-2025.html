@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Using Python Functions in Cybersecurity</title>
+        <!-- Favicon -->
+        <link rel="icon" type="image/x-icon" href="../assets/favicon.png" />
+        <!-- Custom Google font -->
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@100;200;300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet" />
+        <!-- Bootstrap icons -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css" rel="stylesheet" />
+        <!-- Core theme CSS (includes Bootstrap) -->
+        <link href="blogs.css" rel="stylesheet" />
+    </head>
+
+    <body class="d-flex flex-column h-100 bg-light">
+        <main class="flex-shrink-0">
+            <!-- Navigation -->
+            <nav class="navbar navbar-expand-lg navbar-light bg-white py-3">
+                <div class="container px-5">
+                    <a class="navbar-brand" href="../index.html"><span class="fw-bolder text-primary">Lance Adhikari</span></a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav ms-auto mb-2 mb-lg-0 small fw-bolder">
+                            <li class="nav-item"><a class="nav-link" href="../index.html">Home</a></li>
+                            <li class="nav-item"><a class="nav-link" href="blog-index.html">My Blogs</a></li>
+                            <li class="nav-item"><a class="nav-link" href="../contact.html">Contact</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+
+            <!-- Blog Content Section -->
+            <section class="py-5">
+                <div class="container px-5">
+                    <article class="mb-5">
+                            <h1 class="fw-bolder">How to Import Modules and Libraries in Python</h1>
+                            <p class="text-muted">Published by Lance Adhikari on July 14, 2025 · 9 min read</p>
+
+                            <div class="text-center">
+                                <img src="../assets/blog-assets/july,14,2025.png" class="img-fluid rounded mt-3" alt="Importing Python Libraries" style="max-height: 500px; width: auto; object-fit: cover;">
+                            </div>
+
+                            <p class="mt-4">
+                                Python allows you to extend your coding power by importing reusable code from modules and libraries. Whether you're analyzing security logs or working with data, learning how to properly import and use modules is an essential step. This article walks you through how to import both built-in and external Python modules, with practical examples focused on real-world tasks.
+                            </p>
+
+                            <h2 class="fw-bold mt-4">What Are Modules and Libraries?</h2>
+                            <p>
+                                A <strong>module</strong> is simply a Python file containing useful code: variables, functions, and classes. A <strong>library</strong> is a collection of related modules. Python comes with a built-in set of these called the <em>Standard Library</em>, and you can also download external libraries for more advanced tasks.
+                            </p>
+
+                            <h2 class="fw-bold mt-4">Common Standard Library Modules</h2>
+                            <ul>
+                                <li><code>re</code>: pattern matching in logs</li>
+                                <li><code>csv</code>: reading and writing CSV files</li>
+                                <li><code>glob</code> and <code>os</code>: file system and shell interaction</li>
+                                <li><code>time</code> and <code>datetime</code>: managing timestamps</li>
+                                <li><code>statistics</code>: analyzing numeric data</li>
+                            </ul>
+
+                            <h2 class="fw-bold mt-4">Importing a Full Module</h2>
+                            <p>
+                                To import everything from a module, use the <code>import</code> keyword. For example:
+                            </p>
+
+                            <pre class="bg-light p-3 rounded border">
+                                <code>
+                                    import statistics
+                                    monthly_failed_attempts = [20, 17, 178, 33, 15, 21, 19, 29, 32, 15, 25, 19]
+                                    mean_failed_attempts = statistics.mean(monthly_failed_attempts)
+                                    print("mean:", mean_failed_attempts)
+                                </code>
+                            </pre>
+
+                            <p>Output:</p>
+                            <pre class="bg-light p-3 rounded border">
+                                <code>
+                                    mean: 35.25
+                                </code>
+                            </pre>
+
+                            <p>
+                                You can also calculate the median using another function from the same module:
+                            </p>
+
+                            <pre class="bg-light p-3 rounded border">
+                                <code>
+                                    median_failed_attempts = statistics.median(monthly_failed_attempts)
+                                    print("median:", median_failed_attempts)
+                                </code>
+                            </pre>
+
+                            <p>Output:</p>
+                            <pre class="bg-light p-3 rounded border">
+                                <code>
+                                    median: 20.5
+                                </code>
+                            </pre>
+
+                            <h2 class="fw-bold mt-4">Importing Specific Functions</h2>
+                            <p>
+                                If you don’t need the whole module, use <code>from ... import ...</code> to import only what you need. This avoids typing the module name before every function call:
+                            </p>
+
+                            <pre class="bg-light p-3 rounded border">
+                                <code>
+                                    from statistics import mean, median
+
+                                    monthly_failed_attempts = [20, 17, 178, 33, 15, 21, 19, 29, 32, 15, 25, 19]
+                                    print("mean:", mean(monthly_failed_attempts))
+                                    print("median:", median(monthly_failed_attempts))
+                                </code>
+                            </pre>
+
+                            <p>This is cleaner and improves readability for longer scripts.</p>
+
+                            <h2 class="fw-bold mt-4">Installing and Importing External Libraries</h2>
+                            <p>
+                                Python also supports third-party libraries like <code>NumPy</code> and <code>BeautifulSoup</code> for advanced tasks. These must be installed before importing:
+                            </p>
+
+                            <pre class="bg-light p-3 rounded border">
+                                <code>
+                                    %pip install numpy
+                                </code>
+                            </pre>
+
+                            <p>Then, import as you would a built-in module:</p>
+
+                            <pre class="bg-light p-3 rounded border">
+                                <code>
+                                    import numpy
+                                </code> 
+                            </pre>
+
+                            <p>
+                                External libraries open up capabilities for web scraping, data analysis, machine learning, and much more.
+                            </p>
+
+                            <h2 class="fw-bold mt-4">Key Takeaways</h2>
+                            <ul>
+                                <li><strong>Modules</strong> contain reusable code; <strong>libraries</strong> are collections of modules.</li>
+                                <li>Use <code>import module_name</code> to import everything from a module.</li>
+                                <li>Use <code>from module_name import function_name</code> to only bring in what you need.</li>
+                                <li>Install external libraries like NumPy or BeautifulSoup using <code>%pip install</code>.</li>
+                                <li>Use built-in modules like <code>statistics</code> for calculations directly in Python.</li>
+                            </ul>
+
+                            <p>
+                                Mastering imports makes your code more efficient and gives you access to the full power of Python’s ecosystem. Whether you’re building a data pipeline or analyzing logs, importing modules is an essential step.
+                            </p>
+
+                            <p>Have questions or suggestions for other modules to explore? Feel free to reach out!</p>
+                    </article>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="bg-white py-4 mt-auto">
+            <div class="container px-5">
+                <div class="row align-items-center justify-content-between flex-column flex-sm-row">
+                    <div class="col-auto"><div class="small m-0">Copyright &copy; Lance Adhikari 2025</div></div>
+                    <div class="col-auto">
+                        <a class="small" href="#!">Privacy</a>
+                        <span class="mx-1">&middot;</span>
+                        <a class="small" href="#!">Terms</a>
+                        <span class="mx-1">&middot;</span>
+                        <a class="small" href="#!">Contact</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+        <!-- Bootstrap core JS -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS -->
+        <script src="js/scripts.js"></script>
+    </body>
+</html>

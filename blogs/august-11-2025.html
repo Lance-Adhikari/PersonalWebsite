@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Relational Databases: The Backbone of Modern Data Management</title>
+        <!-- Favicon -->
+        <link rel="icon" type="image/x-icon" href="../assets/favicon.png" />
+        <!-- Custom Google font -->
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@100;200;300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet" />
+        <!-- Bootstrap icons -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css" rel="stylesheet" />
+        <!-- Core theme CSS (includes Bootstrap) -->
+        <link href="blogs.css" rel="stylesheet" />
+    </head>
+
+    <body class="d-flex flex-column h-100 bg-light">
+        <main class="flex-shrink-0">
+            <!-- Navigation -->
+            <nav class="navbar navbar-expand-lg navbar-light bg-white py-3">
+                <div class="container px-5">
+                    <a class="navbar-brand" href="../index.html"><span class="fw-bolder text-primary">Lance Adhikari</span></a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav ms-auto mb-2 mb-lg-0 small fw-bolder">
+                            <li class="nav-item"><a class="nav-link" href="../index.html">Home</a></li>
+                            <li class="nav-item"><a class="nav-link" href="blog-index.html">My Blogs</a></li>
+                            <li class="nav-item"><a class="nav-link" href="../contact.html">Contact</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+
+            <!-- Blog Content Section -->
+            <section class="py-5">
+                <div class="container px-5">
+                    <article class="mb-5">
+                        <h1 class="fw-bolder">Relational Databases: The Backbone of Modern Data Management</h1>
+                        <p class="text-muted">Published by Lance Adhikari on August 11, 2025 · 15 min read</p>
+
+                        <div class="text-center">
+                            <img src="/assets/blog-assets/august,11,2025.png" class="img-fluid rounded mt-3" alt="Importing Python Libraries" style="max-height: 500px; width: auto; object-fit: cover;">
+                        </div>
+
+                        <p class="mt-4">
+                            When you think about how websites store user accounts, how banks track your transactions, or how an online store keeps its inventory up-to-date, 
+                            there’s a high chance a <strong>Relational Database Management System (RDBMS)</strong> is working behind the scenes. 
+                            Relational databases are not just a storage method — they are the structured, reliable, and secure engines that keep modern applications running smoothly.
+                        </p>
+
+                        <h2 class="fw-bold mt-4">What Exactly is a Relational Database?</h2>
+                        <p>
+                            A relational database organizes data into tables, where <strong>rows</strong> (records) represent individual entries and <strong>columns</strong> (attributes) represent specific details. 
+                            What makes them “relational” is the ability to connect different tables through a shared field, called a <em>key</em>.
+                        </p>
+                        <p>
+                            For example, imagine a <strong>Customer Table</strong> that stores:
+                        </p>
+                        <ul>
+                            <li>Customer ID</li>
+                            <li>Customer Name</li>
+                            <li>Address</li>
+                            <li>Primary Phone</li>
+                        </ul>
+                        <p>
+                            Alongside this, a <strong>Transaction Table</strong> records:
+                        </p>
+                        <ul>
+                            <li>Transaction Date</li>
+                            <li>Customer ID</li>
+                            <li>Transaction Amount</li>
+                            <li>Payment Method</li>
+                        </ul>
+                        <p>
+                            The <strong>Customer ID</strong> appears in both tables, allowing you to join them together and answer questions like: 
+                            “Show me all transactions for customer #1032 in the last 6 months.”
+                        </p>
+
+                        <h2 class="fw-bold mt-4">Why Relational Databases Are Powerful</h2>
+                        <p>
+                            By connecting data through relationships, RDBMS systems make it possible to:
+                        </p>
+                        <ul>
+                            <li>Generate detailed reports across multiple data sources.</li>
+                            <li>Reduce data duplication by storing shared information in one place.</li>
+                            <li>Maintain <strong>data integrity</strong> through strict rules and constraints.</li>
+                            <li>Run complex <strong>SQL</strong> queries that can analyze millions of records in seconds.</li>
+                        </ul>
+
+                        <h2 class="fw-bold mt-4">Key Features</h2>
+                        <ul>
+                            <li>Structured schema with rows and columns for organized storage.</li>
+                            <li>Optimized for large-scale storage, retrieval, and processing.</li>
+                            <li>Supports specific data types and validation rules for consistency.</li>
+                            <li>Strong built-in security and access control.</li>
+                            <li>Available in desktop, enterprise, and cloud-based forms.</li>
+                        </ul>
+
+                        <h2 class="fw-bold mt-4">Examples of Popular RDBMS</h2>
+                        <p>
+                            The most widely used relational databases include:
+                        </p>
+                        <ul>
+                            <li>MySQL</li>
+                            <li>PostgreSQL</li>
+                            <li>Oracle Database</li>
+                            <li>IBM DB2</li>
+                            <li>Microsoft SQL Server</li>
+                        </ul>
+                        <p>
+                            On the cloud side, options like <strong>Amazon RDS</strong>, <strong>Google Cloud SQL</strong>, and <strong>Azure SQL Database</strong> make it easy to scale databases without managing servers.
+                        </p>
+
+                        <h2 class="fw-bold mt-4">Advantages That Make RDBMS Stand Out</h2>
+                        <ul>
+                            <li><strong>Flexibility:</strong> Add or modify tables and columns while the database is running.</li>
+                            <li><strong>Reduced Redundancy:</strong> Store customer info once and reference it in multiple tables.</li>
+                            <li><strong>Backup & Recovery:</strong> Easy export/import options, plus continuous cloud mirroring.</li>
+                            <li><strong>ACID Compliance:</strong> Ensures reliable transactions, even in case of failures.</li>
+                        </ul>
+
+                        <h2 class="fw-bold mt-4">Where Are They Used?</h2>
+                        <ul>
+                            <li><strong>OLTP (Online Transaction Processing):</strong> High-speed, high-volume systems like e-commerce, banking, and reservations.</li>
+                            <li><strong>Data Warehousing / OLAP:</strong> Analyzing large volumes of historical data for trends and insights.</li>
+                            <li><strong>IoT Solutions:</strong> Managing real-time data from connected devices efficiently.</li>
+                        </ul>
+
+                        <h2 class="fw-bold mt-4">Limitations to Keep in Mind</h2>
+                        <ul>
+                            <li>Not ideal for semi-structured or unstructured data like images or social media text.</li>
+                            <li>Migration between two RDBMS requires identical schemas and data types.</li>
+                            <li>Field length limits can restrict how much information you can store in a single column.</li>
+                        </ul>
+
+                        <h2 class="fw-bold mt-4">Final Thoughts</h2>
+                        <p>
+                            Even with the rise of NoSQL and big data solutions, relational databases remain the gold standard for managing structured data. 
+                            Their maturity, flexibility, and reliability make them a key technology for everything from small business applications to massive enterprise systems.
+                        </p>
+                        <p>
+                            If you’re building a project that needs fast queries, consistent data, and strong security, 
+                            chances are an RDBMS will be the perfect choice.
+                        </p>
+                    </article>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="bg-white py-4 mt-auto">
+            <div class="container px-5">
+                <div class="row align-items-center justify-content-between flex-column flex-sm-row">
+                    <div class="col-auto"><div class="small m-0">Copyright &copy; Lance Adhikari 2025</div></div>
+                    <div class="col-auto">
+                        <a class="small" href="#!">Privacy</a>
+                        <span class="mx-1">&middot;</span>
+                        <a class="small" href="#!">Terms</a>
+                        <span class="mx-1">&middot;</span>
+                        <a class="small" href="#!">Contact</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+        <!-- Bootstrap core JS -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS -->
+        <script src="js/scripts.js"></script>
+    </body>
+</html>

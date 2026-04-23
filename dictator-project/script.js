@@ -1,21 +1,19 @@
-
 (() => {
   const state = {
-    selectedIndex: 0,
-    filteredPhase: "all",
-    filteredItems: [...TIMELINE_DATA],
-    inspectorTab: "overview",
+    index: 0,
     autoplayId: null,
+    activeModal: null
   };
 
   const elements = {
+    body: document.body,
     navToggle: document.getElementById("navToggle"),
     navMenu: document.getElementById("navMenu"),
     timelineSlider: document.getElementById("timelineSlider"),
     timelinePoints: document.getElementById("timelinePoints"),
     currentEventLabel: document.getElementById("currentEventLabel"),
-    prevEventBtn: document.getElementById("prevEventBtn"),
     nextEventBtn: document.getElementById("nextEventBtn"),
+    prevEventBtn: document.getElementById("prevEventBtn"),
     playTimelineBtn: document.getElementById("playTimelineBtn"),
     eventPhaseBadge: document.getElementById("eventPhaseBadge"),
     eventYear: document.getElementById("eventYear"),
@@ -25,69 +23,66 @@
     eventSummary: document.getElementById("eventSummary"),
     eventHighlights: document.getElementById("eventHighlights"),
     eventImpactList: document.getElementById("eventImpactList"),
-    inspectorContent: document.getElementById("inspectorContent"),
-    newspaperHeadlinePreview: document.getElementById("newspaperHeadlinePreview"),
-    newspaperTeaser: document.getElementById("newspaperTeaser"),
-    diaryHeadlinePreview: document.getElementById("diaryHeadlinePreview"),
-    diaryTeaser: document.getElementById("diaryTeaser"),
+    eventImage: document.getElementById("eventImage"),
+    eventImageCaption: document.getElementById("eventImageCaption"),
+    eventImageSource: document.getElementById("eventImageSource"),
     openNewspaperBtn: document.getElementById("openNewspaperBtn"),
     openDiaryBtn: document.getElementById("openDiaryBtn"),
-    openSourceNoteBtn: document.getElementById("openSourceNoteBtn"),
     newspaperModal: document.getElementById("newspaperModal"),
     diaryModal: document.getElementById("diaryModal"),
-    sourceNoteModal: document.getElementById("sourceNoteModal"),
-    newspaperModalTitle: document.getElementById("newspaperModalTitle"),
     newspaperDate: document.getElementById("newspaperDate"),
+    newspaperTitle: document.getElementById("newspaperTitle"),
     newspaperDeck: document.getElementById("newspaperDeck"),
+    newspaperImage: document.getElementById("newspaperImage"),
+    newspaperCaption: document.getElementById("newspaperCaption"),
     newspaperBody: document.getElementById("newspaperBody"),
     newspaperSidebarTitle: document.getElementById("newspaperSidebarTitle"),
     newspaperSidebarPoints: document.getElementById("newspaperSidebarPoints"),
-    diaryModalTitle: document.getElementById("diaryModalTitle"),
+    diaryTitle: document.getElementById("diaryTitle"),
     diaryMeta: document.getElementById("diaryMeta"),
+    diaryPerspective: document.getElementById("diaryPerspective"),
     diaryBody: document.getElementById("diaryBody"),
-    phaseFilters: Array.from(document.querySelectorAll("[data-phase-filter]")),
-    tabButtons: Array.from(document.querySelectorAll(".tab-button")),
-    revealItems: Array.from(document.querySelectorAll("[data-reveal]")),
-    modals: Array.from(document.querySelectorAll(".modal"))
+    diaryReveals: document.getElementById("diaryReveals")
   };
 
   function init() {
-    bindNav();
-    bindTimelineControls();
-    bindPhaseFilters();
-    bindTabs();
-    bindModalControls();
-    bindRevealAnimations();
-    applyFilter("all");
-    renderSelectedEvent();
+    renderTimelinePoints();
+    bindEvents();
+    renderEvent();
   }
 
-  function bindNav() {
-    if (!elements.navToggle || !elements.navMenu) return;
-
-    elements.navToggle.addEventListener("click", () => {
-      const expanded = elements.navToggle.getAttribute("aria-expanded") === "true";
-      elements.navToggle.setAttribute("aria-expanded", String(!expanded));
-      elements.navMenu.classList.toggle("is-open");
-    });
-
-    elements.navMenu.querySelectorAll("a").forEach((link) => {
-      link.addEventListener("click", () => {
-        elements.navToggle.setAttribute("aria-expanded", "false");
-        elements.navMenu.classList.remove("is-open");
+  function bindEvents() {
+    if (elements.navToggle) {
+      elements.navToggle.addEventListener("click", () => {
+        const expanded = elements.navToggle.getAttribute("aria-expanded") === "true";
+        elements.navToggle.setAttribute("aria-expanded", String(!expanded));
+        elements.navMenu.classList.toggle("is-open");
       });
-    });
-  }
+    }
 
-  function bindTimelineControls() {
-    elements.prevEventBtn.addEventListener("click", () => {
+    if (elements.navMenu) {
+      elements.navMenu.querySelectorAll("a").forEach((link) => {
+        link.addEventListener("click", () => {
+          closeNav();
+        });
+      });
+    }
+
+    elements.timelineSlider.max = String(TIMELINE_DATA.length - 1);
+    elements.timelineSlider.addEventListener("input", (event) => {
       stopAutoplay();
-      moveSelection(-1);
+      state.index = Number(event.target.value);
+      renderEvent();
     });
 
     elements.nextEventBtn.addEventListener("click", () => {
       stopAutoplay();
-      moveSelection(1);
+      step(1);
+    });
+
+    elements.prevEventBtn.addEventListener("click", () => {
+      stopAutoplay();
+      step(-1);
     });
 
     elements.playTimelineBtn.addEventListener("click", () => {
@@ -98,302 +93,178 @@
       }
     });
 
-    elements.timelineSlider.addEventListener("input", (event) => {
-      stopAutoplay();
-      state.selectedIndex = Number(event.target.value);
-      renderSelectedEvent();
+    elements.openNewspaperBtn.addEventListener("click", () => openModal(elements.newspaperModal));
+    elements.openDiaryBtn.addEventListener("click", () => openModal(elements.diaryModal));
+
+    document.querySelectorAll("[data-close-modal]").forEach((trigger) => {
+      trigger.addEventListener("click", () => {
+        const modalId = trigger.getAttribute("data-close-modal");
+        closeModal(document.getElementById(modalId));
+      });
     });
 
     document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && state.activeModal) {
+        closeModal(state.activeModal);
+        return;
+      }
+
+      if (state.activeModal) return;
+
       if (event.key === "ArrowRight") {
-        moveSelection(1);
+        stopAutoplay();
+        step(1);
       }
       if (event.key === "ArrowLeft") {
-        moveSelection(-1);
-      }
-      if (event.key === "Escape") {
-        closeAllModals();
-      }
-    });
-  }
-
-  function bindPhaseFilters() {
-    elements.phaseFilters.forEach((button) => {
-      button.addEventListener("click", () => {
-        const phase = button.dataset.phaseFilter;
         stopAutoplay();
-        applyFilter(phase);
-      });
-    });
-  }
-
-  function bindTabs() {
-    elements.tabButtons.forEach((button) => {
-      button.addEventListener("click", () => {
-        state.inspectorTab = button.dataset.tab;
-        elements.tabButtons.forEach((tab) => {
-          tab.classList.toggle("is-active", tab === button);
-          tab.setAttribute("aria-selected", String(tab === button));
-        });
-        renderInspectorContent();
-      });
-    });
-  }
-
-  function bindModalControls() {
-    elements.openNewspaperBtn.addEventListener("click", () => {
-      fillNewspaperModal();
-      openModal(elements.newspaperModal);
-    });
-
-    elements.openDiaryBtn.addEventListener("click", () => {
-      fillDiaryModal();
-      openModal(elements.diaryModal);
-    });
-
-    elements.openSourceNoteBtn.addEventListener("click", () => {
-      openModal(elements.sourceNoteModal);
-    });
-
-    document.querySelectorAll("[data-close-modal='true']").forEach((button) => {
-      button.addEventListener("click", () => {
-        closeAllModals();
-      });
-    });
-  }
-
-  function bindRevealAnimations() {
-    if (!("IntersectionObserver" in window)) {
-      elements.revealItems.forEach((item) => item.classList.add("is-visible"));
-      return;
-    }
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("is-visible");
-          observer.unobserve(entry.target);
+        step(-1);
+      }
+      if (event.key === " ") {
+        if (document.activeElement === document.body || document.activeElement === elements.playTimelineBtn) {
+          event.preventDefault();
+          if (state.autoplayId) {
+            stopAutoplay();
+          } else {
+            startAutoplay();
+          }
         }
-      });
-    }, { threshold: 0.12 });
-
-    elements.revealItems.forEach((item) => observer.observe(item));
-  }
-
-  function applyFilter(phase) {
-    state.filteredPhase = phase;
-    state.filteredItems = phase === "all"
-      ? [...TIMELINE_DATA]
-      : TIMELINE_DATA.filter((item) => item.phase === phase);
-
-    state.selectedIndex = 0;
-
-    elements.phaseFilters.forEach((button) => {
-      button.classList.toggle("is-active", button.dataset.phaseFilter === phase);
+      }
     });
 
-    renderTimelinePoints();
-    updateSliderBounds();
-    renderSelectedEvent();
+    window.addEventListener("resize", () => {
+      if (window.innerWidth > 900) {
+        closeNav();
+      }
+    });
   }
 
-  function updateSliderBounds() {
-    const maxIndex = Math.max(0, state.filteredItems.length - 1);
-    elements.timelineSlider.max = String(maxIndex);
-    elements.timelineSlider.value = String(state.selectedIndex);
-    elements.timelineSlider.disabled = maxIndex === 0;
+  function closeNav() {
+    if (!elements.navMenu || !elements.navMenu.classList.contains("is-open")) return;
+    elements.navMenu.classList.remove("is-open");
+    elements.navToggle.setAttribute("aria-expanded", "false");
   }
 
   function renderTimelinePoints() {
     elements.timelinePoints.innerHTML = "";
-
-    state.filteredItems.forEach((item, index) => {
-      const pointButton = document.createElement("button");
-      pointButton.type = "button";
-      pointButton.className = "timeline-point";
-      pointButton.dataset.index = String(index);
-      pointButton.innerHTML = `
+    TIMELINE_DATA.forEach((item, index) => {
+      const button = document.createElement("button");
+      button.type = "button";
+      button.className = "timeline-point";
+      button.setAttribute("aria-label", `${item.year} ${item.title}`);
+      button.innerHTML = `
         <span class="timeline-point-year">${item.year}</span>
-        <span class="timeline-point-title">${item.title}</span>
-        <span class="timeline-point-phase">${formatPhaseLabel(item.phase)}</span>
+        <span class="timeline-point-title">${item.pointTitle}</span>
+        <span class="timeline-point-phase">${item.phase}</span>
       `;
-
-      pointButton.addEventListener("click", () => {
+      button.addEventListener("click", () => {
         stopAutoplay();
-        state.selectedIndex = index;
-        elements.timelineSlider.value = String(index);
-        renderSelectedEvent();
+        state.index = index;
+        renderEvent();
       });
-
-      elements.timelinePoints.appendChild(pointButton);
+      elements.timelinePoints.appendChild(button);
     });
   }
 
-  function renderSelectedEvent() {
-    if (!state.filteredItems.length) return;
-    const eventItem = state.filteredItems[state.selectedIndex];
-    if (!eventItem) return;
+  function renderEvent() {
+    const item = TIMELINE_DATA[state.index];
+    if (!item) return;
 
-    elements.timelineSlider.value = String(state.selectedIndex);
-    elements.currentEventLabel.textContent = `${eventItem.year} — ${eventItem.title}`;
-    elements.eventPhaseBadge.textContent = eventItem.tag;
-    elements.eventYear.textContent = eventItem.year;
-    elements.eventIcon.src = eventItem.icon;
-    elements.eventTitle.textContent = eventItem.title;
-    elements.eventDateLabel.textContent = eventItem.dateLabel;
-    elements.eventSummary.textContent = eventItem.summary;
+    elements.timelineSlider.value = String(state.index);
+    elements.currentEventLabel.textContent = `${item.year} — ${item.title}`;
+    elements.eventPhaseBadge.textContent = item.tag;
+    elements.eventYear.textContent = item.year;
+    elements.eventIcon.src = item.icon;
+    elements.eventTitle.textContent = item.title;
+    elements.eventDateLabel.textContent = item.dateLabel;
+    elements.eventSummary.textContent = item.summary;
 
     elements.eventHighlights.innerHTML = "";
-    eventItem.highlights.forEach((highlight) => {
+    item.highlights.forEach((highlight) => {
       const pill = document.createElement("span");
       pill.textContent = highlight;
       elements.eventHighlights.appendChild(pill);
     });
 
     elements.eventImpactList.innerHTML = "";
-    eventItem.impacts.forEach((impact) => {
-      const item = document.createElement("li");
-      item.textContent = impact;
-      elements.eventImpactList.appendChild(item);
-    });
-
-    const pointButtons = Array.from(elements.timelinePoints.querySelectorAll(".timeline-point"));
-    pointButtons.forEach((button, index) => {
-      button.classList.toggle("is-active", index === state.selectedIndex);
-    });
-
-    elements.newspaperHeadlinePreview.textContent = eventItem.newspaper.title;
-    elements.newspaperTeaser.textContent = eventItem.newspaper.deck;
-    elements.diaryHeadlinePreview.textContent = eventItem.diary.title;
-    elements.diaryTeaser.textContent = eventItem.diary.meta;
-
-    renderInspectorContent();
-    fillNewspaperModal();
-    fillDiaryModal();
-  }
-
-  function renderInspectorContent() {
-    const eventItem = state.filteredItems[state.selectedIndex];
-    const content = eventItem.analysis[state.inspectorTab];
-
-    elements.inspectorContent.innerHTML = "";
-
-    if (!content) return;
-
-    if (state.inspectorTab === "overview") {
-      content.forEach((paragraph) => {
-        const p = document.createElement("p");
-        p.textContent = paragraph;
-        elements.inspectorContent.appendChild(p);
-      });
-    } else {
-      const list = document.createElement("ul");
-      list.className = "detail-list";
-      content.forEach((point) => {
-        const li = document.createElement("li");
-        li.textContent = point;
-        list.appendChild(li);
-      });
-      elements.inspectorContent.appendChild(list);
-    }
-  }
-
-  function fillNewspaperModal() {
-    const eventItem = state.filteredItems[state.selectedIndex];
-    const newspaper = eventItem.newspaper;
-
-    elements.newspaperModalTitle.textContent = newspaper.title;
-    elements.newspaperDate.textContent = newspaper.date;
-    elements.newspaperDeck.textContent = newspaper.deck;
-
-    elements.newspaperBody.innerHTML = "";
-    newspaper.body.forEach((paragraph) => {
-      const p = document.createElement("p");
-      p.textContent = paragraph;
-      elements.newspaperBody.appendChild(p);
-    });
-
-    elements.newspaperSidebarTitle.textContent = newspaper.sidebarTitle;
-    elements.newspaperSidebarPoints.innerHTML = "";
-    newspaper.sidebarPoints.forEach((point) => {
+    item.impacts.forEach((impact) => {
       const li = document.createElement("li");
-      li.textContent = point;
-      elements.newspaperSidebarPoints.appendChild(li);
+      li.textContent = impact;
+      elements.eventImpactList.appendChild(li);
     });
+
+    Array.from(elements.timelinePoints.querySelectorAll(".timeline-point")).forEach((button, index) => {
+      button.classList.toggle("is-active", index === state.index);
+    });
+
+    renderImage(item);
+    renderNewspaper(item);
+    renderDiary(item);
   }
 
-  function fillDiaryModal() {
-    const eventItem = state.filteredItems[state.selectedIndex];
-    const diary = eventItem.diary;
-
-    elements.diaryModalTitle.textContent = diary.title;
-    elements.diaryMeta.textContent = diary.meta;
-    elements.diaryBody.innerHTML = "";
-
-    diary.body.forEach((paragraph) => {
-      const p = document.createElement("p");
-      p.textContent = paragraph;
-      elements.diaryBody.appendChild(p);
-    });
+  function renderImage(item) {
+    elements.eventImage.src = item.image;
+    elements.eventImage.alt = item.imageAlt;
+    elements.eventImageCaption.textContent = item.imageCaption;
+    elements.eventImageSource.href = `sources.html#${item.imageSourceAnchor}`;
+    elements.eventImageSource.textContent = item.imageSourceLabel;
   }
 
-  function moveSelection(step) {
-    if (!state.filteredItems.length) return;
+  function renderNewspaper(item) {
+    elements.newspaperDate.textContent = item.newspaper.date;
+    elements.newspaperTitle.textContent = item.newspaper.headline;
+    elements.newspaperDeck.textContent = item.newspaper.deck;
+    elements.newspaperImage.src = item.newspaper.image;
+    elements.newspaperImage.alt = item.newspaper.imageAlt;
+    elements.newspaperCaption.textContent = item.newspaper.caption;
+    elements.newspaperBody.innerHTML = item.newspaper.body.map((paragraph) => `<p>${paragraph}</p>`).join("");
+    elements.newspaperSidebarTitle.textContent = item.newspaper.sidebarTitle;
+    elements.newspaperSidebarPoints.innerHTML = item.newspaper.sidebarPoints.map((point) => `<li>${point}</li>`).join("");
+  }
 
-    const max = state.filteredItems.length - 1;
-    state.selectedIndex += step;
+  function renderDiary(item) {
+    elements.diaryTitle.textContent = item.diary.title;
+    elements.diaryMeta.textContent = item.diary.meta;
+    elements.diaryPerspective.textContent = item.diary.perspective;
+    elements.diaryBody.innerHTML = item.diary.body.map((paragraph) => `<p>${paragraph}</p>`).join("");
+    elements.diaryReveals.innerHTML = item.diary.reveals.map((reveal) => `<li>${reveal}</li>`).join("");
+  }
 
-    if (state.selectedIndex > max) {
-      state.selectedIndex = 0;
-    }
-
-    if (state.selectedIndex < 0) {
-      state.selectedIndex = max;
-    }
-
-    renderSelectedEvent();
+  function step(amount) {
+    state.index = (state.index + amount + TIMELINE_DATA.length) % TIMELINE_DATA.length;
+    renderEvent();
   }
 
   function startAutoplay() {
-    if (state.autoplayId) return;
-
     elements.playTimelineBtn.textContent = "Pause";
     state.autoplayId = window.setInterval(() => {
-      moveSelection(1);
-    }, 4200);
+      step(1);
+    }, 4700);
   }
 
   function stopAutoplay() {
     if (!state.autoplayId) return;
-    clearInterval(state.autoplayId);
+    window.clearInterval(state.autoplayId);
     state.autoplayId = null;
     elements.playTimelineBtn.textContent = "Auto Play";
   }
 
   function openModal(modal) {
+    if (!modal) return;
+    state.activeModal = modal;
     modal.classList.add("is-open");
     modal.setAttribute("aria-hidden", "false");
-    document.body.style.overflow = "hidden";
+    elements.body.classList.add("modal-open");
   }
 
-  function closeAllModals() {
-    elements.modals.forEach((modal) => {
-      modal.classList.remove("is-open");
-      modal.setAttribute("aria-hidden", "true");
-    });
-    document.body.style.overflow = "";
-  }
-
-  function formatPhaseLabel(phase) {
-    switch (phase) {
-      case "rise":
-        return "Rise";
-      case "rule":
-        return "Rule";
-      case "collapse":
-        return "Collapse";
-      default:
-        return phase;
+  function closeModal(modal) {
+    if (!modal) return;
+    modal.classList.remove("is-open");
+    modal.setAttribute("aria-hidden", "true");
+    if (state.activeModal === modal) {
+      state.activeModal = null;
+    }
+    if (!document.querySelector(".modal.is-open")) {
+      elements.body.classList.remove("modal-open");
     }
   }
 

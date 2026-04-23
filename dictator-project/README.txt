@@ -1,20 +1,14 @@
-Omar al-Bashir Website Project
+Omar al-Bashir Interactive Website
 
-Folder contents:
-- index.html: main interactive website
-- style.css: full website styling
-- script.js: interactive behaviors, modals, timeline controls, tabs, filters
-- timeline-data.js: real timeline event data, newspaper content, diary content
-- sources.html: full sources page
-- assets/icons/: SVG icons used across the website
-- assets/images/: SVG illustrations used across the website
+Files included:
+- index.html: main website page with the interactive timeline, newspaper section, and diary section
+- style.css: full styling for the website and sources page
+- script.js: timeline interaction, event switching, tabs, and autoplay
+- timeline-data.js: real event content, newspaper articles, diary entries, and image mapping
+- sources.html: historical source list and image credits
+- assets/images: timeline photographs used in the site
+- assets/icons: website logo and event icons
 
-How to use:
-1. Upload the entire dictator-project folder to your website.
-2. Make sure the folder structure stays the same.
-3. Open index.html inside the dictator-project folder.
-
-Notes:
-- Historical sections are based on research sources.
-- Newspaper and diary features are creative historical interpretations tied to real events.
-- All references use the full name Omar al-Bashir in the website text.
+Important note:
+- The newspaper articles and diary entries are creative reconstructions based on real events.
+- The timeline facts, analysis, and source page are based on historical research.

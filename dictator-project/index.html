@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="An interactive historical website about Omar al-Bashir’s rise, rule, and downfall in Sudan. Includes a moveable timeline, regime-style newspaper articles, diary entries, analysis, and historical sources." />
+  <meta name="theme-color" content="#0f172a" />
+  <title>Omar al-Bashir | Rise, Rule, and Downfall</title>
+  <link rel="icon" href="assets/icons/logo-mark.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="page-glow page-glow-left" aria-hidden="true"></div>
+  <div class="page-glow page-glow-right" aria-hidden="true"></div>
+
+  <header class="site-header" id="top">
+    <div class="container header-inner">
+      <a class="brand" href="#top" aria-label="Back to top">
+        <img class="brand-icon" src="assets/icons/logo-mark.svg" alt="" />
+        <span class="brand-text">
+          <strong>Omar al-Bashir Project - By Lance</strong>
+        </span>
+      </a>
+
+      <nav class="site-nav" aria-label="Main navigation">
+        <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navMenu">
+          <span></span>
+          <span></span>
+          <span></span>
+          <span class="sr-only">Toggle navigation</span>
+        </button>
+
+        <ul class="nav-menu" id="navMenu">
+          <li><a href="#timeline-section">Timeline</a></li>
+          <li><a href="#profile">Profile</a></li>
+          <li><a href="#cause-effect">Cause &amp; Effect</a></li>
+          <li><a href="#legacy">Legacy</a></li>
+          <li><a href="sources.html">Sources</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <section class="section section-dark" id="timeline-section">
+      <div class="container">
+        <div class="section-heading section-heading-light" data-reveal>
+          <h2>Move through Omar al-Bashir’s regime year by year</h2>
+          <p>
+            Use the controls below to move across the timeline. Each point opens a real historical turning point and updates the analysis,
+            the propaganda-style newspaper article, and the diary entry connected to that event.
+          </p>
+        </div>
+
+        <div class="timeline-toolbar" data-reveal>
+          <div class="timeline-status">
+            <span class="status-label">Current Focus</span>
+            <strong id="currentEventLabel">1989 — Military Coup and Seizure of Power</strong>
+          </div>
+
+          <div class="timeline-toolbar-right">
+
+            <div class="timeline-controls" aria-label="Timeline controls">
+              <button class="button button-small" id="nextEventBtn" type="button">Next</button>
+              <button class="button button-small" id="prevEventBtn" type="button">Previous</button>
+              <button class="button button-small button-primary" id="playTimelineBtn" type="button">Auto Play</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-shell" data-reveal>
+          <div class="timeline-range-shell">
+            <input
+              type="range"
+              min="0"
+              max="8"
+              value="0"
+              step="1"
+              id="timelineSlider"
+              class="timeline-slider"
+              aria-label="Timeline slider"
+            />
+            <div class="timeline-points" id="timelinePoints" aria-label="Timeline points"></div>
+          </div>
+
+          <div class="event-grid">
+            <article class="event-card event-main-card">
+              <div class="event-meta-row">
+                <span class="event-phase" id="eventPhaseBadge">Rise to Power</span>
+                <span class="event-year" id="eventYear">1989</span>
+              </div>
+
+              <div class="event-title-row">
+                <img id="eventIcon" class="event-icon" src="assets/icons/coup.svg" alt="" />
+                <div>
+                  <h3 id="eventTitle">Military Coup and Seizure of Power</h3>
+                  <p class="event-date" id="eventDateLabel">June 30, 1989</p>
+                </div>
+              </div>
+
+              <p class="event-summary" id="eventSummary">
+                Omar al-Bashir seized power through a military coup during a period of political instability, weak civilian leadership, and war in southern Sudan.
+              </p>
+
+              <div class="pill-list" id="eventHighlights" aria-label="Event highlights"></div>
+            </article>
+
+            <aside class="event-card event-side-card">
+              <div class="event-side-top">
+                <img src="assets/images/newspaper-illustration.svg" alt="Stylized newspaper illustration." class="event-side-image" />
+                <div>
+                  <p class="mini-label">What changed?</p>
+                </div>
+              </div>
+              <ul class="impact-list" id="eventImpactList"></ul>
+            </aside>
+          </div>
+
+          <div class="inspector-card">
+            <div class="inspector-header">
+              <div>
+                <p class="mini-label">Event Inspector</p>
+                <h3>Deep analysis for the selected event</h3>
+              </div>
+            </div>
+
+            <div class="tab-row" role="tablist" aria-label="Analysis tabs">
+              <button type="button" class="tab-button is-active" role="tab" aria-selected="true" data-tab="overview">Overview</button>
+              <button type="button" class="tab-button" role="tab" aria-selected="false" data-tab="control">Control Methods</button>
+              <button type="button" class="tab-button" role="tab" aria-selected="false" data-tab="people">Impact on People</button>
+              <button type="button" class="tab-button" role="tab" aria-selected="false" data-tab="global">International Effects</button>
+            </div>
+
+            <div class="tab-panel">
+              <div id="inspectorContent" class="inspector-content"></div>
+            </div>
+          </div>
+
+          <div class="feature-grid">
+            <article class="feature-card newspaper-card">
+              <div class="feature-art">
+                <img src="assets/images/newspaper-illustration.svg" alt="Stylized newspaper front page illustration." />
+              </div>
+              <div class="feature-copy">
+                <div class="feature-top">
+                  <p class="feature-label">Creative Piece</p>
+                  <span class="feature-pill">Dictator Daily</span>
+                </div>
+                <h3 id="newspaperHeadlinePreview">State media headline preview</h3>
+                <p id="newspaperTeaser">
+                  Open the newspaper feature to read how a regime-controlled article might have presented this event.
+                </p>
+                <button class="button button-primary" id="openNewspaperBtn" type="button">Open Newspaper Article</button>
+              </div>
+            </article>
+
+            <article class="feature-card diary-card">
+              <div class="feature-art">
+                <img src="assets/images/diary-illustration.svg" alt="Stylized diary and pen illustration." />
+              </div>
+              <div class="feature-copy">
+                <div class="feature-top">
+                  <p class="feature-label">Creative Piece</p>
+                  <span class="feature-pill">Inside the Regime</span>
+                </div>
+                <h3 id="diaryHeadlinePreview">Personal diary entry preview</h3>
+                <p id="diaryTeaser">
+                  Open the diary entry to read how this moment could have felt to someone living through it.
+                </p>
+                <button class="button button-primary" id="openDiaryBtn" type="button">Open Diary Entry</button>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-light" id="profile">
+      <div class="container">
+        <div class="section-heading" data-reveal>
+          <h2>Core facts that explain the dictatorship</h2>
+          <p>
+            These cards summarize the main research categories used to understand Omar al-Bashir as a historical figure and as a dictator.
+          </p>
+        </div>
+
+        <div class="profile-grid">
+          <article class="profile-card" data-reveal>
+            <h3>Background</h3>
+            <p>
+              Omar al-Bashir was born on January 1, 1944, in Hosh Bannaga, north of Khartoum. Omar al-Bashir grew up in a poor peasant farming family, later moved to Khartoum, joined the Sudanese army, trained in Cairo, and served in the 1973 Arab-Israeli War.
+            </p>
+          </article>
+
+          <article class="profile-card" data-reveal>
+            <h3>Education and Training</h3>
+            <p>
+              Omar al-Bashir’s development was mainly military rather than democratic or academic. Omar al-Bashir rose through the army, gained command experience, and was shaped politically by militancy and later Islamist ideology.
+            </p>
+          </article>
+
+          <article class="profile-card" data-reveal>
+            <h3>Type of Ruler</h3>
+            <p>
+              Omar al-Bashir ruled as an authoritarian Islamist military dictator. Omar al-Bashir relied on force, media control, state repression, and restricted political life rather than democratic consent.
+            </p>
+          </article>
+
+          <article class="profile-card" data-reveal>
+            <h3>Successes</h3>
+            <p>
+              During Omar al-Bashir’s rule, Sudan began exporting oil, infrastructure improved in some areas, and the 2005 Comprehensive Peace Agreement ended the long civil war between northern and southern Sudan.
+            </p>
+          </article>
+
+          <article class="profile-card" data-reveal>
+            <h3>Failures</h3>
+            <p>
+              Omar al-Bashir’s rule became linked to repression, protest crackdowns, human rights abuses, economic hardship, and the Darfur conflict, where civilians faced mass violence and displacement.
+            </p>
+          </article>
+
+          <article class="profile-card" data-reveal>
+            <h3>Impact on Society</h3>
+            <p>
+              Omar al-Bashir’s policies affected different groups unevenly. Ethnic minorities in Darfur suffered heavily, women faced restrictive laws, and non-Muslims and religious minorities faced discrimination.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-accent" id="cause-effect">
+      <div class="container">
+        <div class="section-heading" data-reveal>
+          <h2>How actions taken by Omar al-Bashir affected Sudanese society</h2>
+          <p>
+            This table turns the research into clear cause-and-effect thinking. It shows how dictatorship is not only about what a leader does, but also about what those actions do to a country.
+          </p>
+        </div>
+
+        <div class="table-wrap" data-reveal>
+          <table class="history-table">
+            <thead>
+              <tr>
+                <th>Cause (what Omar al-Bashir did)</th>
+                <th>Effect (how it affected society)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Omar al-Bashir took power by military coup, dissolved parliament, and controlled politics and the press.</td>
+                <td>Democracy weakened, opposition shrank, and ordinary citizens had far less political freedom.</td>
+              </tr>
+              <tr>
+                <td>Omar al-Bashir and allied Islamist forces expanded Sharīʿah-based control in public life.</td>
+                <td>Women, non-Muslims, and some minorities faced stricter limits, discrimination, and state pressure.</td>
+              </tr>
+              <tr>
+                <td>Omar al-Bashir’s government supported the Janjaweed in Darfur.</td>
+                <td>Civilians faced mass violence, villages were destroyed, and millions were displaced.</td>
+              </tr>
+              <tr>
+                <td>Sudan began exporting oil in 1999.</td>
+                <td>The state gained revenue, infrastructure improved in some areas, and the regime appeared stronger for a time.</td>
+              </tr>
+              <tr>
+                <td>Economic pressure and repression continued into the late 2010s.</td>
+                <td>Public anger grew into nationwide protests that helped end Omar al-Bashir’s rule in 2019.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-light" id="legacy">
+      <div class="container">
+        <div class="section-heading" data-reveal>
+          <h2>Why Omar al-Bashir fell and what remains afterward</h2>
+        </div>
+
+        <div class="legacy-grid">
+          <article class="legacy-card" data-reveal>
+            <h3>Removal from Power</h3>
+            <p>
+              Omar al-Bashir was removed in April 2019 after months of protests that began in late 2018. High prices, poverty,
+              shortages of bread and fuel, and anger at repression brought people into the streets. In the end, the military placed Omar al-Bashir under arrest.
+            </p>
+          </article>
+
+          <article class="legacy-card" data-reveal>
+            <h3>Lasting Legacy</h3>
+            <p>
+              Omar al-Bashir’s legacy includes weakened democratic institutions, political repression, economic hardship, and the memory of Darfur.
+              Omar al-Bashir is also remembered internationally because of accusations of war crimes, crimes against humanity, and genocide.
+            </p>
+          </article>
+
+          <article class="legacy-card" data-reveal>
+            <h3>Rejection of Liberalism</h3>
+            <p>
+              Omar al-Bashir was not communist. The best description is an authoritarian Islamist military dictator. Omar al-Bashir rejected liberal ideas by
+              limiting rights, controlling the press, banning parties, arresting opponents, and placing state power above free political choice.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-dark" id="sources-preview">
+      <div class="container sources-preview-grid" data-reveal>
+        <div>
+          <p class="eyebrow">Research Foundation</p>
+          <h2>Built from researched historical sources</h2>
+          <p>
+            The historical sections of this website are based on research from Britannica, Human Rights Watch,
+            the International Criminal Court, the World Bank, U.S. government archives, and the Council on Foreign Relations.
+            The creative newspaper and diary features are fictionalized responses to real historical events.
+          </p>
+        </div>
+
+        <div class="sources-preview-actions">
+          <a class="button button-primary" href="sources.html">Open Full Sources Page</a>
+          <button class="button button-secondary" type="button" id="openSourceNoteBtn">Read Source Note</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+
+  <div class="modal" id="newspaperModal" aria-hidden="true" role="dialog" aria-labelledby="newspaperModalTitle">
+    <div class="modal-backdrop" data-close-modal="true"></div>
+    <div class="modal-panel modal-panel-newspaper">
+      <button class="modal-close" type="button" data-close-modal="true" aria-label="Close newspaper modal">×</button>
+      <div class="newspaper-layout">
+        <div class="newspaper-top">
+          <div>
+            <p class="newspaper-name">Dictator Daily</p>
+            <h2 id="newspaperModalTitle">Front Page Headline</h2>
+            <p class="newspaper-date" id="newspaperDate">Date</p>
+          </div>
+          <img src="assets/icons/newspaper.svg" alt="" class="modal-top-icon" />
+        </div>
+
+        <p class="newspaper-deck" id="newspaperDeck">Subheadline</p>
+
+        <div class="newspaper-columns">
+          <article>
+            <div id="newspaperBody" class="stacked-paragraphs"></div>
+          </article>
+          <aside class="newspaper-sidebar-box">
+            <h3 id="newspaperSidebarTitle">Sidebar</h3>
+            <ul id="newspaperSidebarPoints" class="sidebar-list"></ul>
+          </aside>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="diaryModal" aria-hidden="true" role="dialog" aria-labelledby="diaryModalTitle">
+    <div class="modal-backdrop" data-close-modal="true"></div>
+    <div class="modal-panel modal-panel-diary">
+      <button class="modal-close" type="button" data-close-modal="true" aria-label="Close diary modal">×</button>
+      <div class="diary-layout">
+        <div class="diary-top">
+          <div>
+            <p class="diary-label">Inside the Regime</p>
+            <h2 id="diaryModalTitle">Diary Entry Title</h2>
+            <p class="diary-meta" id="diaryMeta">Perspective</p>
+          </div>
+          <img src="assets/icons/diary.svg" alt="" class="modal-top-icon" />
+        </div>
+
+        <div class="diary-paper">
+          <div id="diaryBody" class="stacked-paragraphs"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="timeline-data.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

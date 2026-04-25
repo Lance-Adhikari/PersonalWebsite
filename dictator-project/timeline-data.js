@@ -52,14 +52,14 @@ const TIMELINE_DATA = [
       caption: "State media would have presented Omar al-Bashir as a disciplined leader restoring national order.",
       body: [
         "Khartoum awoke today to what officials are calling a rescue of the nation from disorder, paralysis, and political confusion. Military officers led by Omar al-Bashir announced that the state would no longer be left in the hands of weak coalition politics while conflict and instability threatened Sudan’s future.",
-        "Supporters of the new leadership say the country has entered a period of discipline and clarity. The new authorities have promised to restore order, protect national unity, and remove the selfish political habits that, in their words, pushed Sudan toward decline.",
-        "In speeches delivered after the takeover, loyal voices described Omar al-Bashir as a firm patriot prepared to make difficult decisions for the good of the nation. Officials argue that temporary restrictions are necessary to secure a stronger and more stable Sudan."
+        "The new regime’s supporters claim that the nation is now under an era of discipline and clarity. The new regime has vowed to restore discipline, safeguard national unity, and eliminate the selfish political culture that, according to them, has been leading Sudan towards decay.",
+        "In subsequent speeches following the coup, loyal voices have portrayed President Omar al-Bashir as a dedicated patriot who will make tough calls for the country’s betterment. According to officials, some measures need to be put in place to ensure the stability of Sudan."
       ],
-      sidebarTitle: "How the Regime Frames This Event",
+      sidebarTitle: "Connection to Liberal Principles",
       sidebarPoints: [
-        "The coup is called a patriotic correction, not a seizure of power.",
-        "Democratic weakness is blamed for national instability.",
-        "Omar al-Bashir is presented as disciplined, strong, and necessary."
+        "No free election. Power was taken by force.",
+        "Democracy was pushed aside for military rule.",
+        "Citizens had less voice in government."
       ]
     },
     diary: {
@@ -67,7 +67,7 @@ const TIMELINE_DATA = [
       meta: "Khartoum — June 30, 1989",
       perspective: "Perspective: Insider",
       body: [
-        "Everything happened so quickly today that I still feel as if I am listening to someone else’s memory instead of my own. Men moved with confidence, radios crackled, and everyone repeated the same words: order, rescue, discipline. We were told the country had been drifting and that history needed stronger hands.",
+        "It all happened so fast that I have an illusion that I am hearing somebody else’s memories rather than my own. The men were sure of themselves, radio reports were coming through, and everybody kept repeating the same things: order, rescue, discipline. It seems that the country was lost and history demanded a firmer grip.",
         "Part of me believed it. Sudan did feel unstable, and many people were tired of politicians arguing while problems grew worse. But another part of me noticed how silence entered the room the moment power changed hands. It was not the silence of peace. It was the silence of people realizing that fear had just returned to public life."
       ],
       reveals: [
@@ -83,12 +83,12 @@ const TIMELINE_DATA = [
     phase: "rule",
     tag: "Rule",
     icon: "assets/icons/law.svg",
-    title: "Islamization, Sharīʿah, and Growing Isolation",
-    pointTitle: "Islamization, Sharīʿah, and Growing Isolation",
+    title: "Islamization, Shariah, and Growing Isolation",
+    pointTitle: "Islamization, Shariah, and Growing Isolation",
     dateLabel: "1991",
-    summary: "Omar al-Bashir’s government deepened Islamist rule by introducing Sharīʿah and stronger social control. These policies affected women, non-Muslims, and political freedoms while also increasing Sudan’s international isolation.",
+    summary: "Omar al-Bashir’s government deepened Islamist rule by introducing Shariah and stronger social control. These policies affected women, non-Muslims, and political freedoms while also increasing Sudan’s international isolation.",
     highlights: [
-      "Sharīʿah reintroduced into state policy",
+      "Shariah reintroduced into state policy",
       "Tighter social restrictions",
       "Closer alliance with Islamist politics",
       "Isolation from many Western governments"
@@ -100,12 +100,12 @@ const TIMELINE_DATA = [
     ],
     image: "assets/images/1991-omar-al-bashir.jpg",
     imageAlt: "Omar al-Bashir in military uniform in 1990, representing the early Islamist rule period.",
-    imageCaption: "A real image of Omar al-Bashir from the early phase of his rule, used here to represent the Islamization period.",
-    imageSourceLabel: "Image credit: Wikimedia Commons — Omar al-Bashir 1990 (cropped)",
+    imageCaption: "An image of Omar al-Bashir from the early phase of his rule, used here to represent the Islamization period.",
+    imageSourceLabel: "Image credit: Wikimedia Commons — Omar al-Bashir 1990",
     imageSourceAnchor: "image-1991",
     analysis: {
       overview: [
-        "By 1991, Omar al-Bashir’s rule was no longer only a military takeover. It had become more clearly tied to Islamist politics and to the reshaping of public life under Sharīʿah law.",
+        "By 1991, Omar al-Bashir’s rule was no longer only a military takeover. It had become more clearly tied to Islamist politics and to the reshaping of public life under Shariah law.",
         "This mattered because it changed dictatorship from a temporary military transition into a more complete ideological system. Politics, law, and society were all being reorganized under the regime’s preferred values."
       ],
       control: [
@@ -124,20 +124,20 @@ const TIMELINE_DATA = [
     newspaper: {
       date: "1991",
       headline: "Moral Renewal Strengthens the Sudanese State",
-      deck: "Officials praise Sharīʿah-based reforms as a necessary step toward order, discipline, and national unity.",
+      deck: "Officials praise Shariah based reforms as a necessary step toward order, discipline, and national unity.",
       image: "assets/images/1991-omar-al-bashir.jpg",
       imageAlt: "Omar al-Bashir in uniform during the early years of his rule.",
       caption: "Propaganda would have linked Omar al-Bashir’s rule to discipline, religion, and national purpose.",
       body: [
-        "Government leaders today praised new legal and social reforms as evidence that Sudan is rebuilding itself on stronger foundations. Officials said the country can no longer tolerate moral confusion, political sabotage, or imported ideas that weaken national discipline.",
-        "In statements to the public, supporters of President Omar al-Bashir argued that Sharīʿah-based reforms are not a burden but a restoration of proper social values. They described the changes as essential for unity, order, and the defense of Sudanese identity.",
-        "Authorities also rejected foreign criticism, insisting that Sudan has the right to choose its own path without outside interference. State voices presented opposition to the reforms as a threat to stability rather than as a normal part of public debate."
+        "Sudan’s government officials welcomed the introduction of new legal and social reforms as proof of the fact that Sudan is rising again on solid footing. They have argued that Sudan cannot continue to suffer from indecision on moral grounds, politicking, and foreign influences.",
+        "As far as the reforms were concerned, when the president of Sudan, Omar al-Bashir, addressed the people about the reforms, the people who supported him argued that the implementation of Shariah law was not an imposed action but a measure to bring back appropriate social values.",
+        "The authorities also dismissed any foreign criticisms, arguing that Sudan is entitled to chart its own course and is not subject to external meddling. The government viewed the rejection of the reforms as a destabilizing factor, not as an aspect of democratic discourse."
       ],
-      sidebarTitle: "Propaganda Pattern",
+      sidebarTitle: "Connection to Liberal Principles",
       sidebarPoints: [
-        "Religious control is presented as national renewal.",
-        "Critics are framed as foreign-minded or disruptive.",
-        "Obedience is linked to morality and patriotism."
+        "Religious rules were used to limit personal freedom.",
+        "Minority beliefs were not treated equally.",
+        "The state decided how people should live."
       ]
     },
     diary: {
@@ -207,15 +207,15 @@ const TIMELINE_DATA = [
       imageAlt: "Later portrait of Omar al-Bashir used in the newspaper layout.",
       caption: "State-controlled coverage would have turned economic growth into a message of loyalty and success.",
       body: [
-        "Sudan has entered a historic stage of national advancement with the beginning of oil exports, officials announced today. Government supporters described the moment as a victory for discipline, planning, and leadership after years of hardship and uncertainty.",
-        "State voices praised President Omar al-Bashir for guiding Sudan toward economic strength while defending national sovereignty. In their telling, new oil revenues are proof that steadfast leadership brings practical rewards and long-term security.",
+        "The country of Sudan has hit an important landmark in terms of the exportation of oil at a time when government officials have announced it. The Sudanese Government supporters have termed this occasion as a victory for self-discipline and good planning.",
+        "The voices of people from different states commended President Omar al-Bashir for the economic success of the country and its independence. The discovery of oil means that the hard work will finally be worth it.",
         "Ministers emphasized that the benefits of this new era will spread through the country through growth, development, and national confidence. Critics, meanwhile, were ignored entirely in official coverage, as if prosperity had ended all disagreement."
       ],
-      sidebarTitle: "What Propaganda Does Here",
+      sidebarTitle: "Connection to Liberal Principles",
       sidebarPoints: [
-        "Economic success is turned into political praise.",
-        "Growth is used to justify strong rule.",
-        "Opposition voices disappear from the story."
+        "Economic success was used to defend authoritarian rule.",
+        "Citizens were expected to accept less political freedom.",
+        "Opposition voices were pushed out of public debate."
       ]
     },
     diary: {
@@ -223,11 +223,11 @@ const TIMELINE_DATA = [
       meta: "Khartoum — 1999",
       perspective: "Perspective: Hopeful Citizen",
       body: [
-        "People talked about oil all day in the office. Even those who normally say little seemed willing to imagine a different future for Sudan. There is a certain energy in the city when money and possibility begin to appear in the same conversation.",
-        "Still, I cannot ignore the feeling that this progress belongs more to the state than to the people. Everyone is told to celebrate, and maybe there really is something to celebrate. But I also wonder who will be allowed to benefit, and who will simply be told to clap from the side."
+        "Oil was the topic in every conversation around the office for the entire day. Everyone, even those that do not say much, suddenly began to talk about a new future for Sudan. Money always seems to add something special to the air of any city.",
+        "However, I can’t deny the sense that this success is the achievement of the state rather than the people. Everybody is asked to cheer, and perhaps there are reasons for this cheering. But then again, I wonder who among us will have the privilege to enjoy and who will just applaud from the sidelines."
       ],
       reveals: [
-        "Economic gains can create real hope under dictatorship.",
+        "Economic gains can create hope under dictatorship.",
         "State prosperity does not always mean equal public benefit.",
         "Authoritarian governments often use growth to build loyalty."
       ]
@@ -287,13 +287,12 @@ const TIMELINE_DATA = [
       body: [
         "Government statements today described military operations in Darfur as necessary steps to defend stability and protect the nation from armed rebellion. Officials claimed that disorder in the region was being exaggerated by hostile critics seeking to damage Sudan’s reputation.",
         "State-aligned commentary insisted that President Omar al-Bashir remains committed to national unity and lawful order. In the official version of events, the state is restoring security while outside voices distort the truth for political purposes.",
-        "What the newspaper does not say directly is just as important as what it does say. Civilian suffering disappears from the center of the story, replaced by language about discipline, loyalty, and sovereignty."
       ],
-      sidebarTitle: "Propaganda Pattern",
+      sidebarTitle: "Connection to Liberal Principles",
       sidebarPoints: [
-        "Violence is reframed as security policy.",
-        "Civilian suffering is pushed to the margins.",
-        "International criticism is dismissed as hostile interference."
+        "Civilian rights were not protected.",
+        "Ethnic minorities were treated unfairly.",
+        "State violence mattered more than human rights."
       ]
     },
     diary: {
@@ -301,8 +300,8 @@ const TIMELINE_DATA = [
       meta: "Near Nyala — 2003",
       perspective: "Perspective: Displaced Civilian",
       body: [
-        "The camp does not feel like a place meant for living. It feels like a place built out of interruption. Everywhere I look, I see shelters made from whatever people could carry or find, as if survival itself has become a collection of scraps tied together under the sun.",
-        "I try to remember ordinary life before all this happened, but memory is becoming dangerous because it makes the present feel even more unbearable. Adults speak in low voices and count losses without writing them down. I am young, but even I understand that when a government says one thing and people live another, truth becomes something you carry inside instead of hearing in public."
+        "It doesn’t seem like somewhere you can live. It seems more like somewhere that is assembled by interruption. The entire camp has been converted into an area with temporary shelters made of anything that could be moved.",
+        "I struggle to recall my life prior to all of this, for remembering becomes a perilous thing that only makes the current existence more intolerable. Adults speak in low voices and count losses without writing them down. I am young, but even I understand that when a government says one thing and people live another, truth becomes something you carry inside instead of hearing in public."
       ],
       reveals: [
         "Conflict under dictatorship often reaches civilians first and hardest.",
@@ -335,12 +334,12 @@ const TIMELINE_DATA = [
     image: "assets/images/2005-omar-al-bashir.jpg",
     imageAlt: "Omar al-Bashir at an African Union summit in 2009, used to represent the diplomatic phase around the peace agreement era.",
     imageCaption: "A diplomatic-era portrait of Omar al-Bashir used here to represent the peace-agreement period of his rule.",
-    imageSourceLabel: "Image credit: Wikimedia Commons — Omar al-Bashir, 12th AU Summit (3x4 cropped)",
+    imageSourceLabel: "Image credit: Wikimedia Commons — Omar al-Bashir, 12th AU Summit",
     imageSourceAnchor: "image-2005",
     analysis: {
       overview: [
         "The Comprehensive Peace Agreement is important because it prevents the website from becoming one-dimensional. Omar al-Bashir’s rule was deeply repressive, but it also included a major agreement that ended a long and destructive civil war between north and south.",
-        "That matters historically because good research should not erase complexity. A dictatorship can produce a real political achievement while still remaining authoritarian and harmful overall."
+        "That matters historically because good research should not erase complexity. A dictatorship can produce a political achievement while still remaining authoritarian and harmful overall."
       ],
       control: [
         "Even a peace agreement can serve a regime. It can improve legitimacy, reduce pressure, and present the ruler as a statesman rather than only as a strongman.",
@@ -364,14 +363,13 @@ const TIMELINE_DATA = [
       caption: "A regime paper would present the peace agreement as the achievement of Omar al-Bashir’s leadership.",
       body: [
         "Officials across Sudan praised the Comprehensive Peace Agreement as a historic achievement secured through determination, national responsibility, and strong leadership. Supporters declared that President Omar al-Bashir had guided the country toward a new stage of order and political maturity.",
-        "According to state voices, the agreement proves that Sudan can solve major internal disputes without surrendering its dignity or its sovereignty. The deal was celebrated not as compromise, but as evidence that firm leadership can deliver stability when the nation needs it most.",
-        "State media emphasized unity, discipline, and progress, presenting the agreement as part of a larger success story under Omar al-Bashir’s rule. Missing from that version was any serious discussion of the wider repression still present in the country."
+        "According to state voices, the agreement proves that Sudan can solve major internal disputes without surrendering its dignity or its sovereignty. The deal was celebrated as evidence that firm leadership can deliver stability when the nation needs it most.",
       ],
-      sidebarTitle: "Why This Matters",
+      sidebarTitle: "Connection to Liberal Principles",
       sidebarPoints: [
-        "Real achievements can be turned into regime propaganda.",
-        "Peace can strengthen a dictator’s image without creating freedom.",
-        "State media presents Omar al-Bashir as the source of national success."
+        "Peace did not bring democracy.",
+        "One leader was still placed above open politics.",
+        "Citizens still had limited rights and freedoms."
       ]
     },
     diary: {
@@ -383,7 +381,7 @@ const TIMELINE_DATA = [
         "But hope is complicated under this government. Even as people speak about power sharing and a better future, the state still watches, limits, and decides too much. Today felt important. It just did not feel simple."
       ],
       reveals: [
-        "Major political agreements can create real hope.",
+        "Major political agreements can create hope.",
         "People can welcome peace while still distrusting the regime.",
         "A success under dictatorship does not erase dictatorship itself."
       ]
@@ -398,7 +396,7 @@ const TIMELINE_DATA = [
     title: "South Sudan Becomes Independent",
     pointTitle: "South Sudan Becomes Independent",
     dateLabel: "July 9, 2011",
-    summary: "South Sudan became independent after the process set in motion by the peace agreement. Sudan lost much of its oil-producing territory, which created serious economic pressure inside Omar al-Bashir’s state.",
+    summary: "South Sudan became independent after the process set in motion by the peace agreement. Sudan lost much of its oil producing territory, which created serious economic pressure inside Omar al-Bashir’s state.",
     highlights: [
       "South Sudan becomes independent",
       "Oil-producing territory largely lost",
@@ -413,7 +411,7 @@ const TIMELINE_DATA = [
     image: "assets/images/2011-south-sudan-independence.jpg",
     imageAlt: "Celebration of South Sudan’s independence with face paint in national colors.",
     imageCaption: "A celebration image representing the moment South Sudan became independent from Sudan.",
-    imageSourceLabel: "Image credit: Wikimedia Commons — South Sudan Independence Celebration (5963420792)",
+    imageSourceLabel: "Image credit: Wikimedia Commons — South Sudan Independence Celebration",
     imageSourceAnchor: "image-2011",
     analysis: {
       overview: [
@@ -443,13 +441,11 @@ const TIMELINE_DATA = [
       body: [
         "As South Sudan formally becomes independent, officials in Khartoum are urging citizens to face the moment with discipline and confidence. Government statements insist that Sudan remains strong and capable under the leadership of President Omar al-Bashir.",
         "State commentary emphasizes dignity, sovereignty, and resilience. Rather than focusing on what has been lost, the official message calls on the public to trust national leadership and reject voices of pessimism.",
-        "What is most noticeable in this style of reporting is the refusal to dwell on economic risk. The tone remains steady and controlled, even as the country moves into a more uncertain future."
       ],
-      sidebarTitle: "How the Tone Works",
+      sidebarTitle: "Connection to Liberal Principles",
       sidebarPoints: [
-        "Loss is reframed as resilience.",
-        "The state asks for trust instead of debate.",
-        "Economic worries are softened or postponed."
+        "Citizens were told to trust the state, not question it.",
+        "Open debate about the crisis was limited.",
       ]
     },
     diary: {
@@ -491,7 +487,7 @@ const TIMELINE_DATA = [
     image: "assets/images/2013-omar-al-bashir.jpg",
     imageAlt: "Portrait of Omar al-Bashir in a suit, used to represent the later protest-crackdown period.",
     imageCaption: "A later presidential portrait of Omar al-Bashir used here to represent the crackdown era of his rule.",
-    imageSourceLabel: "Image credit: Wikimedia Commons — Narendra Modi meeting Omar al-Bashir (cropped)",
+    imageSourceLabel: "Image credit: Wikimedia Commons — Narendra Modi meeting Omar al-Bashir",
     imageSourceAnchor: "image-2013",
     analysis: {
       overview: [
@@ -499,7 +495,7 @@ const TIMELINE_DATA = [
         "This event marked a stronger public connection between hardship and dictatorship. It became harder for the government to present itself as stable and beneficial when protesters were being shot."
       ],
       control: [
-        "The crackdown revealed the regime’s real method of survival. When protest threatened authority, Omar al-Bashir’s state turned to security services, force, detention, and fear.",
+        "The crackdown revealed the regime’s method of survival. When protest threatened authority, Omar al-Bashir’s state turned to security services, force, detention, and fear.",
         "This is one of the clearest examples of dictatorship rejecting liberal ideas. Instead of recognizing protest as a political right, the regime treated it like a threat to be crushed."
       ],
       people: [
@@ -521,13 +517,12 @@ const TIMELINE_DATA = [
       body: [
         "Security officials today defended firm action against what they described as dangerous disorder linked to irresponsible agitators and opportunists. According to official statements, the state cannot permit chaos to threaten markets, transport, and public safety.",
         "State newspapers framed the unrest as the work of troublemakers rather than citizens responding to economic hardship. President Omar al-Bashir’s government was presented as calm, lawful, and patient, even as force was used to silence opposition in the streets.",
-        "By controlling the language, the regime attempted to control the memory of the event itself. Protest was made to look like criminal disruption, and violence by the state was rebranded as discipline."
       ],
-      sidebarTitle: "How Propaganda Rewrites Protest",
+      sidebarTitle: "Connection to Liberal Principles",
       sidebarPoints: [
-        "Citizens are renamed as agitators.",
-        "State violence is described as restoring order.",
-        "Economic causes are pushed out of the story."
+        "Peaceful protest was not respected as a right.",
+        "The state used force instead of listening.",
+        "Freedom of expression was pushed aside."
       ]
     },
     diary: {
@@ -536,10 +531,10 @@ const TIMELINE_DATA = [
       perspective: "Perspective: Protest Witness",
       body: [
         "I used to think that anger in the street would at least force the government to listen. Today taught me that the state knows how to answer without speaking. It answers with uniforms, with fear, and with the knowledge that some people will not come home the same way they left.",
-        "The worst part is what happens afterward. Rumors spread faster than facts, names are spoken quietly, and everyone starts deciding which version of the day is safe to repeat. That is what power looks like here: not only force, but control over what can be remembered aloud."
+        "The worst thing about it comes after. Lies spread faster than truths, names are whispered, and people begin to choose which story of that day they will tell without getting into trouble."
       ],
       reveals: [
-        "Protest under dictatorship can become life-threatening very quickly.",
+        "Protest under dictatorship can become life threatening very quickly.",
         "State violence changes how memory and truth circulate.",
         "Public fear is one of the regime’s strongest tools."
       ]
@@ -554,7 +549,7 @@ const TIMELINE_DATA = [
     title: "Bread Protests Become a National Uprising",
     pointTitle: "Bread Protests Become a National Uprising",
     dateLabel: "December 2018",
-    summary: "Bread shortages, high prices, and long-term frustration triggered mass protests in late 2018. What began as anger over the economy quickly became a wider rejection of Omar al-Bashir’s rule.",
+    summary: "Bread shortages, high prices, and long term frustration triggered mass protests in late 2018. What began as anger over the economy quickly became a wider rejection of Omar al-Bashir’s rule.",
     highlights: [
       "Bread shortages and rising prices",
       "Protests spread nationally",
@@ -599,13 +594,12 @@ const TIMELINE_DATA = [
       body: [
         "As scattered unrest continues in parts of the country, official statements have urged citizens not to be misled by destructive elements seeking to exploit temporary economic pressure. Government voices insist that President Omar al-Bashir remains committed to safeguarding national stability and public welfare.",
         "State coverage has focused on patience, discipline, and the need to reject provocation. The deeper message is clear: people are expected to endure hardship without turning that hardship into political challenge.",
-        "In propaganda terms, this is a defensive article. It no longer sounds fully confident. Instead, it tries to keep legitimacy alive by blaming opponents for conditions that many citizens are already living through."
       ],
-      sidebarTitle: "What Changes in the Tone",
+      sidebarTitle: "Connection to Liberal Principles",
       sidebarPoints: [
-        "The regime sounds more defensive than triumphant.",
-        "Economic pain is treated as something citizens must simply endure.",
-        "Protest is framed as sabotage rather than public judgment."
+        "People were blamed instead of being heard.",
+        "Economic suffering did not lead to open political change.",
+        "The regime treated protest as a threat, not a right."
       ]
     },
     diary: {
@@ -613,8 +607,8 @@ const TIMELINE_DATA = [
       meta: "Atbara — December 2018",
       perspective: "Perspective: Ordinary Citizen",
       body: [
-        "I stood in line for bread long enough to watch morning turn into anger. At first people whispered about prices the way they always do, but today the whispering changed. It became sharper, louder, less afraid. It felt as though everyone had finally run out of the same thing at once — not just money, but patience.",
-        "What surprised me most was not the protest itself. It was the feeling that the protest belonged to everyone. Students, workers, parents, people who had never spoken politically before — all of them suddenly understood that daily survival had become a political question."
+        "I stood in line for bread long enough to watch morning turn into anger. At first people whispered about prices the way they always do, but today the whispering changed. It became sharper, louder, less afraid. It felt as though everyone had finally run out of the same thing at once: patience.",
+        "What surprised me most was not the protest itself. It was the feeling that the protest belonged to everyone. Students, workers, parents, people who had never spoken politically before understood that action was now needed."
       ],
       reveals: [
         "Economic suffering can unite very different people.",
@@ -675,15 +669,13 @@ const TIMELINE_DATA = [
       imageAlt: "Freedom Train crowd representing the 2019 uprising.",
       caption: "By the end, the public image of the state could no longer hide the scale of the uprising against Omar al-Bashir’s rule.",
       body: [
-        "Following months of sustained protest and unrest, military authorities announced today that President Omar al-Bashir has been removed from power and placed under arrest. Official messaging focused on order, continuity, and the protection of the state during a sensitive national transition.",
-        "The language of control remained present even at the moment of collapse. Instead of admitting public rejection of dictatorship, state-style messaging attempted to frame the removal as a managed correction designed to save the nation from deeper instability.",
+        "Following several months of protests and unrest, it was reported today that President Omar al-Bashir had been removed from power. This was presented as a process which would maintain order and protect the state at such a crucial time.",
         "For historical interpretation, this is a revealing ending. The same system that once claimed complete confidence ended by trying to manage its own downfall through carefully controlled language."
       ],
-      sidebarTitle: "Why This Ending Matters",
+      sidebarTitle: "Connection to Liberal Principles",
       sidebarPoints: [
-        "Even collapse is narrated through state control.",
-        "The military tries to contain the meaning of the uprising.",
-        "Omar al-Bashir falls, but the struggle over power continues."
+        "Military control still shaped the transition.",
+        "Real liberal change needs rights, elections, and civilian rule."
       ]
     },
     diary: {
@@ -691,7 +683,7 @@ const TIMELINE_DATA = [
       meta: "Khartoum — April 11, 2019",
       perspective: "Perspective: Protester",
       body: [
-        "When the news spread through the crowd, it moved like electricity. People shouted, cried, embraced strangers, and looked at each other as if trying to confirm that this day was real. For so long, Omar al-Bashir seemed permanent. Today proved that permanence can break.",
+        "As the news spread in the crowd, it was spread incredibly quick. People screamed, they cried, they even hugged people they didn’t know, and stared at one another like they couldn’t believe what just happened today.",
         "But celebration was mixed with caution. Everyone understood that removing one man was not the same thing as removing everything that helped him rule. Still, for the first time in a long time, hope felt louder than fear."
       ],
       reveals: [

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lance Summer Plan 2026</title>
+  <link rel="stylesheet" href="style.css" />
+  <script defer src="script.js"></script>
+</head>
+<body>
+  <header class="top-header">
+    <nav class="nav-wrap">
+      <a class="brand" href="#home">Lance Summer Plan</a>
+      <button class="menu-btn" id="menuBtn" aria-label="Open navigation">☰</button>
+      <div class="nav-links" id="navLinks">
+        <a href="#dashboard">Dashboard</a>
+        <a href="#schedule">Schedule</a>
+        <a href="#tracker">Tracker</a>
+        <a href="#goals">Goals</a>
+        <a href="#projects">Projects</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="home">
+    <section class="hero section-pad">
+      <div class="hero-text">
+        <p class="eyebrow">Summer 2026 • UAB Preparation</p>
+        <h1>Build a university-ready productivity system.</h1>
+        <p class="hero-subtitle">A focused daily dashboard for coursework, GitHub portfolio growth, internship readiness, fitness, reading, and TechnolotApp development.</p>
+        <div class="hero-actions">
+          <a class="btn primary" href="#dashboard">Open Dashboard</a>
+          <button class="btn secondary" onclick="window.print()">Print Plan</button>
+        </div>
+      </div>
+      <div class="hero-card">
+        <div class="hero-illustration" aria-label="student workspace illustration">
+          <svg viewBox="0 0 420 300" role="img">
+            <rect x="25" y="45" width="370" height="210" rx="24" class="svg-bg"/>
+            <rect x="80" y="82" width="190" height="110" rx="12" class="svg-screen"/>
+            <rect x="105" y="205" width="140" height="18" rx="8" class="svg-desk"/>
+            <circle cx="318" cy="110" r="34" class="svg-accent"/>
+            <rect x="294" y="151" width="52" height="60" rx="14" class="svg-person"/>
+            <path d="M121 119h109M121 145h76M121 168h91" class="svg-line"/>
+            <path d="M54 239h312" class="svg-floor"/>
+          </svg>
+        </div>
+        <div class="mini-stats">
+          <div><strong id="todayProgress">0%</strong><span>Today</span></div>
+          <div><strong id="weeklyProgress">0%</strong><span>Week</span></div>
+          <div><strong id="goalProgress">0%</strong><span>Goals</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="dashboard" class="section-pad">
+      <div class="section-title">
+        <p class="eyebrow">Main Dashboard</p>
+        <h2>Five focus areas</h2>
+      </div>
+      <div class="dashboard-grid">
+        <article class="focus-card">
+          <span class="icon">📚</span>
+          <h3>Coursework</h3>
+          <p>Coursera, data structures, programming review, Math 134, and Physics 124.</p>
+          <div class="bar"><span data-width="70"></span></div>
+        </article>
+        <article class="focus-card">
+          <span class="icon">💻</span>
+          <h3>Projects</h3>
+          <p>Build small projects from what was learned and upload them to GitHub.</p>
+          <div class="bar"><span data-width="55"></span></div>
+        </article>
+        <article class="focus-card">
+          <span class="icon">🏋️</span>
+          <h3>Fitness</h3>
+          <p>Daily 4 PM to 7 PM fitness block to stay healthy and disciplined.</p>
+          <div class="bar"><span data-width="65"></span></div>
+        </article>
+        <article class="focus-card">
+          <span class="icon">📈</span>
+          <h3>Internship Prep</h3>
+          <p>Resume, LinkedIn, interview practice, GitHub polish, and applications.</p>
+          <div class="bar"><span data-width="45"></span></div>
+        </article>
+        <article class="focus-card">
+          <span class="icon">📖</span>
+          <h3>Reading</h3>
+          <p>Choose a book and build a calm nightly reading habit before sleep.</p>
+          <div class="bar"><span data-width="35"></span></div>
+        </article>
+      </div>
+    </section>
+
+    <section id="schedule" class="section-pad schedule-section">
+      <div class="section-title">
+        <p class="eyebrow">Daily Routine</p>
+        <h2>Printable daily schedule</h2>
+      </div>
+      <div class="schedule-list" id="dailyChecklist"></div>
+      <div class="schedule-actions">
+        <button class="btn primary" id="resetToday">Reset Today</button>
+        <button class="btn secondary" id="exportBtn">Export Progress</button>
+      </div>
+    </section>
+
+    <section id="tracker" class="section-pad">
+      <div class="section-title">
+        <p class="eyebrow">Weekly Tracker</p>
+        <h2>Track the habits that matter</h2>
+      </div>
+      <div class="tracker-wrap">
+        <table class="tracker-table" id="weeklyTracker">
+          <thead>
+            <tr><th>Task</th><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th><th>Sun</th></tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="goals" class="section-pad goals-section">
+      <div class="section-title">
+        <p class="eyebrow">Summer Targets</p>
+        <h2>Goals that support university readiness</h2>
+      </div>
+      <div class="goal-columns" id="goalColumns"></div>
+    </section>
+
+    <section id="projects" class="section-pad split-section">
+      <div class="info-panel">
+        <p class="eyebrow">Portfolio System</p>
+        <h2>Build, document, upload, repeat.</h2>
+        <p>Every computer science session should create evidence of learning. The goal is not only to finish courses, but to build a visible portfolio that looks strong to universities, internship recruiters, and future collaborators.</p>
+        <ul class="clean-list">
+          <li>Plan what was learned.</li>
+          <li>Create one small folder or mini project.</li>
+          <li>Write a simple README.</li>
+          <li>Push to GitHub.</li>
+          <li>Add the best work to the personal website.</li>
+        </ul>
+      </div>
+      <div class="project-board">
+        <h3>Project Ideas</h3>
+        <div class="kanban-card">Data Structures Visualizer</div>
+        <div class="kanban-card">Personal Portfolio Website</div>
+        <div class="kanban-card">Community Book Exchange Site</div>
+        <div class="kanban-card">TechnolotApp Analytics Dashboard</div>
+        <div class="kanban-card">Internship Resume Page</div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>Summer Plan 2026 • Lance Adhikari • Built for discipline, confidence, and university preparation.</p>
+  </footer>
+</body>
+</html>

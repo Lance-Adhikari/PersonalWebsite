@@ -4,22 +4,20 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Lance Summer Plan 2026</title>
-  <link rel="stylesheet" href="style.css" />
   <link rel="icon" type="image/x-icon" href="assets/favicon.png" />
+  <link rel="stylesheet" href="style.css" />
   <script defer src="script.js"></script>
 </head>
 <body>
   <header class="top-header">
-    <link rel="icon" type="image/x-icon" href="assets/favicon.png" />
     <nav class="nav-wrap">
       <a class="brand" href="#home">Lance Summer Plan</a>
       <button class="menu-btn" id="menuBtn" aria-label="Open navigation">☰</button>
       <div class="nav-links" id="navLinks">
         <a href="#dashboard">Dashboard</a>
-        <a href="#schedule">Schedule</a>
-        <a href="#tracker">Tracker</a>
-        <a href="#goals">Goals</a>
-        <a href="#projects">Projects</a>
+        <a href="#schedule">Daily Schedule</a>
+        <a href="#history">Previous Records</a>
+        <a href="#tracker">Weekly Tracker</a>
       </div>
     </nav>
   </header>
@@ -31,7 +29,7 @@
         <h1>Build a university-ready productivity system.</h1>
         <p class="hero-subtitle">A focused daily dashboard for coursework, GitHub portfolio growth, internship readiness, fitness, reading, and TechnolotApp development.</p>
         <div class="hero-actions">
-          <a class="btn primary" href="#dashboard">Open Dashboard</a>
+          <a class="btn primary" href="#schedule">Open Today's Schedule</a>
           <button class="btn secondary" onclick="window.print()">Print Plan</button>
         </div>
       </div>
@@ -49,8 +47,8 @@
         </div>
         <div class="mini-stats">
           <div><strong id="todayProgress">0%</strong><span>Today</span></div>
+          <div><strong id="recordCount">0</strong><span>Saved Days</span></div>
           <div><strong id="weeklyProgress">0%</strong><span>Week</span></div>
-          <div><strong id="goalProgress">0%</strong><span>Goals</span></div>
         </div>
       </div>
     </section>
@@ -61,49 +59,50 @@
         <h2>Five focus areas</h2>
       </div>
       <div class="dashboard-grid">
-        <article class="focus-card">
-          <span class="icon">📚</span>
-          <h3>Coursework</h3>
-          <p>Coursera, data structures, programming review, Math 134, and Physics 124.</p>
-          <div class="bar"><span data-width="70"></span></div>
-        </article>
-        <article class="focus-card">
-          <span class="icon">💻</span>
-          <h3>Projects</h3>
-          <p>Build small projects from what was learned and upload them to GitHub.</p>
-          <div class="bar"><span data-width="55"></span></div>
-        </article>
-        <article class="focus-card">
-          <span class="icon">🏋️</span>
-          <h3>Fitness</h3>
-          <p>Daily 4 PM to 7 PM fitness block to stay healthy and disciplined.</p>
-          <div class="bar"><span data-width="65"></span></div>
-        </article>
-        <article class="focus-card">
-          <span class="icon">📈</span>
-          <h3>Internship Prep</h3>
-          <p>Resume, LinkedIn, interview practice, GitHub polish, and applications.</p>
-          <div class="bar"><span data-width="45"></span></div>
-        </article>
-        <article class="focus-card">
-          <span class="icon">📖</span>
-          <h3>Reading</h3>
-          <p>Choose a book and build a calm nightly reading habit before sleep.</p>
-          <div class="bar"><span data-width="35"></span></div>
-        </article>
+        <article class="focus-card"><span class="icon">📚</span><h3>Coursework</h3><p>Coursera, data structures, programming review, Math 134, and Physics 124.</p></article>
+        <article class="focus-card"><span class="icon">💻</span><h3>Projects</h3><p>Build small projects from what was learned and upload them to GitHub.</p></article>
+        <article class="focus-card"><span class="icon">🏋️</span><h3>Fitness</h3><p>Daily 4 PM to 7 PM fitness block to stay healthy and disciplined.</p></article>
+        <article class="focus-card"><span class="icon">📈</span><h3>Internship Prep</h3><p>Resume, LinkedIn, interview practice, GitHub polish, and applications.</p></article>
+        <article class="focus-card"><span class="icon">📖</span><h3>Reading</h3><p>Choose a book and build a calm nightly reading habit before sleep.</p></article>
       </div>
     </section>
 
     <section id="schedule" class="section-pad schedule-section">
-      <div class="section-title">
-        <p class="eyebrow">Daily Routine</p>
-        <h2>Printable daily schedule</h2>
+      <div class="section-title row-title">
+        <div>
+          <p class="eyebrow">Daily Routine</p>
+          <h2>Daily schedule</h2>
+        </div>
+        <div class="date-box">
+          <label for="todayDate">Record Date</label>
+          <input type="date" id="todayDate" />
+        </div>
       </div>
+
       <div class="schedule-list" id="dailyChecklist"></div>
-      <div class="schedule-actions">
-        <button class="btn primary" id="resetToday">Reset Today</button>
-        <button class="btn secondary" id="exportBtn">Export Progress</button>
+
+      <div class="daily-summary-card">
+        <h3>End-of-day reflection</h3>
+        <textarea id="dailyReflection" placeholder="Write a short summary of the day: biggest win, what was hard, and what to focus on tomorrow."></textarea>
       </div>
+
+      <div class="schedule-actions">
+        <button class="btn primary" id="saveRecord">Save Today to Records</button>
+        <button class="btn danger" id="resetToday">Reset Today</button>
+        <button class="btn secondary" id="exportBtn">Export All Records</button>
+      </div>
+    </section>
+
+    <section id="history" class="section-pad">
+      <div class="section-title row-title">
+        <div>
+          <p class="eyebrow">Saved Records</p>
+          <h2>Previous daily records</h2>
+          <p class="section-note">When you press “Save Today to Records” or “Reset Today,” the completed work is saved here by date.</p>
+        </div>
+        <button class="btn secondary" id="clearHistory">Clear History</button>
+      </div>
+      <div id="historyList" class="history-list"></div>
     </section>
 
     <section id="tracker" class="section-pad">
@@ -113,42 +112,9 @@
       </div>
       <div class="tracker-wrap">
         <table class="tracker-table" id="weeklyTracker">
-          <thead>
-            <tr><th>Task</th><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th><th>Sun</th></tr>
-          </thead>
+          <thead><tr><th>Task</th><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th><th>Sun</th></tr></thead>
           <tbody></tbody>
         </table>
-      </div>
-    </section>
-
-    <section id="goals" class="section-pad goals-section">
-      <div class="section-title">
-        <p class="eyebrow">Summer Targets</p>
-        <h2>Goals that support university readiness</h2>
-      </div>
-      <div class="goal-columns" id="goalColumns"></div>
-    </section>
-
-    <section id="projects" class="section-pad split-section">
-      <div class="info-panel">
-        <p class="eyebrow">Portfolio System</p>
-        <h2>Build, document, upload, repeat.</h2>
-        <p>Every computer science session should create evidence of learning. The goal is not only to finish courses, but to build a visible portfolio that looks strong to universities, internship recruiters, and future collaborators.</p>
-        <ul class="clean-list">
-          <li>Plan what was learned.</li>
-          <li>Create one small folder or mini project.</li>
-          <li>Write a simple README.</li>
-          <li>Push to GitHub.</li>
-          <li>Add the best work to the personal website.</li>
-        </ul>
-      </div>
-      <div class="project-board">
-        <h3>Project Ideas</h3>
-        <div class="kanban-card">Data Structures Visualizer</div>
-        <div class="kanban-card">Personal Portfolio Website</div>
-        <div class="kanban-card">Community Book Exchange Site</div>
-        <div class="kanban-card">TechnolotApp Analytics Dashboard</div>
-        <div class="kanban-card">Internship Resume Page</div>
       </div>
     </section>
   </main>

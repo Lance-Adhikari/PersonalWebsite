@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="Learn how GitHub's AI-powered code-scanning findings bring potential security issues directly into pull requests, and how this connects to static analysis, SAST, CodeQL, and CI/CD." />
+        <meta name="author" content="Lance Adhikari" />
+        <title>GitHub Adds AI-Powered Security Findings Directly to Pull Requests</title>
+        <!-- Favicon -->
+        <link rel="icon" type="image/x-icon" href="../assets/favicon.png" />
+        <!-- Custom Google font -->
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@100;200;300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet" />
+        <!-- Bootstrap icons -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css" rel="stylesheet" />
+        <!-- Core theme CSS (includes Bootstrap) -->
+        <link href="blogs.css" rel="stylesheet" />
+    </head>
+
+    <body class="d-flex flex-column h-100 bg-light">
+        <main class="flex-shrink-0">
+            <!-- Navigation -->
+            <nav class="navbar navbar-expand-lg navbar-light bg-white py-3">
+                <div class="container px-5">
+                    <a class="navbar-brand" href="../index.html"><span class="fw-bolder text-primary">Lance Adhikari</span></a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav ms-auto mb-2 mb-lg-0 small fw-bolder">
+                            <li class="nav-item"><a class="nav-link" href="../index.html">Home</a></li>
+                            <li class="nav-item"><a class="nav-link" href="blog-index.html">My Blogs</a></li>
+                            <li class="nav-item"><a class="nav-link" href="../contact.html">Contact</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+
+            <!-- Blog Content Section -->
+            <section class="py-5">
+                <div class="container px-5">
+                    <article class="mb-5">
+                        <h1 class="fw-bolder">GitHub Adds AI-Powered Security Findings Directly to Pull Requests</h1>
+                        <p class="text-muted">Published by Lance Adhikari on July 14, 2026 &middot; 6 min read</p>
+
+                        <div class="text-center">
+                            <img src="../assets/blog-assets/july,14,2026.png" class="img-fluid rounded mt-3" alt="AI security shield scanning code changes in a pull request" style="max-height: 500px; width: auto; object-fit: cover;" />
+                        </div>
+
+                        <p class="mt-4">
+                            A pull request is more than a place to review whether code works. It is also one of the best opportunities to catch a security issue before that code reaches the main branch. GitHub is expanding that opportunity by bringing <strong>AI-powered security detections</strong> directly into pull requests.
+                        </p>
+
+                        <h2 class="fw-bold mt-4">What Happened?</h2>
+                        <p>
+                            GitHub code scanning can now display findings produced by its AI detection engine inside a pull request. The new detections broaden scanning to some languages and frameworks that are not currently covered by CodeQL's built-in analysis. GitHub labels these results with <code>AI</code>, helping developers distinguish them from regular CodeQL findings.
+                        </p>
+                        <p>
+                            The AI analysis runs automatically when an enabled pull request is opened or updated. Results can appear as they become available, so a team does not have to wait for every analysis source to finish before reviewing the first findings.
+                        </p>
+                        <p>
+                            This feature is currently in <strong>public preview</strong>. Its AI findings are informational and do not automatically block a pull request from being merged.
+                        </p>
+
+                        <h2 class="fw-bold mt-4">Why This Matters</h2>
+                        <p>
+                            Security testing is moving earlier in the software-development process. This approach is often called <strong>shifting security left</strong>: instead of waiting until an application is deployed, teams look for weaknesses while the code is still being written and reviewed.
+                        </p>
+                        <p>
+                            A warning found in a pull request gives the developer immediate context. The changed lines, discussion, automated checks, and reviewer feedback are all in one place. Fixing a vulnerability at this stage is generally easier and less expensive than correcting it after the code has been merged, released, or used by customers.
+                        </p>
+
+                        <h2 class="fw-bold mt-4">AI Findings Still Require Human Judgment</h2>
+                        <p>
+                            An AI-generated warning is evidence to investigate, not proof that a vulnerability exists. AI tools can produce false positives, misunderstand application-specific protections, or miss important details elsewhere in the codebase.
+                        </p>
+                        <p>Before accepting a finding, a developer should:</p>
+                        <ul>
+                            <li>Inspect the highlighted code and the surrounding functions.</li>
+                            <li>Trace where the input comes from and where the data goes.</li>
+                            <li>Check whether validation, encoding, authorization, or another control already reduces the risk.</li>
+                            <li>Determine whether an attacker could realistically reach and exploit the code path.</li>
+                            <li>Test the proposed fix and confirm that it does not introduce a new problem.</li>
+                        </ul>
+                        <p>
+                            This review process is why GitHub's preview findings are informational. The tool can direct attention to suspicious code, but a person still needs to understand the system and make the final security decision.
+                        </p>
+
+                        <h2 class="fw-bold mt-4">Connected Computer Science Concept: Static Analysis</h2>
+                        <p>
+                            This announcement connects to <strong>static analysis</strong>. A static-analysis tool examines source code without running the program. It looks for patterns that may indicate a defect or security weakness, such as unsafe input handling, injection risks, exposed secrets, or incorrect use of a security-sensitive API.
+                        </p>
+                        <p>
+                            Dynamic analysis takes a different approach by testing a running application. Both approaches are valuable: static analysis can catch suspicious code early, while dynamic testing can reveal problems that appear only when the program executes.
+                        </p>
+
+                        <h2 class="fw-bold mt-4">Term to Learn: SAST</h2>
+                        <p>
+                            <strong>SAST</strong> stands for <strong>Static Application Security Testing</strong>. SAST applies static-analysis techniques specifically to application security. It is commonly included in an automated development pipeline so that new code is checked consistently.
+                        </p>
+                        <p>
+                            GitHub's new feature is not simply CodeQL with a different label. GitHub states that its AI detection engine performs the AI analysis, while CodeQL default setup must be enabled because the AI engine relies on it to function.
+                        </p>
+
+                        <h2 class="fw-bold mt-4">How It Fits Into a Basic CI/CD Pipeline</h2>
+                        <ol>
+                            <li><strong>Create a branch:</strong> A developer makes a focused code change away from the main branch.</li>
+                            <li><strong>Open a pull request:</strong> The change becomes visible for discussion and review.</li>
+                            <li><strong>Run automated checks:</strong> Tests, formatting tools, builds, CodeQL, and available security scanners examine the change.</li>
+                            <li><strong>Investigate findings:</strong> The developer and reviewers decide whether each warning is valid and make any necessary corrections.</li>
+                            <li><strong>Merge and deploy:</strong> Once the code and checks are acceptable, the pull request can enter the main branch and continue through the delivery process.</li>
+                        </ol>
+                        <p>
+                            For a small GitHub project, learning this workflow is a practical way to understand how pull requests, automated checks, CodeQL, SAST, and CI/CD work together.
+                        </p>
+
+                        <h2 class="fw-bold mt-4">Availability and Requirements</h2>
+                        <p>
+                            During the public preview, the feature is available on GitHub.com for customers with GitHub Code Security, part of GitHub Advanced Security. An enterprise owner must first allow it, the organization must enable it, and the repository must use CodeQL default setup. GitHub also states that preview usage requires a GitHub Copilot license and consumes AI credits when detections run.
+                        </p>
+
+                        <h2 class="fw-bold mt-4">Key Takeaways</h2>
+                        <ul>
+                            <li>GitHub can surface AI-generated security detections directly in pull requests.</li>
+                            <li>The AI engine expands potential coverage beyond CodeQL's currently supported languages and frameworks.</li>
+                            <li>Findings are labeled as AI-generated, are informational, and do not block merges.</li>
+                            <li>Developers must still verify the code path and decide whether a warning represents a real vulnerability.</li>
+                            <li>The feature is a useful example of static analysis and SAST becoming part of everyday CI/CD workflows.</li>
+                        </ul>
+
+                        <h2 class="fw-bold mt-4">Source</h2>
+                        <p>
+                            This post is based on GitHub's July 14, 2026 announcement,
+                            <a href="https://github.blog/changelog/2026-07-14-code-scanning-shows-ai-security-detections-on-pull-requests/" target="_blank" rel="noopener noreferrer">Code scanning shows AI security detections on pull requests</a>.
+                        </p>
+                    </article>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="bg-white py-4 mt-auto">
+            <div class="container px-5">
+                <div class="row align-items-center justify-content-between flex-column flex-sm-row">
+                    <div class="col-auto"><div class="small m-0">&copy; 2026 Lance Adhikari. All rights reserved.</div></div>
+                </div>
+            </div>
+        </footer>
+
+        <!-- Bootstrap core JS -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    </body>
+</html>

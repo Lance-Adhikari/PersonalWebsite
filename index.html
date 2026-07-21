@@ -1,82 +1,136 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta name="description" content="" />
-        <meta name="author" content="" />
-        <title>Lance Adhikari</title>
-        <!-- Favicon-->
-        <link rel="icon" type="image/x-icon" href="assets/favicon.png" />
-        <!-- Custom Google font-->
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@100;200;300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet" />
-        <!-- Bootstrap icons-->
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css" rel="stylesheet" />
-        <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="css/styles.css" rel="stylesheet" />
-    </head>
-    <body body class="d-flex flex-column h-100 bg-light">
-        <main class="flex-shrink-0">
-            <!-- Navigation-->
-            <nav class="navbar navbar-expand-lg navbar-light bg-white py-3">
-                <div class="container px-5">
-                    <a class="navbar-brand" href="index.html"><span class="fw-bolder text-primary">Lance Adhikari</span></a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul class="navbar-nav ms-auto mb-2 mb-lg-0 small fw-bolder">
-                            <li class="nav-item"><a class="nav-link" href="volunteer-work.html">Volunteer-Work</a></li>
-                            <li class="nav-item"><a class="nav-link" href="conferences.html">Conferences</a></li>
-                            <li class="nav-item"><a class="nav-link" href="certificates.html">Certificates</a></li>
-                            <li class="nav-item"><a class="nav-link" href="resume.html">Resume</a></li>
-                            <li class="nav-item"><a class="nav-link" href="projects.html">Projects</a></li>
-                            <li class="nav-item"><a class="nav-link" href="/blogs/blog-index.html">My Blogs</a></li>
-                            <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </nav>
-            <!-- Header-->
-            <header class="py-5">
-                <div class="container px-5 pb-5">
-                    <div class="row gx-5 align-items-center">
-                        <div class="col-xxl-5">
-                            <!-- Header text content-->
-                            <div class="text-center text-xxl-start">
-                                <div class="badge bg-gradient-primary-to-secondary text-white mb-4"><div class="text-uppercase">Welcome to My Website!</div></div>
-                                <div class="fs-3 fw-light text-muted">A High School Student Who Is:</div>
-                                <h1 class="display-3 fw-bolder mb-5"><span class="text-gradient d-inline">Excited For New Opportunities</span></h1>
-                                <div class="d-grid gap-3 d-sm-flex justify-content-sm-center justify-content-xxl-start mb-3">
-                                    <a class="btn btn-primary btn-lg px-5 py-3 me-sm-3 fs-6 fw-bolder" href="volunteer-work.html">Volunteer-Work</a>
-                                    <a class="btn btn-outline-dark btn-lg px-5 py-3 fs-6 fw-bolder" href="resume.html">Resume</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xxl-7">
-                            <!-- Header profile picture-->
-                            <div class="d-flex justify-content-center mt-5 mt-xxl-0">
-                                <div class="profile">
-                                    <!-- Replacing with uploaded picture -->
-                                    <img class="profile-img" src="/assets/IMG_52363.jpg" alt="Profile Picture" />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </header>
-        </main>
-        <!-- Footer-->
-        <footer class="bg-white py-4 mt-auto">
-            <div class="container px-5">
-                <div class="row align-items-center justify-content-between flex-column flex-sm-row">
-                    <div class="col-auto"><div class="small m-0">&copy; 2026 Lance Adhikari. All rights reserved.</div></div>
-                </div>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Lance Adhikari | Computer Science & Cybersecurity Portfolio</title>
+  <meta name="description" content="Portfolio of Lance Adhikari, an incoming Computer Science student at the University of Alberta building projects in cybersecurity, software development, data, and technology education.">
+  <meta name="author" content="Lance Adhikari">
+  <meta name="theme-color" content="#0b1220">
+  <link rel="canonical" href="https://www.lanceadhikari.com/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Lance Adhikari | Computer Science & Cybersecurity Portfolio">
+  <meta property="og:description" content="Building secure, useful, and thoughtful technology through software, cybersecurity, data, and communication.">
+  <meta property="og:url" content="https://www.lanceadhikari.com/">
+  <meta property="og:image" content="https://www.lanceadhikari.com/assets/og-portfolio.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Lance Adhikari | Computer Science Portfolio">
+  <meta name="twitter:description" content="Projects, learning labs, experience, and technical writing from Lance Adhikari.">
+  <meta name="twitter:image" content="https://www.lanceadhikari.com/assets/og-portfolio.jpg">
+  <link rel="icon" type="image/png" href="/assets/site-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="preload" as="image" href="/assets/lance-adhikari-headshot.webp" type="image/webp">
+  <link rel="stylesheet" href="/css/styles.css">
+  <link rel="stylesheet" href="/css/components.css">
+  <script defer src="/javascript/scripts.js"></script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Lance Adhikari",
+    "url": "https://www.lanceadhikari.com/",
+    "image": "https://www.lanceadhikari.com/assets/lance-adhikari-headshot.webp",
+    "email": "mailto:lanceatadhikari@gmail.com",
+    "description": "Incoming Computer Science student at the University of Alberta interested in cybersecurity, software development, data, and technology education.",
+    "alumniOf": {"@type": "HighSchool", "name": "Dr. Anne Anderson High School"},
+    "sameAs": [
+      "https://github.com/Lance-Adhikari",
+      "https://www.youtube.com/@Technolot1/"
+    ]
+  }
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
+  <header data-site-header></header>
+  <main id="main-content">
+    <section class="hero" aria-labelledby="home-title">
+      <div class="container hero-layout">
+        <div>
+          <p class="eyebrow">Incoming Computer Science Student at the University of Alberta</p>
+          <h1 id="home-title">Building secure, useful, and thoughtful technology.</h1>
+          <p class="hero-copy">I’m Lance Adhikari, a developer and technology creator interested in cybersecurity, software engineering, data, and technology education.</p>
+          <div class="hero-actions">
+            <a class="button" href="/projects.html">View Projects</a>
+            <a class="button button-secondary" href="/resume.html">View Resume</a>
+            <a class="button button-ghost" href="/contact.html">Contact Me</a>
+          </div>
+        </div>
+        <div class="portrait-frame">
+          <img src="/assets/lance-adhikari-headshot.webp" alt="Portrait of Lance Adhikari at a cybersecurity conference" width="1200" height="1200">
+          <p class="portrait-caption">Cybersecurity · Software engineering · Technical communication</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-white" aria-labelledby="featured-projects-title">
+      <div class="container">
+        <div class="section-heading">
+          <div class="section-heading-copy">
+            <p class="eyebrow">Featured projects</p>
+            <h2 id="featured-projects-title">Technical work with a clear purpose.</h2>
+            <p>Selected projects span community infrastructure, secure-development practice, data analysis, and research-driven interaction design.</p>
+          </div>
+          <a class="text-link" href="/projects.html">Explore all projects</a>
+        </div>
+        <div class="project-feature-grid">
+          <article class="project-card">
+            <div class="project-card-media is-logo"><img src="/assets/community-book-exchange.webp" alt="Community Book Exchange logo" width="500" height="500"></div>
+            <div class="project-card-body">
+              <div class="project-card-kicker"><span>Community platform</span><span class="status status-complete">Three-year contribution</span></div>
+              <h3>Community Book Exchange</h3>
+              <p>A full-stack platform supporting community access to books and resources.</p>
+              <ul class="project-outcomes"><li>Contributed more than 270 hours over three years.</li><li>Worked with HTML, CSS, JavaScript, JSON, PHP, and MySQL.</li></ul>
+              <ul class="tag-list" aria-label="Technologies"><li class="tag">JavaScript</li><li class="tag">PHP</li><li class="tag">MySQL</li></ul>
+              <div class="project-actions"><a class="button button-small" href="https://bookexchange.necase.ca/" target="_blank" rel="noopener noreferrer">Live site</a><a class="button button-small button-secondary" href="/projects.html#community-book-exchange">Case study</a></div>
             </div>
-        </footer>
-        <!-- Bootstrap core JS-->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-        <!-- Core theme JS-->
-        <script src="js/scripts.js"></script>
-    </body>
+          </article>
+
+          <article class="project-card">
+            <div class="project-card-media"><img src="/assets/blog-assets/github-ai-security.webp" alt="Illustration of security analysis applied to code" width="1400" height="788" loading="lazy"></div>
+            <div class="project-card-body">
+              <div class="project-card-kicker"><span>Cybersecurity learning lab</span><span class="status status-learning">Learning lab</span></div>
+              <h3>Threat Modelling Mini Lab</h3>
+              <p>A Python command-line workflow for moving from system context to testable security requirements.</p>
+              <ul class="project-outcomes"><li>Applies STRIDE to assets, components, and trust boundaries.</li><li>Calculates simple risk scores and generates a Markdown report.</li></ul>
+              <ul class="tag-list" aria-label="Technologies"><li class="tag">Python</li><li class="tag">JSON</li><li class="tag">STRIDE</li></ul>
+              <div class="project-actions"><a class="button button-small" href="https://github.com/Lance-Adhikari/threat-modelling-mini-lab" target="_blank" rel="noopener noreferrer">GitHub</a><a class="button button-small button-secondary" href="/projects.html#learning-labs">Details</a></div>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div class="project-card-media"><img src="/assets/blog-assets/relational-databases.webp" alt="Illustration representing structured data and relational databases" width="1280" height="720" loading="lazy"></div>
+            <div class="project-card-body">
+              <div class="project-card-kicker"><span>Log analysis learning lab</span><span class="status status-learning">Learning lab</span></div>
+              <h3>Payments Log Analysis Practice</h3>
+              <p>A documented Python exercise for turning fake application logs into spreadsheet-ready transaction data.</p>
+              <ul class="project-outcomes"><li>Parses request and response entries with regular expressions and XML tools.</li><li>Exports structured CSV output using demonstration data only.</li></ul>
+              <ul class="tag-list" aria-label="Technologies"><li class="tag">Python</li><li class="tag">Regex</li><li class="tag">XML</li><li class="tag">CSV</li></ul>
+              <div class="project-actions"><a class="button button-small" href="https://github.com/Lance-Adhikari/payments-log-analysis-practice" target="_blank" rel="noopener noreferrer">GitHub</a><a class="button button-small button-secondary" href="/projects.html#learning-labs">Details</a></div>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div class="project-card-media"><img src="/assets/omar-al-bashir-timeline.webp" alt="Screenshot of the interactive Omar al-Bashir historical timeline" width="1400" height="875" loading="lazy"></div>
+            <div class="project-card-body">
+              <div class="project-card-kicker"><span>Interactive research project</span><span class="status status-complete">Completed</span></div>
+              <h3>Interactive Omar al-Bashir Timeline</h3>
+              <p>A research-led timeline that organizes complex historical events into an accessible frontend experience.</p>
+              <ul class="project-outcomes"><li>Uses keyboard-friendly interaction and responsive layouts.</li><li>Connects chronological content with a dedicated sources page.</li></ul>
+              <ul class="tag-list" aria-label="Technologies"><li class="tag">HTML</li><li class="tag">CSS</li><li class="tag">JavaScript</li><li class="tag">Accessibility</li></ul>
+              <div class="project-actions"><a class="button button-small" href="/dictator-project/">Live demo</a><a class="button button-small button-secondary" href="/projects.html#omar-timeline">Details</a></div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-dark" aria-labelledby="home-cta-title">
+      <div class="container"><div class="cta-panel"><div><p class="eyebrow">Discuss the work</p><h2 id="home-cta-title">Have a project, internship, or technical question in mind?</h2><p>I’m open to opportunities where I can keep learning while contributing careful development and clear communication.</p></div><a class="button" href="/contact.html">Contact Lance</a></div></div>
+    </section>
+  </main>
+  <footer data-site-footer></footer>
+</body>
 </html>

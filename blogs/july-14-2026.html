@@ -1,56 +1,52 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta name="description" content="Learn how GitHub's AI-powered code-scanning findings bring potential security issues directly into pull requests, and how this connects to static analysis, SAST, CodeQL, and CI/CD." />
-        <meta name="author" content="Lance Adhikari" />
-        <title>GitHub Adds AI-Powered Security Findings Directly to Pull Requests</title>
-        <!-- Favicon -->
-        <link rel="icon" type="image/x-icon" href="../assets/favicon.png" />
-        <!-- Custom Google font -->
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@100;200;300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet" />
-        <!-- Bootstrap icons -->
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css" rel="stylesheet" />
-        <!-- Core theme CSS (includes Bootstrap) -->
-        <link href="blogs.css" rel="stylesheet" />
-    </head>
-
-    <body class="d-flex flex-column h-100 bg-light">
-        <main class="flex-shrink-0">
-            <!-- Navigation -->
-            <nav class="navbar navbar-expand-lg navbar-light bg-white py-3">
-                <div class="container px-5">
-                    <a class="navbar-brand" href="../index.html"><span class="fw-bolder text-primary">Lance Adhikari</span></a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul class="navbar-nav ms-auto mb-2 mb-lg-0 small fw-bolder">
-                            <li class="nav-item"><a class="nav-link" href="../index.html">Home</a></li>
-                            <li class="nav-item"><a class="nav-link" href="blog-index.html">My Blogs</a></li>
-                            <li class="nav-item"><a class="nav-link" href="../contact.html">Contact</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </nav>
-
-            <!-- Blog Content Section -->
-            <section class="py-5">
-                <div class="container px-5">
-                    <article class="mb-5">
-                        <h1 class="fw-bolder">GitHub Adds AI-Powered Security Findings Directly to Pull Requests</h1>
-                        <p class="text-muted">Published by Lance Adhikari on July 14, 2026 &middot; 6 min read</p>
-
-                        <div class="text-center">
-                            <img src="../assets/blog-assets/july,14,2026.png" class="img-fluid rounded mt-3" alt="AI security shield scanning code changes in a pull request" style="max-height: 500px; width: auto; object-fit: cover;" />
-                        </div>
-
-                        <p class="mt-4">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>GitHub Adds AI-Powered Security Findings Directly to Pull Requests | Lance Adhikari</title>
+  <meta name="description" content="How GitHub AI security findings connect pull requests with static analysis, SAST, CodeQL, CI/CD, and human review.">
+  <meta name="author" content="Lance Adhikari">
+  <meta name="theme-color" content="#0b1220">
+  <link rel="canonical" href="https://www.lanceadhikari.com/blogs/july-14-2026.html">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="GitHub Adds AI-Powered Security Findings Directly to Pull Requests">
+  <meta property="og:description" content="How GitHub AI security findings connect pull requests with static analysis, SAST, CodeQL, CI/CD, and human review.">
+  <meta property="og:url" content="https://www.lanceadhikari.com/blogs/july-14-2026.html">
+  <meta property="og:image" content="https://www.lanceadhikari.com/assets/blog-assets/github-ai-security.webp">
+  <meta property="article:published_time" content="2026-07-14">
+  <meta property="article:author" content="Lance Adhikari">
+  <meta property="article:section" content="Cybersecurity">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="GitHub Adds AI-Powered Security Findings Directly to Pull Requests">
+  <meta name="twitter:description" content="How GitHub AI security findings connect pull requests with static analysis, SAST, CodeQL, CI/CD, and human review.">
+  <meta name="twitter:image" content="https://www.lanceadhikari.com/assets/blog-assets/github-ai-security.webp">
+  <link rel="icon" type="image/png" href="/assets/site-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/styles.css">
+  <link rel="stylesheet" href="/css/components.css">
+  <script defer src="/javascript/scripts.js"></script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"GitHub Adds AI-Powered Security Findings Directly to Pull Requests","description":"How GitHub AI security findings connect pull requests with static analysis, SAST, CodeQL, CI/CD, and human review.","image":"https://www.lanceadhikari.com/assets/blog-assets/github-ai-security.webp","datePublished":"2026-07-14","author":{"@type":"Person","name":"Lance Adhikari","url":"https://www.lanceadhikari.com/about.html"},"publisher":{"@type":"Person","name":"Lance Adhikari"},"mainEntityOfPage":"https://www.lanceadhikari.com/blogs/july-14-2026.html"}</script>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
+  <header data-site-header></header>
+  <main id="main-content">
+    <article class="article-shell">
+      <header class="article-header">
+        <p class="eyebrow">Cybersecurity</p>
+        <h1>GitHub Adds AI-Powered Security Findings Directly to Pull Requests</h1>
+        <p class="article-meta"><span>By Lance Adhikari</span><time datetime="2026-07-14">July 14, 2026</time><span>6 min read</span><span>GitHub</span><span>AI</span><span>SAST</span><span>CodeQL</span></p>
+        <p>How GitHub AI security findings connect pull requests with static analysis, SAST, CodeQL, CI/CD, and human review.</p>
+      </header>
+      <img class="article-hero" src="/assets/blog-assets/github-ai-security.webp" alt="AI security shield scanning code changes in a pull request" width="1400" height="788">
+      <div class="article-content">
+<p>
                             A pull request is more than a place to review whether code works. It is also one of the best opportunities to catch a security issue before that code reaches the main branch. GitHub is expanding that opportunity by bringing <strong>AI-powered security detections</strong> directly into pull requests.
                         </p>
 
-                        <h2 class="fw-bold mt-4">What Happened?</h2>
+                        <h2>What Happened?</h2>
                         <p>
                             GitHub code scanning can now display findings produced by its AI detection engine inside a pull request. The new detections broaden scanning to some languages and frameworks that are not currently covered by CodeQL's built-in analysis. GitHub labels these results with <code>AI</code>, helping developers distinguish them from regular CodeQL findings.
                         </p>
@@ -61,7 +57,7 @@
                             This feature is currently in <strong>public preview</strong>. Its AI findings are informational and do not automatically block a pull request from being merged.
                         </p>
 
-                        <h2 class="fw-bold mt-4">Why This Matters</h2>
+                        <h2>Why This Matters</h2>
                         <p>
                             Security testing is moving earlier in the software-development process. This approach is often called <strong>shifting security left</strong>: instead of waiting until an application is deployed, teams look for weaknesses while the code is still being written and reviewed.
                         </p>
@@ -69,7 +65,7 @@
                             A warning found in a pull request gives the developer immediate context. The changed lines, discussion, automated checks, and reviewer feedback are all in one place. Fixing a vulnerability at this stage is generally easier and less expensive than correcting it after the code has been merged, released, or used by customers.
                         </p>
 
-                        <h2 class="fw-bold mt-4">AI Findings Still Require Human Judgment</h2>
+                        <h2>AI Findings Still Require Human Judgment</h2>
                         <p>
                             An AI-generated warning is evidence to investigate, not proof that a vulnerability exists. AI tools can produce false positives, misunderstand application-specific protections, or miss important details elsewhere in the codebase.
                         </p>
@@ -85,7 +81,7 @@
                             This review process is why GitHub's preview findings are informational. The tool can direct attention to suspicious code, but a person still needs to understand the system and make the final security decision.
                         </p>
 
-                        <h2 class="fw-bold mt-4">Connected Computer Science Concept: Static Analysis</h2>
+                        <h2>Connected Computer Science Concept: Static Analysis</h2>
                         <p>
                             This announcement connects to <strong>static analysis</strong>. A static-analysis tool examines source code without running the program. It looks for patterns that may indicate a defect or security weakness, such as unsafe input handling, injection risks, exposed secrets, or incorrect use of a security-sensitive API.
                         </p>
@@ -93,7 +89,7 @@
                             Dynamic analysis takes a different approach by testing a running application. Both approaches are valuable: static analysis can catch suspicious code early, while dynamic testing can reveal problems that appear only when the program executes.
                         </p>
 
-                        <h2 class="fw-bold mt-4">Term to Learn: SAST</h2>
+                        <h2>Term to Learn: SAST</h2>
                         <p>
                             <strong>SAST</strong> stands for <strong>Static Application Security Testing</strong>. SAST applies static-analysis techniques specifically to application security. It is commonly included in an automated development pipeline so that new code is checked consistently.
                         </p>
@@ -101,7 +97,7 @@
                             GitHub's new feature is not simply CodeQL with a different label. GitHub states that its AI detection engine performs the AI analysis, while CodeQL default setup must be enabled because the AI engine relies on it to function.
                         </p>
 
-                        <h2 class="fw-bold mt-4">How It Fits Into a Basic CI/CD Pipeline</h2>
+                        <h2>How It Fits Into a Basic CI/CD Pipeline</h2>
                         <ol>
                             <li><strong>Create a branch:</strong> A developer makes a focused code change away from the main branch.</li>
                             <li><strong>Open a pull request:</strong> The change becomes visible for discussion and review.</li>
@@ -113,12 +109,12 @@
                             For a small GitHub project, learning this workflow is a practical way to understand how pull requests, automated checks, CodeQL, SAST, and CI/CD work together.
                         </p>
 
-                        <h2 class="fw-bold mt-4">Availability and Requirements</h2>
+                        <h2>Availability and Requirements</h2>
                         <p>
                             During the public preview, the feature is available on GitHub.com for customers with GitHub Code Security, part of GitHub Advanced Security. An enterprise owner must first allow it, the organization must enable it, and the repository must use CodeQL default setup. GitHub also states that preview usage requires a GitHub Copilot license and consumes AI credits when detections run.
                         </p>
 
-                        <h2 class="fw-bold mt-4">Key Takeaways</h2>
+                        <h2>Key Takeaways</h2>
                         <ul>
                             <li>GitHub can surface AI-generated security detections directly in pull requests.</li>
                             <li>The AI engine expands potential coverage beyond CodeQL's currently supported languages and frameworks.</li>
@@ -127,26 +123,19 @@
                             <li>The feature is a useful example of static analysis and SAST becoming part of everyday CI/CD workflows.</li>
                         </ul>
 
-                        <h2 class="fw-bold mt-4">Source</h2>
+                        <h2>Source</h2>
                         <p>
                             This post is based on GitHub's July 14, 2026 announcement,
                             <a href="https://github.blog/changelog/2026-07-14-code-scanning-shows-ai-security-detections-on-pull-requests/" target="_blank" rel="noopener noreferrer">Code scanning shows AI security detections on pull requests</a>.
                         </p>
-                    </article>
-                </div>
-            </section>
-        </main>
-
-        <!-- Footer -->
-        <footer class="bg-white py-4 mt-auto">
-            <div class="container px-5">
-                <div class="row align-items-center justify-content-between flex-column flex-sm-row">
-                    <div class="col-auto"><div class="small m-0">&copy; 2026 Lance Adhikari. All rights reserved.</div></div>
-                </div>
-            </div>
-        </footer>
-
-        <!-- Bootstrap core JS -->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-    </body>
+        <section class="sources" aria-labelledby="sources-heading"><h2 id="sources-heading">Sources and further reading</h2><ul><li><a href="https://github.blog/changelog/2026-07-14-code-scanning-shows-ai-security-detections-on-pull-requests/" target="_blank" rel="noopener noreferrer">GitHub changelog announcement</a></li></ul></section>
+        <section class="sources" aria-labelledby="related-heading"><h2 id="related-heading">Related articles</h2><ul><li><a href="/blogs/august-11-2025.html">Relational Databases: The Backbone of Modern Data Management</a></li><li><a href="/blogs/july-15-2026.html">Codex Adds Stronger Git and Parallel-Development Workflows</a></li></ul></section>
+      </div>
+      <nav class="article-nav" aria-label="Article navigation"><a href="/blogs/august-11-2025.html"><span class="article-meta">Previous article</span><br>Relational Databases: The Backbone of Modern Data Management</a><a href="/blogs/july-15-2026.html"><span class="article-meta">Next article</span><br>Codex Adds Stronger Git and Parallel-Development Workflows</a></nav>
+      <aside class="author-card" aria-label="About the author"><img src="/assets/lance-adhikari-headshot.webp" alt="Lance Adhikari" width="72" height="72" loading="lazy"><div><h2>About Lance</h2><p>Incoming Computer Science student at the University of Alberta writing about cybersecurity, software development, data, artificial intelligence, and developer tools.</p><a class="text-link" href="/about.html">More about Lance</a></div></aside>
+      <div class="cta-panel" style="margin-top:2rem"><div><h2>Continue the conversation</h2><p>Have a correction, collaboration idea, or technical topic to discuss?</p></div><a class="button" href="/contact.html">Contact Lance</a></div>
+    </article>
+  </main>
+  <footer data-site-footer></footer>
+</body>
 </html>

@@ -1,59 +1,55 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta name="description" content="Explore how Codex uses branch selection, Git worktrees, setup scripts, inline review comments, and parallel agents to support repository-scale software development." />
-        <meta name="author" content="Lance Adhikari" />
-        <title>Codex Adds Stronger Git and Parallel-Development Workflows</title>
-        <!-- Favicon -->
-        <link rel="icon" type="image/x-icon" href="../assets/favicon.png" />
-        <!-- Custom Google font -->
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@100;200;300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet" />
-        <!-- Bootstrap icons -->
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css" rel="stylesheet" />
-        <!-- Core theme CSS (includes Bootstrap) -->
-        <link href="blogs.css" rel="stylesheet" />
-    </head>
-
-    <body class="d-flex flex-column h-100 bg-light">
-        <main class="flex-shrink-0">
-            <!-- Navigation -->
-            <nav class="navbar navbar-expand-lg navbar-light bg-white py-3">
-                <div class="container px-5">
-                    <a class="navbar-brand" href="../index.html"><span class="fw-bolder text-primary">Lance Adhikari</span></a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul class="navbar-nav ms-auto mb-2 mb-lg-0 small fw-bolder">
-                            <li class="nav-item"><a class="nav-link" href="../index.html">Home</a></li>
-                            <li class="nav-item"><a class="nav-link" href="blog-index.html">My Blogs</a></li>
-                            <li class="nav-item"><a class="nav-link" href="../contact.html">Contact</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </nav>
-
-            <!-- Blog Content Section -->
-            <section class="py-5">
-                <div class="container px-5">
-                    <article class="mb-5">
-                        <h1 class="fw-bolder">Codex Adds Stronger Git and Parallel-Development Workflows</h1>
-                        <p class="text-muted">Published by Lance Adhikari on July 15, 2026 &middot; 6 min read</p>
-
-                        <div class="text-center">
-                            <img src="../assets/blog-assets/july,15,2026.png" class="img-fluid rounded mt-3" alt="Parallel AI coding agents working in separate Git worktrees" style="max-height: 500px; width: auto; object-fit: cover;" />
-                        </div>
-
-                        <p class="mt-4">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Codex Adds Stronger Git and Parallel-Development Workflows | Lance Adhikari</title>
+  <meta name="description" content="How Git worktrees, setup scripts, subagents, and inline review comments can support coordinated AI-assisted development.">
+  <meta name="author" content="Lance Adhikari">
+  <meta name="theme-color" content="#0b1220">
+  <link rel="canonical" href="https://www.lanceadhikari.com/blogs/july-15-2026.html">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Codex Adds Stronger Git and Parallel-Development Workflows">
+  <meta property="og:description" content="How Git worktrees, setup scripts, subagents, and inline review comments can support coordinated AI-assisted development.">
+  <meta property="og:url" content="https://www.lanceadhikari.com/blogs/july-15-2026.html">
+  <meta property="og:image" content="https://www.lanceadhikari.com/assets/blog-assets/codex-git-workflows.webp">
+  <meta property="article:published_time" content="2026-07-15">
+  <meta property="article:author" content="Lance Adhikari">
+  <meta property="article:section" content="Developer Tools">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Codex Adds Stronger Git and Parallel-Development Workflows">
+  <meta name="twitter:description" content="How Git worktrees, setup scripts, subagents, and inline review comments can support coordinated AI-assisted development.">
+  <meta name="twitter:image" content="https://www.lanceadhikari.com/assets/blog-assets/codex-git-workflows.webp">
+  <link rel="icon" type="image/png" href="/assets/site-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/styles.css">
+  <link rel="stylesheet" href="/css/components.css">
+  <script defer src="/javascript/scripts.js"></script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Codex Adds Stronger Git and Parallel-Development Workflows","description":"How Git worktrees, setup scripts, subagents, and inline review comments can support coordinated AI-assisted development.","image":"https://www.lanceadhikari.com/assets/blog-assets/codex-git-workflows.webp","datePublished":"2026-07-15","author":{"@type":"Person","name":"Lance Adhikari","url":"https://www.lanceadhikari.com/about.html"},"publisher":{"@type":"Person","name":"Lance Adhikari"},"mainEntityOfPage":"https://www.lanceadhikari.com/blogs/july-15-2026.html"}</script>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
+  <header data-site-header></header>
+  <main id="main-content">
+    <article class="article-shell">
+      <header class="article-header">
+        <p class="eyebrow">Developer Tools</p>
+        <h1>Codex Adds Stronger Git and Parallel-Development Workflows</h1>
+        <p class="article-meta"><span>By Lance Adhikari</span><time datetime="2026-07-15">July 15, 2026</time><span>6 min read</span><span>Codex</span><span>Git</span><span>Worktrees</span><span>Developer Tools</span></p>
+        <p>How Git worktrees, setup scripts, subagents, and inline review comments can support coordinated AI-assisted development.</p>
+      </header>
+      <img class="article-hero" src="/assets/blog-assets/codex-git-workflows.webp" alt="Parallel AI coding agents working in separate Git worktrees" width="1400" height="788">
+      <div class="article-content">
+<p>
                             AI coding tools began as assistants that could suggest the next line or complete a small function. Their role is becoming much larger. Modern coding agents can inspect repositories, work on separate tasks, review changes, run tools, and coordinate work across branches.
                         </p>
                         <p>
                             Recent Codex updates show this shift clearly. The result is not an automatic replacement for a developer. It is a more capable development environment in which people can delegate work while keeping control of the repository and the final decisions.
                         </p>
 
-                        <h2 class="fw-bold mt-4">What Happened?</h2>
+                        <h2>What Happened?</h2>
                         <p>
                             OpenAI's Codex changelog announced that <strong>Remote on iOS</strong> can choose a starting branch, create a Git worktree, run an environment-setup script, manage goals, and add inline review comments. These mobile additions connect to broader Codex workflows already available for repository work in the desktop app and other Codex surfaces.
                         </p>
@@ -66,7 +62,7 @@
                             <li><strong>Multi-agent workflows</strong> divide independent work among specialized agents and combine their results.</li>
                         </ul>
 
-                        <h2 class="fw-bold mt-4">Why It Matters</h2>
+                        <h2>Why It Matters</h2>
                         <p>
                             Software development is rarely one isolated coding problem. A feature may require repository exploration, implementation, tests, documentation, security review, and integration with existing code. When every activity happens in one folder and one conversation, the work can become crowded and changes can interfere with one another.
                         </p>
@@ -77,7 +73,7 @@
                             This structure can improve speed and organization, but it does not remove developer responsibility. Every proposed change still needs to be understood, tested, reviewed, and integrated carefully.
                         </p>
 
-                        <h2 class="fw-bold mt-4">Connected Computer Science Concept: Concurrent Development</h2>
+                        <h2>Connected Computer Science Concept: Concurrent Development</h2>
                         <p>
                             <strong>Concurrent development</strong> means that multiple developers, tasks, or agents make progress on separate parts of a project during overlapping periods of time. The work does not always execute at precisely the same instant, but the tasks remain active and advance independently.
                         </p>
@@ -88,12 +84,12 @@
                             The challenge is coordination. Two agents editing the same file or changing the same behaviour may create a merge conflict or, more dangerously, changes that merge cleanly but do not work correctly together. Version control, clear task boundaries, and human review are therefore essential.
                         </p>
 
-                        <h2 class="fw-bold mt-4">Term to Learn: Git Worktree</h2>
+                        <h2>Term to Learn: Git Worktree</h2>
                         <p>
                             A <strong>Git worktree</strong> is an additional checkout of the same repository in a separate folder. Each worktree has its own working files and index, while the worktrees share the repository's Git history and metadata.
                         </p>
                         <p>A developer could create a second worktree from the command line like this:</p>
-                        <pre class="bg-light p-3 rounded border"><code>git worktree add ../project-security-review -b review/security main</code></pre>
+                        <pre><code>git worktree add ../project-security-review -b review/security main</code></pre>
                         <p>
                             This command creates a new folder named <code>project-security-review</code>, creates the branch <code>review/security</code> from <code>main</code>, and checks that branch out in the new folder. The original project folder remains available for other work.
                         </p>
@@ -101,7 +97,7 @@
                             Git normally prevents the same branch from being checked out in more than one worktree at the same time. This rule avoids ambiguity over which folder is allowed to advance that branch. Separate branches or detached checkouts allow multiple worktrees to operate safely from shared history.
                         </p>
 
-                        <h2 class="fw-bold mt-4">How Codex Uses Worktrees</h2>
+                        <h2>How Codex Uses Worktrees</h2>
                         <p>
                             In the Codex desktop workflow, a task can start in an isolated worktree based on a selected branch. Codex can work in the background while the developer continues using the local checkout. The task can later remain in its worktree or be handed back to the local checkout for closer testing and collaboration.
                         </p>
@@ -109,17 +105,17 @@
                             Worktrees reduce accidental interference at the file-system level, but they do not eliminate integration work. Changes from separate branches still need to be reviewed and combined, and conflicts must still be resolved correctly.
                         </p>
 
-                        <h2 class="fw-bold mt-4">Why Setup Scripts Are Important</h2>
+                        <h2>Why Setup Scripts Are Important</h2>
                         <p>
                             A fresh worktree contains tracked repository files, but it may not contain downloaded dependencies, generated files, or ignored configuration. An environment-setup script can automatically prepare the new checkout by installing packages or running a build.
                         </p>
-                        <pre class="bg-light p-3 rounded border"><code>npm install
+                        <pre><code>npm install
 npm run build</code></pre>
                         <p>
                             Automating these steps makes parallel environments more reproducible. Each task begins with a known setup instead of depending on manual commands that someone may forget to run.
                         </p>
 
-                        <h2 class="fw-bold mt-4">Inline Review Comments Create a Better Feedback Loop</h2>
+                        <h2>Inline Review Comments Create a Better Feedback Loop</h2>
                         <p>
                             General feedback such as "improve this function" may be unclear. An inline comment is attached to a specific line in the diff, giving the agent precise context about what should change. A developer can identify an incorrect condition, a missing test, or a naming problem and then ask Codex to address only those comments.
                         </p>
@@ -127,7 +123,7 @@ npm run build</code></pre>
                             This creates an iterative workflow: Codex proposes a change, the developer reviews the diff, the developer leaves targeted comments, and Codex prepares a focused revision.
                         </p>
 
-                        <h2 class="fw-bold mt-4">Where Multi-Agent Development Fits</h2>
+                        <h2>Where Multi-Agent Development Fits</h2>
                         <p>
                             Codex can use subagents for independent tasks and collect their results in the main task. This works especially well for exploration, test analysis, log review, or other read-heavy activities. It requires more care when several agents edit code at once because overlapping writes increase conflict and coordination risk.
                         </p>
@@ -140,7 +136,7 @@ npm run build</code></pre>
                             <li>The developer reviews the diff, runs verification, and decides what should be merged.</li>
                         </ol>
 
-                        <h2 class="fw-bold mt-4">What Developers Must Still Verify</h2>
+                        <h2>What Developers Must Still Verify</h2>
                         <ul>
                             <li>The task started from the correct branch and commit.</li>
                             <li>The agent changed only the files that were in scope.</li>
@@ -151,7 +147,7 @@ npm run build</code></pre>
                             <li>The final diff is understandable before it is committed or merged.</li>
                         </ul>
 
-                        <h2 class="fw-bold mt-4">Key Takeaways</h2>
+                        <h2>Key Takeaways</h2>
                         <ul>
                             <li>Codex is expanding from code completion toward complete repository workflows.</li>
                             <li>Branch selection and worktrees give parallel tasks a safer starting point and isolated files.</li>
@@ -161,28 +157,21 @@ npm run build</code></pre>
                             <li>Human understanding, testing, and review remain necessary before any change is merged.</li>
                         </ul>
 
-                        <h2 class="fw-bold mt-4">Sources and Further Reading</h2>
+                        <h2>Sources and Further Reading</h2>
                         <ul>
                             <li><a href="https://learn.chatgpt.com/docs/changelog" target="_blank" rel="noopener noreferrer">OpenAI Codex changelog</a></li>
                             <li><a href="https://learn.chatgpt.com/docs/environments/git-worktrees" target="_blank" rel="noopener noreferrer">Codex Git worktrees documentation</a></li>
                             <li><a href="https://learn.chatgpt.com/docs/environments/local-environment" target="_blank" rel="noopener noreferrer">Codex local environments documentation</a></li>
                             <li><a href="https://learn.chatgpt.com/docs/agent-configuration/subagents" target="_blank" rel="noopener noreferrer">Codex subagents documentation</a></li>
                         </ul>
-                    </article>
-                </div>
-            </section>
-        </main>
-
-        <!-- Footer -->
-        <footer class="bg-white py-4 mt-auto">
-            <div class="container px-5">
-                <div class="row align-items-center justify-content-between flex-column flex-sm-row">
-                    <div class="col-auto"><div class="small m-0">&copy; 2026 Lance Adhikari. All rights reserved.</div></div>
-                </div>
-            </div>
-        </footer>
-
-        <!-- Bootstrap core JS -->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-    </body>
+        <section class="sources" aria-labelledby="sources-heading"><h2 id="sources-heading">Sources and further reading</h2><ul><li><a href="https://learn.chatgpt.com/docs/changelog" target="_blank" rel="noopener noreferrer">OpenAI Codex changelog</a></li></ul></section>
+        <section class="sources" aria-labelledby="related-heading"><h2 id="related-heading">Related articles</h2><ul><li><a href="/blogs/july-14-2026.html">GitHub Adds AI-Powered Security Findings Directly to Pull Requests</a></li><li><a href="/blogs/march-2-2025.html">Getting to Know Python: A Powerful Tool for Cybersecurity</a></li></ul></section>
+      </div>
+      <nav class="article-nav" aria-label="Article navigation"><a href="/blogs/july-14-2026.html"><span class="article-meta">Previous article</span><br>GitHub Adds AI-Powered Security Findings Directly to Pull Requests</a><a href="/blogs/blog-index.html"><span class="article-meta">Writing archive</span><br>Browse all articles</a></nav>
+      <aside class="author-card" aria-label="About the author"><img src="/assets/lance-adhikari-headshot.webp" alt="Lance Adhikari" width="72" height="72" loading="lazy"><div><h2>About Lance</h2><p>Incoming Computer Science student at the University of Alberta writing about cybersecurity, software development, data, artificial intelligence, and developer tools.</p><a class="text-link" href="/about.html">More about Lance</a></div></aside>
+      <div class="cta-panel" style="margin-top:2rem"><div><h2>Continue the conversation</h2><p>Have a correction, collaboration idea, or technical topic to discuss?</p></div><a class="button" href="/contact.html">Contact Lance</a></div>
+    </article>
+  </main>
+  <footer data-site-footer></footer>
+</body>
 </html>

@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /summer-plan/
+
+Sitemap: https://www.lanceadhikari.com/sitemap.xml

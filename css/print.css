@@ -1,0 +1,120 @@
+@media print {
+  @page {
+    margin: 0.55in;
+    size: letter;
+  }
+
+  html,
+  body {
+    color: #000 !important;
+    background: #fff !important;
+    font-size: 9.5pt;
+    line-height: 1.35;
+  }
+
+  .site-header,
+  .site-footer,
+  .skip-link,
+  .resume-actions,
+  .no-print {
+    display: none !important;
+  }
+
+  .resume-wrap {
+    padding: 0;
+  }
+
+  .resume-document {
+    max-width: none;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+  }
+
+  .resume-header {
+    grid-template-columns: 1fr;
+    gap: 0;
+    padding-bottom: 10pt;
+    border-bottom: 1.5pt solid #000;
+  }
+
+  .resume-header h1 {
+    margin-bottom: 2pt;
+    color: #000;
+    font-size: 24pt;
+  }
+
+  .resume-headline {
+    margin-bottom: 5pt;
+    color: #000;
+    font-size: 10pt;
+  }
+
+  .resume-contact {
+    gap: 2pt 10pt;
+    font-size: 8.5pt;
+  }
+
+  a {
+    color: #000 !important;
+    text-decoration: none;
+  }
+
+  .resume-section {
+    padding-top: 9pt;
+  }
+
+  .resume-section + .resume-section {
+    margin-top: 0;
+    border-top: 0;
+  }
+
+  .resume-section-heading {
+    margin-bottom: 5pt;
+    border-bottom: 0.75pt solid #000;
+  }
+
+  .resume-section-heading h2 {
+    color: #000;
+    font-size: 9.5pt;
+  }
+
+  .resume-entry + .resume-entry {
+    margin-top: 7pt;
+  }
+
+  .resume-entry h3 {
+    font-size: 9.5pt;
+  }
+
+  .resume-entry-subtitle,
+  .resume-entry-date {
+    color: #222;
+    font-size: 8pt;
+  }
+
+  .resume-entry ul {
+    margin-top: 3pt;
+  }
+
+  .resume-entry li + li {
+    margin-top: 1pt;
+  }
+
+  .resume-entry,
+  .resume-section,
+  .resume-skill-row {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  .resume-skills {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2pt 18pt;
+  }
+
+  .resume-updated {
+    display: none;
+  }
+}

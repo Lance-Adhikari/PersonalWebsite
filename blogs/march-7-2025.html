@@ -1,57 +1,53 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta name="description" content="" />
-        <meta name="author" content="" />
-        <title>Understanding Data Types in Python</title>
-        <!-- Favicon -->
-        <link rel="icon" type="image/x-icon" href="../assets/favicon.png" />
-        <!-- Custom Google font -->
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@100;200;300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet" />
-        <!-- Bootstrap icons -->
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css" rel="stylesheet" />
-        <!-- Core theme CSS (includes Bootstrap) -->
-        <link href="blogs.css" rel="stylesheet" />
-    </head>
-
-    <body class="d-flex flex-column h-100 bg-light">
-        <main class="flex-shrink-0">
-            <!-- Navigation -->
-            <nav class="navbar navbar-expand-lg navbar-light bg-white py-3">
-                <div class="container px-5">
-                    <a class="navbar-brand" href="../index.html"><span class="fw-bolder text-primary">Lance Adhikari</span></a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul class="navbar-nav ms-auto mb-2 mb-lg-0 small fw-bolder">
-                            <li class="nav-item"><a class="nav-link" href="../index.html">Home</a></li>
-                            <li class="nav-item"><a class="nav-link" href="blog-index.html">My Blogs</a></li>
-                            <li class="nav-item"><a class="nav-link" href="../contact.html">Contact</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </nav>
-
-            <!-- Blog Content Section -->
-            <section class="py-5">
-                <div class="container px-5">
-                    <article class="mb-5">
-                        <h1 class="fw-bolder">Understanding Data Types in Python</h1>
-                        <p class="text-muted">Published by Lance Adhikari on March 7, 2025 · 10 min read</p>
-
-                        <div class="text-center">
-                            <img src="../assets/blog-assets/march,7,2025.png" class="img-fluid rounded mt-3" style="max-height: 500px; width: auto; object-fit: cover;" alt="Python Programming">
-                        </div>
-
-                        <p class="mt-4">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Understanding Data Types in Python | Lance Adhikari</title>
+  <meta name="description" content="Learn how Python represents strings, integers, floats, booleans, lists, tuples, dictionaries, and sets.">
+  <meta name="author" content="Lance Adhikari">
+  <meta name="theme-color" content="#0b1220">
+  <link rel="canonical" href="https://www.lanceadhikari.com/blogs/march-7-2025.html">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Understanding Data Types in Python">
+  <meta property="og:description" content="Learn how Python represents strings, integers, floats, booleans, lists, tuples, dictionaries, and sets.">
+  <meta property="og:url" content="https://www.lanceadhikari.com/blogs/march-7-2025.html">
+  <meta property="og:image" content="https://www.lanceadhikari.com/assets/blog-assets/python-data-types.webp">
+  <meta property="article:published_time" content="2025-03-07">
+  <meta property="article:author" content="Lance Adhikari">
+  <meta property="article:section" content="Python">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Understanding Data Types in Python">
+  <meta name="twitter:description" content="Learn how Python represents strings, integers, floats, booleans, lists, tuples, dictionaries, and sets.">
+  <meta name="twitter:image" content="https://www.lanceadhikari.com/assets/blog-assets/python-data-types.webp">
+  <link rel="icon" type="image/png" href="/assets/site-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/styles.css">
+  <link rel="stylesheet" href="/css/components.css">
+  <script defer src="/javascript/scripts.js"></script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Understanding Data Types in Python","description":"Learn how Python represents strings, integers, floats, booleans, lists, tuples, dictionaries, and sets.","image":"https://www.lanceadhikari.com/assets/blog-assets/python-data-types.webp","datePublished":"2025-03-07","author":{"@type":"Person","name":"Lance Adhikari","url":"https://www.lanceadhikari.com/about.html"},"publisher":{"@type":"Person","name":"Lance Adhikari"},"mainEntityOfPage":"https://www.lanceadhikari.com/blogs/march-7-2025.html"}</script>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
+  <header data-site-header></header>
+  <main id="main-content">
+    <article class="article-shell">
+      <header class="article-header">
+        <p class="eyebrow">Python</p>
+        <h1>Understanding Data Types in Python</h1>
+        <p class="article-meta"><span>By Lance Adhikari</span><time datetime="2025-03-07">March 7, 2025</time><span>10 min read</span><span>Python</span><span>Data Types</span><span>Programming</span></p>
+        <p>Learn how Python represents strings, integers, floats, booleans, lists, tuples, dictionaries, and sets.</p>
+      </header>
+      <img class="article-hero" src="/assets/blog-assets/python-data-types.webp" alt="Illustration representing common Python data types and structured values" width="1400" height="788">
+      <div class="article-content">
+<p>
                             In Python, understanding data types is crucial because they define what kind of operations can be performed on data. 
                             From handling text and numbers to managing collections of data, Python provides a variety of built-in data types.
                         </p>
                         
-                        <h2 class="fw-bold mt-4">Common Data Types in Python</h2>
+                        <h2>Common Data Types in Python</h2>
                         <p>
                             Python has several fundamental data types that programmers use daily:
                         </p>
@@ -63,7 +59,7 @@
                             <li><strong>Boolean (bool)</strong> – Represents True or False values.</li>
                         </ul>
                         
-                        <h2 class="fw-bold mt-4">Additional Data Types</h2>
+                        <h2>Additional Data Types</h2>
                         <p>Beyond the basics, Python also supports more complex data structures:</p>
                         <ul>
                             <li><strong>Tuple</strong> – Similar to lists but immutable, meaning their values cannot be changed.</li>
@@ -71,14 +67,10 @@
                             <li><strong>Set</strong> – An unordered collection of unique elements.</li>
                         </ul>
                         
-                        <blockquote class="blockquote px-4 py-3 bg-light border-start border-primary">
-                            <p class="mb-0">"Data types are the foundation of any programming language, and understanding them is key to writing efficient code." – Guido van Rossum, Creator of Python</p>
-                        </blockquote>
-                        
-                        <h2 class="fw-bold mt-4">Python Data Types in Action</h2>
+                        <h2>Python Data Types in Action</h2>
                         <p>Here are some examples of how these data types are used in Python:</p>
                         
-                        <pre class="bg-light p-3 rounded border">
+                        <pre>
                             <code>
                             # String Example
                             print("Hello, World!")
@@ -115,82 +107,21 @@
                             This will make your screenshots clearer and easier to follow when reviewing the concepts later.
                         </p>
                         
-                        <h2 class="fw-bold mt-4">Key Takeaways</h2>
+                        <h2>Key Takeaways</h2>
                         <p>
                             Python's data types are essential for effective programming. They allow for the storage, manipulation, and retrieval 
                             of data in meaningful ways. Mastering these data types will improve your coding skills and help you write more efficient programs.
                         </p>
                         
                         <p>What are your thoughts on Python data types? You can contact me for discussions, insights, or collaboration opportunities. I’d love to hear your opinions!</p>
-                    </article>                    
-                </div>
-                    <!-- Comments Section 
-                    <section class="bg-white p-4 rounded shadow-sm">
-                        <h3 class="fw-bold">Leave a Comment</h3>
-                        <form id="commentForm">
-                            <div class="mb-3">
-                                <label for="name" class="form-label">Your Name</label>
-                                <input type="text" class="form-control" id="name" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="comment" class="form-label">Your Comment</label>
-                                <textarea class="form-control" id="comment" rows="3" required></textarea>
-                            </div>
-                            <button type="submit" class="btn btn-primary">Post Comment</button>
-                        </form>
-                        <div class="mt-4">
-                            <h4 class="fw-bold">Comments: </h4>
-                            <ul id="commentsList" class="list-unstyled">
-                            </ul>
-                        </div>
-                    </section>
-                    -->
-            </section>
-        </main>
-
-        <!-- Footer -->
-        <footer class="bg-white py-4 mt-auto">
-            <div class="container px-5">
-                <div class="row align-items-center justify-content-between flex-column flex-sm-row">
-                    <div class="col-auto"><div class="small m-0">&copy; 2026 Lance Adhikari. All rights reserved.</div></div>
-                    <div class="col-auto">
-                        <a class="small" href="#!">Privacy</a>
-                        <span class="mx-1">&middot;</span>
-                        <a class="small" href="#!">Terms</a>
-                        <span class="mx-1">&middot;</span>
-                        <a class="small" href="#!">Contact</a>
-                    </div>
-                </div>
-            </div>
-        </footer>
-
-        <!-- Bootstrap core JS -->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-        <!-- Core theme JS -->
-        <script src="js/scripts.js"></script>
-
-        <!-- Comment Script 
-        <script>
-            document.getElementById("commentForm").addEventListener("submit", function (event) {
-                event.preventDefault();
-
-                // Get input values
-                var name = document.getElementById("name").value;
-                var comment = document.getElementById("comment").value;
-
-                // Create new comment element
-                var commentItem = document.createElement("li");
-                commentItem.classList.add("border-bottom", "py-2");
-                commentItem.innerHTML = `<strong>${name}</strong>: ${comment}`;
-
-                // Append to comments list
-                document.getElementById("commentsList").appendChild(commentItem);
-
-                // Clear form
-                document.getElementById("name").value = "";
-                document.getElementById("comment").value = "";
-            });
-        </script>
-        -->
-    </body>
+        <section class="sources" aria-labelledby="sources-heading"><h2 id="sources-heading">Sources and further reading</h2><ul><li><a href="https://docs.python.org/3/library/stdtypes.html" target="_blank" rel="noopener noreferrer">Python Standard Types</a></li></ul></section>
+        <section class="sources" aria-labelledby="related-heading"><h2 id="related-heading">Related articles</h2><ul><li><a href="/blogs/march-2-2025.html">Getting to Know Python: A Powerful Tool for Cybersecurity</a></li><li><a href="/blogs/march-29-2025.html">Mastering Conditional Statements in Python</a></li></ul></section>
+      </div>
+      <nav class="article-nav" aria-label="Article navigation"><a href="/blogs/march-2-2025.html"><span class="article-meta">Previous article</span><br>Getting to Know Python: A Powerful Tool for Cybersecurity</a><a href="/blogs/march-29-2025.html"><span class="article-meta">Next article</span><br>Mastering Conditional Statements in Python</a></nav>
+      <aside class="author-card" aria-label="About the author"><img src="/assets/lance-adhikari-headshot.webp" alt="Lance Adhikari" width="72" height="72" loading="lazy"><div><h2>About Lance</h2><p>Incoming Computer Science student at the University of Alberta writing about cybersecurity, software development, data, artificial intelligence, and developer tools.</p><a class="text-link" href="/about.html">More about Lance</a></div></aside>
+      <div class="cta-panel" style="margin-top:2rem"><div><h2>Continue the conversation</h2><p>Have a correction, collaboration idea, or technical topic to discuss?</p></div><a class="button" href="/contact.html">Contact Lance</a></div>
+    </article>
+  </main>
+  <footer data-site-footer></footer>
+</body>
 </html>

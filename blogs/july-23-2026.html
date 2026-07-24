@@ -1,0 +1,325 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Lecture 4: Decomposition, Abstraction, and Functions | MIT 6.0001 Notes | Lance Adhikari</title>
+  <meta name="description" content="My MIT 6.0001 Lecture 4 study notes on program decomposition, abstraction, Python functions, specifications, scope, return values, and functions as arguments.">
+  <meta name="author" content="Lance Adhikari">
+  <meta name="theme-color" content="#0b1220">
+  <link rel="canonical" href="https://www.lanceadhikari.com/blogs/july-23-2026.html">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Lecture 4: Decomposition, Abstraction, and Functions">
+  <meta property="og:description" content="My MIT 6.0001 study notes on structuring Python programs with reusable functions, clear specifications, and predictable scope.">
+  <meta property="og:url" content="https://www.lanceadhikari.com/blogs/july-23-2026.html">
+  <meta property="og:image" content="https://www.lanceadhikari.com/assets/blog-assets/python-functions-decomposition-abstraction.webp">
+  <meta property="article:published_time" content="2026-07-23">
+  <meta property="article:author" content="Lance Adhikari">
+  <meta property="article:section" content="Python">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Lecture 4: Decomposition, Abstraction, and Functions">
+  <meta name="twitter:description" content="My MIT 6.0001 study notes on structuring Python programs with reusable functions, clear specifications, and predictable scope.">
+  <meta name="twitter:image" content="https://www.lanceadhikari.com/assets/blog-assets/python-functions-decomposition-abstraction.webp">
+  <link rel="icon" type="image/png" href="/assets/site-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/styles.css">
+  <link rel="stylesheet" href="/css/components.css">
+  <script defer src="/javascript/scripts.js"></script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Lecture 4: Decomposition, Abstraction, and Functions","description":"My MIT 6.0001 Lecture 4 study notes on program decomposition, abstraction, Python functions, specifications, scope, return values, and functions as arguments.","image":"https://www.lanceadhikari.com/assets/blog-assets/python-functions-decomposition-abstraction.webp","datePublished":"2026-07-23","author":{"@type":"Person","name":"Lance Adhikari","url":"https://www.lanceadhikari.com/about.html"},"publisher":{"@type":"Person","name":"Lance Adhikari"},"mainEntityOfPage":"https://www.lanceadhikari.com/blogs/july-23-2026.html","isPartOf":{"@type":"Course","name":"MIT 6.0001 Introduction to Computer Science and Programming in Python","provider":{"@type":"CollegeOrUniversity","name":"Massachusetts Institute of Technology"}}}</script>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
+  <header data-site-header></header>
+  <main id="main-content">
+    <article class="article-shell">
+      <header class="article-header">
+        <p class="eyebrow">Python Study Notes</p>
+        <h1>Lecture 4: Decomposition, Abstraction, and Functions</h1>
+        <p class="article-meta"><span>By Lance Adhikari</span><time datetime="2026-07-23">July 23, 2026</time><span>10 min read</span><span>MIT 6.0001</span><span>Lecture 4 of 12</span></p>
+        <p>A structured review of the ideas that turn a growing Python script into understandable, reusable parts.</p>
+      </header>
+
+      <img class="article-hero" src="/assets/blog-assets/python-functions-decomposition-abstraction.webp" alt="A complex computation splitting into reusable modules and recombining into a clean result" width="1400" height="788">
+
+      <div class="article-content">
+        <section class="lecture-series-card" aria-labelledby="lecture-series-title">
+          <div class="lecture-series-topline">
+            <div>
+              <p class="lecture-series-label">MIT 6.0001 learning journal</p>
+              <h2 id="lecture-series-title">Introduction to Computer Science and Programming in Python</h2>
+            </div>
+            <strong>4 / 12</strong>
+          </div>
+          <p>This post is part of my lecture-by-lecture review. Each entry captures the mental models, Python mechanics, mistakes to watch for, and a short practice set I can return to later.</p>
+          <div class="lecture-progress" role="progressbar" aria-label="Course lecture progress" aria-valuemin="1" aria-valuemax="12" aria-valuenow="4">
+            <span style="--lecture-progress: 33.333%"></span>
+          </div>
+          <p class="lecture-progress-note">Lecture 4 completed - one third of the 12-lecture series.</p>
+        </section>
+
+        <p>
+          Lecture 4 is the point where programming starts to feel less like writing instructions from top to bottom and more like designing a system. The syntax of a function is important, but the larger lesson is how functions help control complexity.
+        </p>
+        <p>
+          Dr. Ana Bell connects functions to two design ideas: <strong>decomposition</strong>, which divides a problem into smaller parts, and <strong>abstraction</strong>, which lets us use a part through a clear interface without keeping every implementation detail in mind.
+        </p>
+
+        <h2>1. Two tools for managing complexity</h2>
+        <div class="concept-grid">
+          <section class="concept-card">
+            <p class="concept-number">01</p>
+            <h3>Decomposition</h3>
+            <p>Break one large problem into smaller, self-contained modules. Each module performs a focused job and can be developed, tested, and reused independently.</p>
+            <p class="concept-question"><strong>Design question:</strong> What smaller responsibilities make up this problem?</p>
+          </section>
+          <section class="concept-card">
+            <p class="concept-number">02</p>
+            <h3>Abstraction</h3>
+            <p>Hide internal details behind a dependable interface. A caller needs to understand what a function expects and promises, not every line used to produce the result.</p>
+            <p class="concept-question"><strong>Design question:</strong> What does a caller need to know to use this correctly?</p>
+          </section>
+        </div>
+        <p>
+          The two ideas work together. Decomposition decides where to create boundaries; abstraction makes those boundaries useful. A well-designed function becomes a small black box: provide valid inputs, rely on its specification, and use the returned result.
+        </p>
+        <p>
+          This is also why a shorter program is not automatically a better program. Good structure is measured by clarity and useful functionality, not by cramming the most work into the fewest lines.
+        </p>
+
+        <h2>2. The anatomy of a Python function</h2>
+        <pre><code>def is_even(number):
+    """Return True when number is divisible by 2."""
+    return number % 2 == 0
+
+answer = is_even(8)
+print(answer)  # True</code></pre>
+        <div class="anatomy-list" aria-label="Parts of the is_even function">
+          <div><strong><code>def</code></strong><span>Tells Python that a function definition is beginning.</span></div>
+          <div><strong><code>is_even</code></strong><span>Names the operation. A descriptive verb or question makes calling code easier to read.</span></div>
+          <div><strong><code>number</code></strong><span>Is the formal parameter: a local name that will receive a value when the function is called.</span></div>
+          <div><strong>Docstring</strong><span>States the function's contract. It should describe expected inputs, behaviour, and the returned result.</span></div>
+          <div><strong>Body</strong><span>Contains the indented instructions that implement the function.</span></div>
+          <div><strong><code>return</code></strong><span>Ends the call and sends a value back to the expression that called the function.</span></div>
+        </div>
+        <p>
+          In <code>is_even(8)</code>, the value <code>8</code> is the actual argument. Python maps that value to the formal parameter <code>number</code> inside the new function call. The call then evaluates to <code>True</code>, so <code>answer</code> receives that Boolean value.
+        </p>
+
+        <h2>3. A specification creates the abstraction</h2>
+        <p>
+          A function name gives the first clue, but the specification is what allows another programmer to use it confidently. A useful docstring answers three questions:
+        </p>
+        <ol>
+          <li><strong>Inputs:</strong> What values and types may the caller provide?</li>
+          <li><strong>Behaviour:</strong> What does the function compute or change?</li>
+          <li><strong>Output:</strong> What value and type will the function return?</li>
+        </ol>
+        <pre><code>def rectangle_area(width, height):
+    """Return the area of a rectangle.
+
+    width and height are non-negative numbers.
+    """
+    return width * height</code></pre>
+        <p>
+          A caller can use <code>rectangle_area(5, 3)</code> without knowing whether the body uses multiplication directly, delegates to another helper, or is later optimized. If the contract stays the same, the implementation can change without forcing the caller to change.
+        </p>
+
+        <h2>4. <code>return</code> is not the same as <code>print()</code></h2>
+        <div class="return-print-grid">
+          <section>
+            <h3><code>return</code></h3>
+            <p>Sends a value back to the caller. The value can be assigned, tested, combined with another expression, or passed to another function.</p>
+          </section>
+          <section>
+            <h3><code>print()</code></h3>
+            <p>Displays text in the console. It is useful for communication and debugging, but displaying a value does not give that value back to the caller.</p>
+          </section>
+        </div>
+        <pre><code>def double_with_print(number):
+    print(number * 2)
+
+def double_with_return(number):
+    return number * 2
+
+printed_result = double_with_print(6)   # displays 12
+returned_result = double_with_return(6) # stores 12
+
+print(printed_result)   # None
+print(returned_result)  # 12</code></pre>
+        <p>
+          If execution reaches the end of a function without an explicit <code>return</code>, Python returns <code>None</code>. <code>None</code> is a special value of type <code>NoneType</code> representing the absence of a value; it is not the string <code>"None"</code>.
+        </p>
+        <aside class="study-note">
+          <strong>Debugging signal:</strong> If an unexpected <code>None</code> appears in my result, I should check whether the function only printed the answer or missed a return path.
+        </aside>
+
+        <h2>5. Function calls create their own scope</h2>
+        <p>
+          Scope describes the environment in which a name is bound to a value. The main program has a global scope. Every function call creates a new local scope with its own parameter bindings and local variables.
+        </p>
+        <pre><code>x = 10
+
+def add_one(x):
+    x = x + 1
+    return x
+
+result = add_one(x)
+
+print(x)       # 10
+print(result)  # 11</code></pre>
+        <p>
+          The two variables named <code>x</code> live in different environments. The global <code>x</code> supplies the value <code>10</code> to the call. Inside <code>add_one</code>, the local <code>x</code> changes to <code>11</code>. When the function returns, its local environment is discarded, but the returned value is saved in <code>result</code>.
+        </p>
+        <p>
+          Python can read a name from an enclosing or global scope when that name is not defined locally. Reassigning an outer variable from inside a function is different and can make code difficult to reason about. The lecture recommends avoiding global-variable shortcuts when clean parameters and return values can express the same data flow.
+        </p>
+
+        <h2>6. Functions are objects too</h2>
+        <p>
+          Python values such as integers, strings, and functions are objects. That means a function can be passed as an argument to another function and called later.
+        </p>
+        <pre><code>def apply_twice(function, value):
+    return function(function(value))
+
+def add_one(number):
+    return number + 1
+
+result = apply_twice(add_one, 5)
+print(result)  # 7</code></pre>
+        <p>
+          Notice the difference between <code>add_one</code> and <code>add_one(5)</code>. The first refers to the function object. The second calls the function immediately. Here, <code>apply_twice</code> receives the function itself, then decides when and how to call it.
+        </p>
+        <p>
+          This idea becomes important later in programming: callbacks, sorting keys, decorators, event handlers, and many data-processing tools all rely on treating behaviour as a value.
+        </p>
+
+        <h2>7. Decomposition in practice</h2>
+        <p>
+          Suppose I need to turn raw quiz marks into a short report. One long block could clean the values, calculate an average, decide whether the student passed, and format the message. A decomposed version gives each responsibility a name:
+        </p>
+        <pre><code>def calculate_average(scores):
+    return sum(scores) / len(scores)
+
+def passed_course(average, passing_mark):
+    return average &gt;= passing_mark
+
+def build_report(scores, passing_mark):
+    average = calculate_average(scores)
+    passed = passed_course(average, passing_mark)
+    return average, passed
+
+average, passed = build_report([78, 84, 91], 50)</code></pre>
+        <p>
+          The top-level <code>build_report</code> function reads almost like an outline of the solution. Each helper can be tested with small inputs, and its implementation can change without rewriting the whole program. That is decomposition and abstraction working together.
+        </p>
+
+        <h2>Practice lab</h2>
+        <p>
+          MIT's in-class questions focus on tracing function calls, separating output from returned values, and passing functions as arguments. I turned those themes into the following original self-checks. Try each one before opening the explanation.
+        </p>
+        <div class="practice-set">
+          <details>
+            <summary><span>01</span> Predict the output: print versus return</summary>
+            <div>
+              <pre><code>def add(left, right):
+    return left + right
+
+def show_product(left, right):
+    print(left * right)
+
+print(add(2, 3))
+print(show_product(4, 5))</code></pre>
+              <p><strong>Answer:</strong> Python displays <code>5</code>, then <code>20</code>, then <code>None</code>. <code>show_product</code> prints <code>20</code> inside the function but has no explicit return, so the outer <code>print()</code> displays its returned <code>None</code>.</p>
+            </div>
+          </details>
+          <details>
+            <summary><span>02</span> Identify the formal parameters and actual arguments</summary>
+            <div>
+              <pre><code>def power(base, exponent):
+    return base ** exponent
+
+answer = power(3, 4)</code></pre>
+              <p><strong>Answer:</strong> <code>base</code> and <code>exponent</code> are formal parameters in the definition. <code>3</code> and <code>4</code> are actual arguments in the call. Python maps <code>base</code> to <code>3</code> and <code>exponent</code> to <code>4</code>.</p>
+            </div>
+          </details>
+          <details>
+            <summary><span>03</span> Trace the scopes</summary>
+            <div>
+              <pre><code>count = 4
+
+def bump(count):
+    count = count + 2
+    return count
+
+new_count = bump(count)</code></pre>
+              <p><strong>Answer:</strong> The global <code>count</code> remains <code>4</code>. The local parameter becomes <code>6</code>, and that value is returned into <code>new_count</code>. After the call, <code>new_count</code> is <code>6</code>.</p>
+            </div>
+          </details>
+          <details>
+            <summary><span>04</span> Pass a function as an argument</summary>
+            <div>
+              <pre><code>def transform(function, value):
+    return function(value + 1)
+
+def square(number):
+    return number ** 2
+
+print(transform(square, 3))</code></pre>
+              <p><strong>Answer:</strong> The result is <code>16</code>. <code>transform</code> first calculates <code>3 + 1</code>, then calls <code>square(4)</code>.</p>
+            </div>
+          </details>
+          <details>
+            <summary><span>05</span> Write a function from a specification</summary>
+            <div>
+              <p>Write <code>is_in_range(value, lower, upper)</code>. It should return <code>True</code> when <code>value</code> is between the two limits, including both endpoints.</p>
+              <pre><code>def is_in_range(value, lower, upper):
+    """Return True when lower &lt;= value &lt;= upper."""
+    return lower &lt;= value and value &lt;= upper</code></pre>
+              <p>The key is to return the Boolean expression instead of printing it.</p>
+            </div>
+          </details>
+        </div>
+
+        <h2>Key takeaways</h2>
+        <ul>
+          <li>Decomposition breaks a program into focused modules; abstraction hides a module's details behind a clear contract.</li>
+          <li>A Python function combines a name, parameters, a specification, a body, and a returned result.</li>
+          <li>Formal parameters are names in the definition; actual arguments are values supplied in the call.</li>
+          <li>Every function call creates a local scope, and its local variables do not automatically overwrite variables in the global scope.</li>
+          <li><code>return</code> produces a reusable value, while <code>print()</code> only displays output.</li>
+          <li>A function without an explicit return produces <code>None</code>.</li>
+          <li>Functions are Python objects, so they can be passed into and returned from other functions.</li>
+          <li>Small, well-specified functions make programs easier to test, debug, reuse, and review.</li>
+        </ul>
+
+        <section class="sources" aria-labelledby="sources-heading">
+          <h2 id="sources-heading">Course material and further practice</h2>
+          <ul>
+            <li><a href="https://ocw.mit.edu/courses/6-0001-introduction-to-computer-science-and-programming-in-python-fall-2016/resources/lecture-4-decomposition-abstraction-and-functions/" target="_blank" rel="noopener noreferrer">MIT OpenCourseWare: Lecture 4 video and transcript</a></li>
+            <li><a href="https://ocw.mit.edu/courses/6-0001-introduction-to-computer-science-and-programming-in-python-fall-2016/pages/in-class-questions-and-video-solutions/lecture-4/" target="_blank" rel="noopener noreferrer">MIT OpenCourseWare: Lecture 4 in-class questions and video solutions</a></li>
+            <li><a href="https://ocw.mit.edu/courses/6-0001-introduction-to-computer-science-and-programming-in-python-fall-2016/" target="_blank" rel="noopener noreferrer">MIT OpenCourseWare: 6.0001 course home</a></li>
+          </ul>
+        </section>
+        <section class="sources" aria-labelledby="related-heading">
+          <h2 id="related-heading">Related articles</h2>
+          <ul>
+            <li><a href="/blogs/may-27-2025.html">Using Python Functions in Cybersecurity</a></li>
+            <li><a href="/blogs/july-7-2025.html">Working with Built-in Python Functions</a></li>
+            <li><a href="/blogs/july-22-2026.html">Google Sharply Increases Spending on AI Cloud Infrastructure</a></li>
+          </ul>
+        </section>
+      </div>
+
+      <nav class="article-nav" aria-label="Article navigation">
+        <a href="/blogs/july-22-2026.html"><span class="article-meta">Previous article</span><br>Google Sharply Increases Spending on AI Cloud Infrastructure</a>
+        <a href="/blogs/blog-index.html"><span class="article-meta">Writing archive</span><br>Browse all articles</a>
+      </nav>
+      <aside class="author-card" aria-label="About the author"><img src="/assets/lance-adhikari-headshot.webp" alt="Lance Adhikari" width="72" height="72" loading="lazy"><div><h2>About Lance</h2><p>Incoming Computer Science student at the University of Alberta documenting what I learn across programming, cybersecurity, data, artificial intelligence, and developer tools.</p><a class="text-link" href="/about.html">More about Lance</a></div></aside>
+      <div class="cta-panel" style="margin-top:2rem"><div><h2>Continue the conversation</h2><p>Have a correction, a better example, or a technical topic to discuss?</p></div><a class="button" href="/contact.html">Contact Lance</a></div>
+    </article>
+  </main>
+  <footer data-site-footer></footer>
+</body>
+</html>

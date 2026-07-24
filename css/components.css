@@ -831,6 +831,218 @@
   font-size: 0.9em;
 }
 
+.lecture-series-card {
+  margin-bottom: 2.5rem;
+  padding: clamp(1.35rem, 4vw, 2rem);
+  overflow: hidden;
+  color: var(--color-text-light);
+  background:
+    radial-gradient(circle at 88% 15%, rgba(76, 125, 255, 0.35), transparent 32%),
+    linear-gradient(145deg, #0b1220, #15233d);
+  border: 1px solid var(--color-border-dark);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+}
+
+.lecture-series-topline {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 1rem;
+  align-items: start;
+}
+
+.lecture-series-label {
+  margin-bottom: 0.4rem;
+  color: #a9c0ff;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.lecture-series-card h2 {
+  max-width: 640px;
+  margin: 0;
+  color: #fff;
+  font-size: clamp(1.35rem, 4vw, 1.9rem);
+}
+
+.lecture-series-card p {
+  color: #c6d0df;
+}
+
+.lecture-series-topline > strong {
+  color: #fff;
+  font-size: clamp(1.25rem, 4vw, 1.8rem);
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.lecture-progress {
+  height: 9px;
+  margin-top: 1.3rem;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.14);
+  border-radius: 999px;
+}
+
+.lecture-progress span {
+  display: block;
+  width: var(--lecture-progress);
+  height: 100%;
+  background: linear-gradient(90deg, var(--color-primary), #64d5b0);
+  border-radius: inherit;
+}
+
+.lecture-series-card .lecture-progress-note {
+  margin: 0.65rem 0 0;
+  color: #aab7ca;
+  font-size: 0.8rem;
+}
+
+.study-note {
+  margin-block: 2rem;
+  padding: clamp(1.2rem, 4vw, 1.6rem);
+  background: #eef3ff;
+  border: 1px solid #cedaff;
+  border-left: 4px solid var(--color-primary);
+  border-radius: var(--radius-sm);
+}
+
+.concept-grid,
+.return-print-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  margin-block: 1.2rem 1.6rem;
+}
+
+.concept-card,
+.return-print-grid section {
+  padding: 1.25rem;
+  background: #fff;
+  border: 1px solid var(--color-border-light);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-sm);
+}
+
+.concept-number {
+  margin-bottom: 0.65rem;
+  color: var(--color-primary-hover);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+}
+
+.concept-card h3,
+.return-print-grid h3 {
+  margin-top: 0;
+}
+
+.concept-card p,
+.return-print-grid p {
+  margin-bottom: 0;
+  color: var(--color-text-muted);
+  font-size: 0.92rem;
+}
+
+.concept-card .concept-question {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--color-border-light);
+}
+
+.anatomy-list {
+  display: grid;
+  gap: 1px;
+  margin-block: 1rem 1.8rem;
+  overflow: hidden;
+  background: var(--color-border-light);
+  border: 1px solid var(--color-border-light);
+  border-radius: var(--radius-sm);
+}
+
+.anatomy-list > div {
+  display: grid;
+  grid-template-columns: minmax(115px, 0.28fr) 1fr;
+  gap: 1rem;
+  padding: 0.9rem 1rem;
+  background: #fff;
+}
+
+.anatomy-list span {
+  color: var(--color-text-muted);
+  font-size: 0.92rem;
+}
+
+.study-note {
+  color: #2f477d;
+}
+
+.practice-set {
+  display: grid;
+  gap: 0.8rem;
+  margin-block: 1.3rem 2rem;
+}
+
+.practice-set details {
+  overflow: hidden;
+  background: #fff;
+  border: 1px solid var(--color-border-light);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-sm);
+}
+
+.practice-set details[open] {
+  border-color: #aabef8;
+}
+
+.practice-set summary {
+  display: flex;
+  gap: 0.8rem;
+  align-items: center;
+  padding: 1rem 1.1rem;
+  color: var(--color-text-dark);
+  font-weight: 700;
+  cursor: pointer;
+  list-style: none;
+}
+
+.practice-set summary::-webkit-details-marker {
+  display: none;
+}
+
+.practice-set summary::after {
+  margin-left: auto;
+  color: var(--color-primary-hover);
+  content: "+";
+  font-size: 1.4rem;
+  line-height: 1;
+}
+
+.practice-set details[open] summary::after {
+  content: "-";
+}
+
+.practice-set summary span {
+  color: var(--color-primary-hover);
+  font-size: 0.76rem;
+  letter-spacing: 0.08em;
+}
+
+.practice-set details > div {
+  padding: 0 1.1rem 1.1rem;
+  border-top: 1px solid var(--color-border-light);
+}
+
+.practice-set details > div > :first-child {
+  margin-top: 1rem;
+}
+
+.practice-set details > div > :last-child {
+  margin-bottom: 0;
+}
+
 .sources {
   margin-top: 2.8rem;
   padding-top: 1.5rem;
@@ -915,6 +1127,13 @@
   .form-grid,
   .filter-bar,
   .article-nav {
+    grid-template-columns: 1fr;
+  }
+
+  .lecture-series-topline,
+  .concept-grid,
+  .return-print-grid,
+  .anatomy-list > div {
     grid-template-columns: 1fr;
   }
 

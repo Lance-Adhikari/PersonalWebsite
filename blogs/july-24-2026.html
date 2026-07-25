@@ -1,0 +1,332 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Lecture 3: String Manipulation, Guess and Check, Approximations, Bisection | MIT 6.0001 Notes | Lance Adhikari</title>
+  <meta name="description" content="My MIT 6.0001 Lecture 3 study notes on Python strings, indexing, slicing, immutability, iteration, guess and check, approximation, and bisection search.">
+  <meta name="author" content="Lance Adhikari">
+  <meta name="theme-color" content="#0b1220">
+  <link rel="canonical" href="https://www.lanceadhikari.com/blogs/july-24-2026.html">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Lecture 3: String Manipulation, Guess and Check, Approximations, Bisection">
+  <meta property="og:description" content="My MIT 6.0001 study notes on manipulating string sequences and comparing three strategies for finding numerical solutions.">
+  <meta property="og:url" content="https://www.lanceadhikari.com/blogs/july-24-2026.html">
+  <meta property="og:image" content="https://www.lanceadhikari.com/assets/blog-assets/python-strings-search-algorithms.webp">
+  <meta property="article:published_time" content="2026-07-24">
+  <meta property="article:author" content="Lance Adhikari">
+  <meta property="article:section" content="Python">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Lecture 3: String Manipulation, Guess and Check, Approximations, Bisection">
+  <meta name="twitter:description" content="My MIT 6.0001 study notes on manipulating string sequences and comparing three strategies for finding numerical solutions.">
+  <meta name="twitter:image" content="https://www.lanceadhikari.com/assets/blog-assets/python-strings-search-algorithms.webp">
+  <link rel="icon" type="image/png" href="/assets/site-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/styles.css">
+  <link rel="stylesheet" href="/css/components.css">
+  <script defer src="/javascript/scripts.js"></script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Lecture 3: String Manipulation, Guess and Check, Approximations, Bisection","description":"My MIT 6.0001 Lecture 3 study notes on Python strings, indexing, slicing, immutability, iteration, guess and check, approximation, and bisection search.","image":"https://www.lanceadhikari.com/assets/blog-assets/python-strings-search-algorithms.webp","datePublished":"2026-07-24","author":{"@type":"Person","name":"Lance Adhikari","url":"https://www.lanceadhikari.com/about.html"},"publisher":{"@type":"Person","name":"Lance Adhikari"},"mainEntityOfPage":"https://www.lanceadhikari.com/blogs/july-24-2026.html","isPartOf":{"@type":"Course","name":"MIT 6.0001 Introduction to Computer Science and Programming in Python","provider":{"@type":"CollegeOrUniversity","name":"Massachusetts Institute of Technology"}}}</script>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
+  <header data-site-header></header>
+  <main id="main-content">
+    <article class="article-shell">
+      <header class="article-header">
+        <p class="eyebrow">Python Study Notes</p>
+        <h1>Lecture 3: String Manipulation, Guess and Check, Approximations, Bisection</h1>
+        <p class="article-meta"><span>By Lance Adhikari</span><time datetime="2026-07-24">July 24, 2026</time><span>10 min read</span><span>MIT 6.0001</span><span>Lecture 3 of 12</span></p>
+        <p>A structured review of Python strings and three search strategies that reveal why algorithm choice matters.</p>
+      </header>
+
+      <img class="article-hero" src="/assets/blog-assets/python-strings-search-algorithms.webp" alt="An abstract string sequence being sliced before branching into exhaustive, approximate, and interval-halving search paths" width="1400" height="788">
+
+      <div class="article-content">
+        <section class="lecture-series-card" aria-labelledby="lecture-series-title">
+          <div class="lecture-series-topline">
+            <div>
+              <p class="lecture-series-label">MIT 6.0001 learning journal</p>
+              <h2 id="lecture-series-title">Introduction to Computer Science and Programming in Python</h2>
+            </div>
+            <strong>3 / 12</strong>
+          </div>
+          <p>This post is part of my lecture-by-lecture review. Each entry captures the mental models, Python mechanics, mistakes to watch for, and a short practice set I can return to later.</p>
+          <div class="lecture-progress" role="progressbar" aria-label="Course lecture progress" aria-valuemin="1" aria-valuemax="12" aria-valuenow="3">
+            <span style="--lecture-progress: 25%"></span>
+          </div>
+          <p class="lecture-progress-note">Lecture 3 completed - one quarter of the 12-lecture series.</p>
+        </section>
+
+        <p>
+          Lecture 3 has two halves that initially look unrelated. The first develops strings as sequences that can be measured, indexed, sliced, and traversed. The second compares algorithms for finding a cube root. Together, they teach the same deeper habit: define a search space, move through it systematically, and know exactly when to stop.
+        </p>
+        <p>
+          Dr. Ana Bell introduces three approaches to the same numerical problem: exhaustive guess and check, incremental approximation, and bisection search. Seeing them side by side makes the tradeoff between simplicity, accuracy, and speed concrete.
+        </p>
+
+        <div class="concept-grid">
+          <section class="concept-card">
+            <p class="concept-number">01</p>
+            <h3>Sequence thinking</h3>
+            <p>A string is an ordered sequence. Position, direction, boundaries, and step size determine which characters an operation selects.</p>
+            <p class="concept-question"><strong>Core question:</strong> Which part of the sequence do I need?</p>
+          </section>
+          <section class="concept-card">
+            <p class="concept-number">02</p>
+            <h3>Search thinking</h3>
+            <p>An algorithm explores possible answers. Its update rule and stopping condition determine whether it is correct, accurate, and efficient.</p>
+            <p class="concept-question"><strong>Core question:</strong> How can each guess reduce the remaining work?</p>
+          </section>
+        </div>
+
+        <h2>1. Strings are ordered sequences</h2>
+        <p>
+          A Python string is a case-sensitive sequence of characters. Letters, digits, punctuation, and spaces all count toward its length. The built-in <code>len()</code> function reports the number of characters.
+        </p>
+        <pre><code>course = "MIT 6.0001"
+
+print(len(course))  # 10
+print(course[0])    # M
+print(course[-1])   # 1</code></pre>
+        <p>
+          Python uses zero-based indexing, so the first character is at index <code>0</code>. Negative indexes count backward from the end: <code>-1</code> selects the final character and <code>-2</code> selects the character before it.
+        </p>
+        <aside class="study-note">
+          <strong>Boundary check:</strong> Valid positive indexes stop at <code>len(text) - 1</code>. Asking for an index outside the sequence raises an <code>IndexError</code>.
+        </aside>
+
+        <h2>2. Slicing selects a range</h2>
+        <p>
+          Indexing returns one character. Slicing returns a substring and follows the pattern <code>text[start:stop:step]</code>. The start is included, the stop is excluded, and the default step is <code>1</code>.
+        </p>
+        <pre><code>language = "PYTHON"
+
+print(language[1:4])   # YTH
+print(language[::2])   # PTO
+print(language[::-1])  # NOHTYP
+print(language[:3])    # PYT
+print(language[3:])    # HON</code></pre>
+        <div class="anatomy-list" aria-label="Parts of Python slice notation">
+          <div><strong><code>start</code></strong><span>The first included index. Omitting it begins at the appropriate edge of the sequence.</span></div>
+          <div><strong><code>stop</code></strong><span>The first excluded index. The slice ends immediately before this position.</span></div>
+          <div><strong><code>step</code></strong><span>The distance and direction between selected characters. A negative step moves backward.</span></div>
+        </div>
+        <p>
+          The stop-exclusive rule is consistent with <code>range()</code>. A slice from <code>1</code> to <code>4</code> includes positions <code>1</code>, <code>2</code>, and <code>3</code>. Once that rule is clear, even compact expressions such as <code>text[::-1]</code> become traceable rather than mysterious.
+        </p>
+
+        <h2>3. Strings are immutable</h2>
+        <p>
+          Immutability means an existing string object cannot be changed character by character. Assigning to <code>word[0]</code> causes a <code>TypeError</code>. To create a modified version, Python builds a new string and the variable is rebound to it.
+        </p>
+        <pre><code>word = "hello"
+
+# word[0] = "y"  # TypeError: strings are immutable
+word = "y" + word[1:]
+
+print(word)  # yello</code></pre>
+        <p>
+          This distinction becomes more important later when the course introduces mutable objects. For now, the useful mental model is that string operations produce new values rather than editing the original object in place.
+        </p>
+
+        <h2>4. Loop directly over characters</h2>
+        <p>
+          A <code>for</code> loop can traverse the characters themselves. If the program only needs each character, direct iteration is clearer than generating indexes and then looking each one up.
+        </p>
+        <pre><code>phrase = "Bisection search"
+vowel_count = 0
+
+for character in phrase.lower():
+    if character in "aeiou":
+        vowel_count += 1
+
+print(vowel_count)  # 6</code></pre>
+        <p>
+          This is an example of Pythonic code: the loop says what it means - for every character in the phrase - without adding an unnecessary counter. Index-based loops are still useful when the position matters, but direct iteration is the better default when only the values matter.
+        </p>
+        <p>
+          The <code>in</code> operator also treats a string as a sequence. The expression <code>character in "aeiou"</code> evaluates to a Boolean and lets the conditional read almost like English.
+        </p>
+
+        <h2>5. Guess and check: search every candidate</h2>
+        <p>
+          Guess and check, also called exhaustive enumeration, tries candidates systematically until it finds an exact answer or proves that the search space contains none. The approach works when candidates can be generated and each candidate can be checked.
+        </p>
+        <pre><code>cube = -125
+
+for guess in range(abs(cube) + 1):
+    if guess ** 3 &gt;= abs(cube):
+        break
+
+if guess ** 3 != abs(cube):
+    print(cube, "is not a perfect cube")
+else:
+    if cube &lt; 0:
+        guess = -guess
+    print("Cube root:", guess)  # -5</code></pre>
+        <p>
+          The loop stops as soon as the guess cubed reaches or passes the target. If it passes without matching, the number is not a perfect cube. Using <code>abs(cube)</code> creates a non-negative search space; the sign is restored after an exact root is found.
+        </p>
+        <p>
+          Exhaustive enumeration is easy to understand and can be perfectly adequate for a small space. Its weakness is that the amount of work grows with the size of the range.
+        </p>
+
+        <h2>6. Approximation: decide what “close enough” means</h2>
+        <p>
+          Many useful answers are not exact integers. An approximation algorithm starts with a guess, changes it by a small step, and stops when the error falls below a tolerance called <strong>epsilon</strong>.
+        </p>
+        <pre><code>cube = 10
+epsilon = 0.01
+step = 0.0001
+guess = 0.0
+number_of_guesses = 0
+
+while abs(guess ** 3 - cube) &gt;= epsilon and guess &lt;= cube:
+    guess += step
+    number_of_guesses += 1
+
+if abs(guess ** 3 - cube) &lt; epsilon:
+    print(guess, "is close to the cube root")
+else:
+    print("No answer found with this step and epsilon")</code></pre>
+        <p>
+          The algorithm exposes an important engineering tradeoff. A smaller step can produce a more precise result, but it requires more guesses. A larger epsilon accepts more error and may finish sooner.
+        </p>
+        <p>
+          The extra boundary condition matters. A step can jump completely over the narrow interval that counts as “close enough.” Without another reason to stop, the guesses may continue forever while the error grows. A reliable loop needs both a success condition and a failure boundary.
+        </p>
+
+        <h2>7. Bisection search: remove half the space</h2>
+        <p>
+          Bisection search is powerful when the search space is ordered and the check tells us whether the guess is too high or too low. Instead of advancing by a fixed step, the algorithm guesses the midpoint and discards the half that cannot contain the answer.
+        </p>
+        <pre><code>cube = 0.5
+epsilon = 0.0001
+low = 0.0
+high = max(1.0, cube)
+guess = (low + high) / 2.0
+number_of_guesses = 0
+
+while abs(guess ** 3 - cube) &gt;= epsilon:
+    if guess ** 3 &lt; cube:
+        low = guess
+    else:
+        high = guess
+
+    guess = (low + high) / 2.0
+    number_of_guesses += 1
+
+print(guess, "is close to the cube root")</code></pre>
+        <p>
+          Each iteration preserves an interval that contains the answer. A low guess moves the lower boundary up; a high guess moves the upper boundary down. The next guess is always the midpoint of the smaller interval.
+        </p>
+        <p>
+          The initial boundaries must actually contain the answer. For a positive target below <code>1</code>, its cube root is larger than the target, so using <code>high = cube</code> would exclude the solution. Setting <code>high</code> to <code>max(1.0, cube)</code> handles that case.
+        </p>
+        <div class="anatomy-list" aria-label="Comparison of cube-root search strategies">
+          <div><strong>Guess and check</strong><span>Simple and exact for perfect cubes, but may inspect candidates one at a time.</span></div>
+          <div><strong>Approximation</strong><span>Supports non-perfect cubes, but speed and success depend on the step size and epsilon.</span></div>
+          <div><strong>Bisection</strong><span>Uses ordering to halve the interval after every guess, producing much faster convergence.</span></div>
+        </div>
+        <p>
+          If the original search interval has size <code>N</code>, repeatedly halving it takes roughly <code>log2(N)</code> guesses to narrow it to one unit. This is why bisection scales much better than checking every candidate.
+        </p>
+
+        <h2>Practice lab</h2>
+        <p>
+          MIT's in-class questions emphasize tracing slices and following nested loops over strings. I used those themes, plus the lecture's cube-root algorithms, to build these original self-checks.
+        </p>
+        <div class="practice-set">
+          <details>
+            <summary><span>01</span> Trace an index and two slices</summary>
+            <div>
+              <pre><code>text = "ALGORITHM"
+result = text[-1] + text[1:4] + text[::3]
+print(result)</code></pre>
+              <p><strong>Answer:</strong> The result is <code>MLGOAOT</code>. <code>text[-1]</code> gives <code>M</code>, <code>text[1:4]</code> gives <code>LGO</code>, and <code>text[::3]</code> selects indexes <code>0</code>, <code>3</code>, and <code>6</code>, producing <code>AOT</code>.</p>
+            </div>
+          </details>
+          <details>
+            <summary><span>02</span> Predict a nested-loop count</summary>
+            <div>
+              <pre><code>first = "code"
+second = "debug"
+matches = 0
+
+for character in first:
+    if character in second:
+        matches += 1
+
+print(matches)</code></pre>
+              <p><strong>Answer:</strong> The program prints <code>2</code>. The characters <code>d</code> and <code>e</code> from <code>first</code> appear in <code>second</code>.</p>
+            </div>
+          </details>
+          <details>
+            <summary><span>03</span> Explain why a string update fails</summary>
+            <div>
+              <pre><code>name = "lance"
+name[0] = "L"</code></pre>
+              <p><strong>Answer:</strong> Strings are immutable, so Python raises a <code>TypeError</code>. A valid replacement is <code>name = "L" + name[1:]</code>, which creates a new string.</p>
+            </div>
+          </details>
+          <details>
+            <summary><span>04</span> Choose the search strategy</summary>
+            <div>
+              <p>You need an approximate square root of a large positive number. Your check can tell whether each guess is too high or too low. Which lecture strategy is the strongest starting point?</p>
+              <p><strong>Answer:</strong> Bisection search. The ordered interval and high-or-low feedback allow each guess to eliminate half of the remaining candidates.</p>
+            </div>
+          </details>
+          <details>
+            <summary><span>05</span> Reason about step size and epsilon</summary>
+            <div>
+              <p>An incremental approximation is accurate but far too slow. What two parameters could be adjusted, and what is the cost?</p>
+              <p><strong>Answer:</strong> Increase the step size or increase epsilon. Either change may reduce the number of guesses, but it can also reduce precision or skip the acceptable region entirely. The stopping boundary must still prevent an infinite loop.</p>
+            </div>
+          </details>
+        </div>
+
+        <h2>Key takeaways</h2>
+        <ul>
+          <li>Strings are ordered, case-sensitive sequences that support length checks, zero-based indexing, negative indexing, and slicing.</li>
+          <li>A slice includes its start position, excludes its stop position, and can move forward or backward with a step.</li>
+          <li>Strings are immutable; apparent modifications create new string objects.</li>
+          <li>Directly iterating over characters is often clearer than looping over indexes.</li>
+          <li>Guess and check systematically explores candidates and works well for small exact search spaces.</li>
+          <li>Approximation introduces epsilon and step size, creating a tradeoff between accuracy and speed.</li>
+          <li>A loop needs a safe failure boundary as well as a success condition.</li>
+          <li>Bisection search uses ordering to remove half the remaining interval after every guess.</li>
+          <li>Correct initial bounds are part of the algorithm; bisection cannot find an answer outside its interval.</li>
+        </ul>
+
+        <section class="sources" aria-labelledby="sources-heading">
+          <h2 id="sources-heading">Course material and further practice</h2>
+          <ul>
+            <li><a href="https://ocw.mit.edu/courses/6-0001-introduction-to-computer-science-and-programming-in-python-fall-2016/resources/lecture-3-string-manipulation-guess-and-check-approximations-bisection/" target="_blank" rel="noopener noreferrer">MIT OpenCourseWare: Lecture 3 video and transcript</a></li>
+            <li><a href="https://ocw.mit.edu/courses/6-0001-introduction-to-computer-science-and-programming-in-python-fall-2016/pages/in-class-questions-and-video-solutions/lecture-3/" target="_blank" rel="noopener noreferrer">MIT OpenCourseWare: Lecture 3 in-class questions and video solutions</a></li>
+            <li><a href="https://ocw.mit.edu/courses/6-0001-introduction-to-computer-science-and-programming-in-python-fall-2016/resources/lec3_strings_algos/" target="_blank" rel="noopener noreferrer">MIT OpenCourseWare: Lecture 3 Python code</a></li>
+            <li><a href="https://ocw.mit.edu/courses/6-0001-introduction-to-computer-science-and-programming-in-python-fall-2016/resources/mit6_0001f16_lec3/" target="_blank" rel="noopener noreferrer">MIT OpenCourseWare: Lecture 3 slides</a></li>
+          </ul>
+        </section>
+        <section class="sources" aria-labelledby="related-heading">
+          <h2 id="related-heading">Related articles</h2>
+          <ul>
+            <li><a href="/blogs/july-23-2026.html">Lecture 4: Decomposition, Abstraction, and Functions</a></li>
+            <li><a href="/blogs/march-29-2025.html">Mastering Conditional Statements in Python</a></li>
+            <li><a href="/blogs/july-7-2025.html">Working with Built-in Python Functions</a></li>
+          </ul>
+        </section>
+      </div>
+
+      <nav class="article-nav" aria-label="Article navigation">
+        <a href="/blogs/july-23-2026.html"><span class="article-meta">Previous article</span><br>Lecture 4: Decomposition, Abstraction, and Functions</a>
+        <a href="/blogs/blog-index.html"><span class="article-meta">Writing archive</span><br>Browse all articles</a>
+      </nav>
+      <aside class="author-card" aria-label="About the author"><img src="/assets/lance-adhikari-headshot.webp" alt="Lance Adhikari" width="72" height="72" loading="lazy"><div><h2>About Lance</h2><p>Incoming Computer Science student at the University of Alberta documenting what I learn across programming, cybersecurity, data, artificial intelligence, and developer tools.</p><a class="text-link" href="/about.html">More about Lance</a></div></aside>
+      <div class="cta-panel" style="margin-top:2rem"><div><h2>Continue the conversation</h2><p>Have a correction, a better example, or a technical topic to discuss?</p></div><a class="button" href="/contact.html">Contact Lance</a></div>
+    </article>
+  </main>
+  <footer data-site-footer></footer>
+</body>
+</html>

@@ -1,0 +1,402 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Lecture 5, Part 2: Mutability, Aliasing, and Cloning | MIT 6.0001 Notes | Lance Adhikari</title>
+  <meta name="description" content="My MIT 6.0001 Lecture 5 study notes on Python list operations, sorting, mutability, aliasing, cloning, side effects, nested lists, and safe iteration.">
+  <meta name="author" content="Lance Adhikari">
+  <meta name="theme-color" content="#0b1220">
+  <link rel="canonical" href="https://www.lanceadhikari.com/blogs/july-28-2026.html">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Lecture 5, Part 2: Mutability, Aliasing, and Cloning">
+  <meta property="og:description" content="My MIT 6.0001 study notes on list operations and the memory model behind mutation, aliases, clones, and side effects.">
+  <meta property="og:url" content="https://www.lanceadhikari.com/blogs/july-28-2026.html">
+  <meta property="og:image" content="https://www.lanceadhikari.com/assets/blog-assets/python-aliasing-mutation-cloning-part-2.webp">
+  <meta property="article:published_time" content="2026-07-28">
+  <meta property="article:author" content="Lance Adhikari">
+  <meta property="article:section" content="Python">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Lecture 5, Part 2: Mutability, Aliasing, and Cloning">
+  <meta name="twitter:description" content="My MIT 6.0001 study notes on list operations and the memory model behind mutation, aliases, clones, and side effects.">
+  <meta name="twitter:image" content="https://www.lanceadhikari.com/assets/blog-assets/python-aliasing-mutation-cloning-part-2.webp">
+  <link rel="icon" type="image/png" href="/assets/site-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/styles.css">
+  <link rel="stylesheet" href="/css/components.css">
+  <script defer src="/javascript/scripts.js"></script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Lecture 5, Part 2: Mutability, Aliasing, and Cloning","description":"My MIT 6.0001 Lecture 5 study notes on Python list operations, sorting, mutability, aliasing, cloning, side effects, nested lists, and safe iteration.","image":"https://www.lanceadhikari.com/assets/blog-assets/python-aliasing-mutation-cloning-part-2.webp","datePublished":"2026-07-28","author":{"@type":"Person","name":"Lance Adhikari","url":"https://www.lanceadhikari.com/about.html"},"publisher":{"@type":"Person","name":"Lance Adhikari"},"mainEntityOfPage":"https://www.lanceadhikari.com/blogs/july-28-2026.html","isPartOf":{"@type":"Course","name":"MIT 6.0001 Introduction to Computer Science and Programming in Python","provider":{"@type":"CollegeOrUniversity","name":"Massachusetts Institute of Technology"}}}</script>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
+  <header data-site-header></header>
+  <main id="main-content">
+    <article class="article-shell">
+      <header class="article-header">
+        <p class="eyebrow">Python Study Notes</p>
+        <h1>Lecture 5, Part 2: Mutability, Aliasing, and Cloning</h1>
+        <p class="article-meta"><span>By Lance Adhikari</span><time datetime="2026-07-28">July 28, 2026</time><span>10 min read</span><span>MIT 6.0001</span><span>Lecture 5 · Part 2</span></p>
+        <p>A practical guide to list operations and the memory model that explains shared changes, independent copies, and unexpected side effects.</p>
+      </header>
+
+      <img class="article-hero" src="/assets/blog-assets/python-aliasing-mutation-cloning-part-2.webp" alt="Two references connected to one shared list beside a separate cloned list" width="1400" height="788">
+
+      <div class="article-content">
+        <section class="lecture-series-card" aria-labelledby="lecture-series-title">
+          <div class="lecture-series-topline">
+            <div>
+              <p class="lecture-series-label">MIT 6.0001 learning journal</p>
+              <h2 id="lecture-series-title">Introduction to Computer Science and Programming in Python</h2>
+            </div>
+            <strong>5 / 12</strong>
+          </div>
+          <p>This post completes my two-part review of Lecture 5. Part 1 established tuples, list fundamentals, and introductory operations; Part 2 follows the consequences of changing and sharing mutable objects.</p>
+          <div class="lecture-progress" role="progressbar" aria-label="Course lecture progress" aria-valuemin="1" aria-valuemax="12" aria-valuenow="5">
+            <span style="--lecture-progress: 41.667%"></span>
+          </div>
+          <p class="lecture-progress-note">Lecture 5 completed - five lectures into the 12-lecture series.</p>
+        </section>
+
+        <p>
+          <a href="/blogs/july-27-2026.html">Part 1</a> introduced lists as ordered, mutable collections. This second part asks the question that makes mutability tricky: when a list changes, which names and which parts of the program can observe that change?
+        </p>
+        <p>
+          The key mental model is that a variable name does not contain a list. It <strong>points to a list object in memory</strong>. Two names can point to the same object, producing aliases and shared side effects. A clone creates another outer list object, allowing the two collections to change independently - with an important warning for nested lists.
+        </p>
+
+        <div class="concept-grid">
+          <section class="concept-card">
+            <p class="concept-number">01</p>
+            <h3>Track identity</h3>
+            <p>Two lists can contain equal values without being the same object. The crucial question is which names point to which object.</p>
+            <p class="concept-question"><strong>Core question:</strong> Is this a shared reference or a separate list?</p>
+          </section>
+          <section class="concept-card">
+            <p class="concept-number">02</p>
+            <h3>Control side effects</h3>
+            <p>A mutation can be useful and intentional, but every reference to that object will observe the change.</p>
+            <p class="concept-question"><strong>Core question:</strong> Who else can see this mutation?</p>
+          </section>
+        </div>
+
+        <h2>1. Removing elements: position, value, or result</h2>
+        <p>
+          Python offers several removal operations because programs need different information. <code>del</code> removes by index, <code>remove()</code> searches for a value, and <code>pop()</code> removes an item while also returning it.
+        </p>
+        <pre><code>queue = ["scan", "review", "deploy", "archive", "review"]
+
+queue.remove("review")  # removes the first matching value
+del queue[1]            # removes the item at index 1
+last_task = queue.pop() # removes and returns the last item
+
+print(queue)      # ['scan', 'archive']
+print(last_task)  # review</code></pre>
+        <div class="anatomy-list" aria-label="Comparison of Python list removal operations">
+          <div><strong><code>del items[index]</code></strong><span>Removes the element at a known position and does not return it.</span></div>
+          <div><strong><code>items.remove(value)</code></strong><span>Removes the first equal value. It raises an error when the value is absent.</span></div>
+          <div><strong><code>items.pop()</code></strong><span>Removes and returns the final element by default; an index can be supplied.</span></div>
+        </div>
+        <p>
+          All three operations mutate the original list. If the removed value is needed later, <code>pop()</code> makes that data flow explicit.
+        </p>
+
+        <h2>2. Convert between strings and lists</h2>
+        <p>
+          A string is immutable, while a list is mutable. Converting between them is useful when text needs to be separated, transformed, and assembled again.
+        </p>
+        <pre><code>raw_topics = "mutation aliasing cloning"
+
+words = raw_topics.split()
+characters = list("clone")
+summary = " → ".join(words)
+
+print(words)
+# ['mutation', 'aliasing', 'cloning']
+
+print(characters)
+# ['c', 'l', 'o', 'n', 'e']
+
+print(summary)
+# mutation → aliasing → cloning</code></pre>
+        <p>
+          <code>list(text)</code> separates every character. <code>text.split(separator)</code> divides text into meaningful pieces and uses whitespace when no separator is supplied. <code>separator.join(items)</code> connects a list of strings into one new string.
+        </p>
+        <aside class="study-note">
+          <strong>Direction matters:</strong> Call <code>split()</code> on the source string, but call <code>join()</code> on the separator that should appear between the resulting pieces.
+        </aside>
+
+        <h2>3. Sorting: mutate the list or create a result</h2>
+        <p>
+          <code>sort()</code> and <code>sorted()</code> can produce the same ordering, but they do not have the same effect. The method <code>list.sort()</code> changes its list and returns <code>None</code>. The function <code>sorted()</code> returns a new sorted list and leaves its input unchanged.
+        </p>
+        <pre><code>scores = [88, 72, 95, 81]
+
+ranked = sorted(scores)
+
+print(scores)  # [88, 72, 95, 81]
+print(ranked)  # [72, 81, 88, 95]
+
+scores.sort()
+scores.reverse()
+
+print(scores)  # [95, 88, 81, 72]</code></pre>
+        <div class="return-print-grid">
+          <section>
+            <h3>Mutating methods</h3>
+            <p><code>sort()</code> and <code>reverse()</code> change the list object on which they are called. Their return value is <code>None</code>.</p>
+          </section>
+          <section>
+            <h3>New returned value</h3>
+            <p><code>sorted(items)</code> creates and returns a new list. The caller must save that returned value to use it later.</p>
+          </section>
+        </div>
+
+        <h2>4. Names point to objects in memory</h2>
+        <p>
+          Assignment connects a name to an object. With an immutable value, an apparent “change” usually rebinds the name to a new object. With a list, an operation can instead modify the existing object.
+        </p>
+        <pre><code>scores = [72, 84, 91]
+current_scores = scores
+
+current_scores.append(96)
+
+print(scores)                    # [72, 84, 91, 96]
+print(scores is current_scores)  # True</code></pre>
+        <p>
+          The assignment <code>current_scores = scores</code> does not copy any elements. It creates a second name for the same list object. The <code>is</code> operator checks object identity, so it confirms that both names point to one object.
+        </p>
+        <p>
+          This is different from equality. Two separate lists can satisfy <code>left == right</code> because their contents match while <code>left is right</code> remains <code>False</code>.
+        </p>
+
+        <h2>5. Aliasing makes changes visible through every name</h2>
+        <p>
+          An <strong>alias</strong> is another name for the same object. Mutating through either alias changes the single shared list, so reading through any other alias reveals the updated contents.
+        </p>
+        <pre><code>original = ["bacon", "eggs"]
+brunch = original
+
+original.append("juice")
+brunch.extend(["toast", "jam"])
+
+print(original)
+# ['bacon', 'eggs', 'juice', 'toast', 'jam']
+
+print(brunch)
+# ['bacon', 'eggs', 'juice', 'toast', 'jam']</code></pre>
+        <p>
+          No synchronization step occurs here. There is only one list. The two names are simply two routes to that same object, which is why mutations made through either route are shared.
+        </p>
+        <aside class="study-note">
+          <strong>Tracing habit:</strong> Draw names as arrows and objects as boxes. When two arrows reach the same box, expect a mutation through one name to be visible through the other.
+        </aside>
+
+        <h2>6. Cloning creates an independent outer list</h2>
+        <p>
+          To change a list without affecting the original, create a clone. A full slice such as <code>items[:]</code> copies the references into a new outer list. The <code>copy()</code> method provides the same kind of shallow copy.
+        </p>
+        <pre><code>original = ["scan", "review", "deploy"]
+snapshot = original[:]
+
+original.append("monitor")
+snapshot[0] = "plan"
+
+print(original)
+# ['scan', 'review', 'deploy', 'monitor']
+
+print(snapshot)
+# ['plan', 'review', 'deploy']
+
+print(original == snapshot)  # False
+print(original is snapshot)  # False</code></pre>
+        <p>
+          The clone begins with the same element values, but it has a separate identity. Appending to one outer list or replacing one of its positions does not change the other.
+        </p>
+
+        <h2>7. A shallow clone does not copy nested objects</h2>
+        <p>
+          The word <strong>shallow</strong> matters. Slicing creates a new outer list, but nested mutable objects are still shared. Both outer lists can therefore point to the same inner list.
+        </p>
+        <pre><code>original = [["Lance", 84], ["Maya", 91]]
+snapshot = original[:]
+
+snapshot[0][1] = 95
+
+print(original[0])  # ['Lance', 95]
+print(snapshot[0])  # ['Lance', 95]
+print(original is snapshot)        # False
+print(original[0] is snapshot[0])  # True</code></pre>
+        <p>
+          Replacing <code>snapshot[0]</code> would affect only the cloned outer list. Mutating <code>snapshot[0][1]</code>, however, reaches the shared inner object. A correct memory diagram must show both outer lists pointing to the same nested lists.
+        </p>
+
+        <h2>8. Functions can produce mutation side effects</h2>
+        <p>
+          Passing a list to a function gives the function another reference to that object. If the function mutates its parameter, the caller observes the same changed list after the function returns.
+        </p>
+        <pre><code>def add_result(results, value):
+    results.append(value)
+
+quiz_results = [82, 91]
+add_result(quiz_results, 88)
+
+print(quiz_results)  # [82, 91, 88]</code></pre>
+        <p>
+          This side effect can be intentional, but the function's name and documentation should make it clear. When the original should be preserved, clone first and return the new list.
+        </p>
+        <pre><code>def with_result(results, value):
+    updated = results[:]
+    updated.append(value)
+    return updated
+
+quiz_results = [82, 91]
+new_results = with_result(quiz_results, 88)
+
+print(quiz_results)  # [82, 91]
+print(new_results)   # [82, 91, 88]</code></pre>
+
+        <h2>9. Do not mutate the list being iterated over</h2>
+        <p>
+          A loop tracks its current position internally. Removing an element shifts later values to new indexes, but the loop still advances its counter. The item that moves into the current position can be skipped.
+        </p>
+        <pre><code>values = [1, 2, 3, 4]
+blocked = [1, 2]
+
+for value in values:
+    if value in blocked:
+        values.remove(value)
+
+print(values)  # [2, 3, 4] - the 2 was skipped</code></pre>
+        <p>
+          The safe pattern is to iterate over a clone while mutating the original. The loop's sequence stays stable even as the original list becomes shorter.
+        </p>
+        <pre><code>values = [1, 2, 3, 4]
+blocked = [1, 2]
+
+for value in values[:]:
+    if value in blocked:
+        values.remove(value)
+
+print(values)  # [3, 4]</code></pre>
+        <p>
+          This example connects every major idea in Part 2: mutation changes an object, aliases make that change visible elsewhere, and cloning can isolate the sequence used for safe traversal.
+        </p>
+
+        <h2>Practice lab</h2>
+        <p>
+          MIT's Lecture 5 questions combine sequential list operations with an aliasing trace. I used those themes to create the following original self-checks. Predict both the final values and which names share an object before opening each answer.
+        </p>
+        <div class="practice-set">
+          <details>
+            <summary><span>01</span> Trace three removal operations</summary>
+            <div>
+              <pre><code>values = [3, 1, 3, 2]
+values.remove(3)
+last = values.pop()
+del values[0]
+
+print(values)
+print(last)</code></pre>
+              <p><strong>Answer:</strong> <code>values</code> becomes <code>[3]</code>, and <code>last</code> is <code>2</code>. <code>remove(3)</code> deletes only the first matching <code>3</code>; <code>pop()</code> then removes and returns the final value.</p>
+            </div>
+          </details>
+          <details>
+            <summary><span>02</span> Split, update, and join</summary>
+            <div>
+              <pre><code>text = "alias|clone|mutate"
+parts = text.split("|")
+parts[2] = "review"
+result = " → ".join(parts)
+
+print(result)</code></pre>
+              <p><strong>Answer:</strong> The output is <code>alias → clone → review</code>. <code>split()</code> creates a list of three strings, the assignment mutates that list, and <code>join()</code> creates a new string.</p>
+            </div>
+          </details>
+          <details>
+            <summary><span>03</span> Compare <code>sorted()</code> and <code>reverse()</code></summary>
+            <div>
+              <pre><code>scores = [72, 91, 84]
+ranked = sorted(scores)
+scores.reverse()
+
+print(scores)
+print(ranked)</code></pre>
+              <p><strong>Answer:</strong> <code>scores</code> is <code>[84, 91, 72]</code>, while <code>ranked</code> is <code>[72, 84, 91]</code>. <code>sorted()</code> created a new list before <code>reverse()</code> mutated the original.</p>
+            </div>
+          </details>
+          <details>
+            <summary><span>04</span> Separate an alias from a clone</summary>
+            <div>
+              <pre><code>original = ["a", "b"]
+alias = original
+clone = original[:]
+
+alias.append("c")
+clone[0] = "z"
+
+print(original)
+print(alias)
+print(clone)</code></pre>
+              <p><strong>Answer:</strong> Both <code>original</code> and <code>alias</code> display <code>["a", "b", "c"]</code> because they share one object. <code>clone</code> displays <code>["z", "b"]</code> because it is a separate outer list created before the append.</p>
+            </div>
+          </details>
+          <details>
+            <summary><span>05</span> Explain the skipped value</summary>
+            <div>
+              <pre><code>numbers = [1, 2, 3, 4]
+
+for number in numbers:
+    if number &lt; 3:
+        numbers.remove(number)
+
+print(numbers)</code></pre>
+              <p><strong>Answer:</strong> The result is <code>[2, 3, 4]</code>. Removing <code>1</code> shifts <code>2</code> into index <code>0</code>, but the loop advances to index <code>1</code>, where it sees <code>3</code>. Iterating over <code>numbers[:]</code> would prevent the skip.</p>
+            </div>
+          </details>
+        </div>
+
+        <h2>Key takeaways</h2>
+        <ul>
+          <li><code>del</code>, <code>remove()</code>, and <code>pop()</code> all mutate a list but select and return information differently.</li>
+          <li><code>split()</code>, <code>list()</code>, and <code>join()</code> convert between immutable strings and mutable lists.</li>
+          <li><code>sort()</code> and <code>reverse()</code> mutate a list; <code>sorted()</code> returns a new list.</li>
+          <li>A variable name points to an object rather than containing the object itself.</li>
+          <li>Aliases are different names for the same object, so mutations are visible through every alias.</li>
+          <li>A slice such as <code>items[:]</code> creates a shallow clone with a separate outer-list identity.</li>
+          <li>Nested mutable objects remain shared after a shallow copy and can still produce side effects.</li>
+          <li>A function can mutate a list supplied by its caller, so side effects should be deliberate and clear.</li>
+          <li>Do not mutate the list being traversed; iterate over a clone when the original must change.</li>
+        </ul>
+
+        <section class="sources" aria-labelledby="sources-heading">
+          <h2 id="sources-heading">Course material and further practice</h2>
+          <ul>
+            <li><a href="https://ocw.mit.edu/courses/6-0001-introduction-to-computer-science-and-programming-in-python-fall-2016/resources/lecture-5-tuples-lists-aliasing-mutability-and-cloning/" target="_blank" rel="noopener noreferrer">MIT OpenCourseWare: Lecture 5 video and transcript</a></li>
+            <li><a href="https://ocw.mit.edu/courses/6-0001-introduction-to-computer-science-and-programming-in-python-fall-2016/resources/mit6_0001f16_lec5/" target="_blank" rel="noopener noreferrer">MIT OpenCourseWare: Lecture 5 slides</a></li>
+            <li><a href="https://ocw.mit.edu/courses/6-0001-introduction-to-computer-science-and-programming-in-python-fall-2016/pages/in-class-questions-and-video-solutions/lecture-5/" target="_blank" rel="noopener noreferrer">MIT OpenCourseWare: Lecture 5 in-class questions and video solutions</a></li>
+            <li><a href="https://docs.python.org/3/tutorial/datastructures.html" target="_blank" rel="noopener noreferrer">Python documentation: More on lists</a></li>
+          </ul>
+        </section>
+        <section class="sources" aria-labelledby="related-heading">
+          <h2 id="related-heading">Related articles</h2>
+          <ul>
+            <li><a href="/blogs/july-27-2026.html">Lecture 5, Part 1: Tuples, Lists, and Core Operations</a></li>
+            <li><a href="/blogs/july-23-2026.html">Lecture 4: Decomposition, Abstraction, and Functions</a></li>
+            <li><a href="/blogs/july-24-2026.html">Lecture 3: String Manipulation, Guess and Check, Approximations, Bisection</a></li>
+          </ul>
+        </section>
+      </div>
+
+      <nav class="article-nav" aria-label="Article navigation">
+        <a href="/blogs/july-27-2026.html"><span class="article-meta">Previous article</span><br>Lecture 5, Part 1: Tuples, Lists, and Core Operations</a>
+        <a href="/blogs/blog-index.html"><span class="article-meta">Writing archive</span><br>Browse all articles</a>
+      </nav>
+      <aside class="author-card" aria-label="About the author"><img src="/assets/lance-adhikari-headshot.webp" alt="Lance Adhikari" width="72" height="72" loading="lazy"><div><h2>About Lance</h2><p>Incoming Computer Science student at the University of Alberta documenting what I learn across programming, cybersecurity, data, artificial intelligence, and developer tools.</p><a class="text-link" href="/about.html">More about Lance</a></div></aside>
+      <div class="cta-panel" style="margin-top:2rem"><div><h2>Continue the conversation</h2><p>Have a correction, a better example, or a technical topic to discuss?</p></div><a class="button" href="/contact.html">Contact Lance</a></div>
+    </article>
+  </main>
+  <footer data-site-footer></footer>
+</body>
+</html>

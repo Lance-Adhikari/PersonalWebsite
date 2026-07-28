@@ -1,0 +1,343 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Lecture 5, Part 1: Tuples, Lists, and Core Operations | MIT 6.0001 Notes | Lance Adhikari</title>
+  <meta name="description" content="My MIT 6.0001 Lecture 5 study notes on Python tuples, lists, sequence operations, packing, unpacking, iteration, mutability, append, concatenation, and extend.">
+  <meta name="author" content="Lance Adhikari">
+  <meta name="theme-color" content="#0b1220">
+  <link rel="canonical" href="https://www.lanceadhikari.com/blogs/july-27-2026.html">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Lecture 5, Part 1: Tuples, Lists, and Core Operations">
+  <meta property="og:description" content="My MIT 6.0001 study notes on Python's two foundational sequence types and a focused set of list operations.">
+  <meta property="og:url" content="https://www.lanceadhikari.com/blogs/july-27-2026.html">
+  <meta property="og:image" content="https://www.lanceadhikari.com/assets/blog-assets/python-tuples-lists-part-1.webp">
+  <meta property="article:published_time" content="2026-07-27">
+  <meta property="article:author" content="Lance Adhikari">
+  <meta property="article:section" content="Python">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Lecture 5, Part 1: Tuples, Lists, and Core Operations">
+  <meta name="twitter:description" content="My MIT 6.0001 study notes on Python's two foundational sequence types and a focused set of list operations.">
+  <meta name="twitter:image" content="https://www.lanceadhikari.com/assets/blog-assets/python-tuples-lists-part-1.webp">
+  <link rel="icon" type="image/png" href="/assets/site-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/styles.css">
+  <link rel="stylesheet" href="/css/components.css">
+  <script defer src="/javascript/scripts.js"></script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Lecture 5, Part 1: Tuples, Lists, and Core Operations","description":"My MIT 6.0001 Lecture 5 study notes on Python tuples, lists, sequence operations, packing, unpacking, iteration, mutability, append, concatenation, and extend.","image":"https://www.lanceadhikari.com/assets/blog-assets/python-tuples-lists-part-1.webp","datePublished":"2026-07-27","author":{"@type":"Person","name":"Lance Adhikari","url":"https://www.lanceadhikari.com/about.html"},"publisher":{"@type":"Person","name":"Lance Adhikari"},"mainEntityOfPage":"https://www.lanceadhikari.com/blogs/july-27-2026.html","isPartOf":{"@type":"Course","name":"MIT 6.0001 Introduction to Computer Science and Programming in Python","provider":{"@type":"CollegeOrUniversity","name":"Massachusetts Institute of Technology"}}}</script>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
+  <header data-site-header></header>
+  <main id="main-content">
+    <article class="article-shell">
+      <header class="article-header">
+        <p class="eyebrow">Python Study Notes</p>
+        <h1>Lecture 5, Part 1: Tuples, Lists, and Core Operations</h1>
+        <p class="article-meta"><span>By Lance Adhikari</span><time datetime="2026-07-27">July 27, 2026</time><span>9 min read</span><span>MIT 6.0001</span><span>Lecture 5 · Part 1</span></p>
+        <p>A structured review of ordered collections, from fixed tuple records to editable lists and their first essential operations.</p>
+      </header>
+
+      <img class="article-hero" src="/assets/blog-assets/python-tuples-lists-part-1.webp" alt="A fixed enclosed sequence beside an expandable sequence receiving a new item" width="1400" height="788">
+
+      <div class="article-content">
+        <section class="lecture-series-card" aria-labelledby="lecture-series-title">
+          <div class="lecture-series-topline">
+            <div>
+              <p class="lecture-series-label">MIT 6.0001 learning journal</p>
+              <h2 id="lecture-series-title">Introduction to Computer Science and Programming in Python</h2>
+            </div>
+            <strong>5 / 12</strong>
+          </div>
+          <p>This post is part of my lecture-by-lecture review. Each entry turns the lecture into a set of mental models, annotated examples, and original practice questions I can revisit later.</p>
+          <div class="lecture-progress" role="progressbar" aria-label="Course lecture progress" aria-valuemin="1" aria-valuemax="12" aria-valuenow="5">
+            <span style="--lecture-progress: 41.667%"></span>
+          </div>
+          <p class="lecture-progress-note">Now studying Lecture 5 - Part 1 focuses on tuples, list fundamentals, and introductory operations.</p>
+        </section>
+
+        <p>
+          The programs from earlier lectures mainly worked with individual values. Lecture 5 introduces <strong>compound data types</strong>: objects that group multiple values into one ordered structure. That change sounds small, but it lets a program model coordinates, course records, collections of scores, and much more.
+        </p>
+        <p>
+          This first part focuses on tuples and the foundations of lists. I stop after a small group of list operations so that the distinction between creating a new collection and changing an existing one remains clear. Part 2 will continue with removal, conversion, sorting, aliasing, cloning, and the side effects of mutation.
+        </p>
+
+        <div class="concept-grid">
+          <section class="concept-card">
+            <p class="concept-number">01</p>
+            <h3>Tuple: a fixed record</h3>
+            <p>A tuple is ordered and immutable. Its positions can represent fields that belong together and should not be replaced in place.</p>
+            <p class="concept-question"><strong>Core question:</strong> Should this collection stay fixed after it is created?</p>
+          </section>
+          <section class="concept-card">
+            <p class="concept-number">02</p>
+            <h3>List: an editable collection</h3>
+            <p>A list is ordered and mutable. Its elements can be replaced, and operations can add more items to the same list object.</p>
+            <p class="concept-question"><strong>Core question:</strong> Will this collection need to change as the program runs?</p>
+          </section>
+        </div>
+
+        <h2>1. Compound data types group related values</h2>
+        <p>
+          An integer, float, or Boolean usually represents one value. A tuple or list can hold an ordered sequence of values under one name. Both support familiar sequence tools: <code>len()</code>, zero-based indexing, negative indexing, slicing, and iteration with a <code>for</code> loop.
+        </p>
+        <pre><code>coordinates = (53.5461, -113.4938)
+topics = ["tuples", "lists", "iteration"]
+
+print(coordinates[0])  # 53.5461
+print(topics[-1])      # iteration
+print(len(topics))     # 3</code></pre>
+        <p>
+          Order matters. Position <code>0</code> is the first element, position <code>1</code> is the second, and so on. The major difference is not how the values are accessed; it is whether the collection can be changed after creation.
+        </p>
+
+        <h2>2. Tuples are ordered and immutable</h2>
+        <p>
+          A tuple is usually written as comma-separated values inside parentheses. It can contain different data types and can even contain other tuples. Once created, however, its elements cannot be reassigned.
+        </p>
+        <pre><code>student = ("Lance", "Computer Science", 2026)
+
+print(student[0])   # Lance
+print(student[1:])  # ('Computer Science', 2026)
+
+# student[2] = 2027
+# TypeError: tuple elements cannot be reassigned</code></pre>
+        <p>
+          Immutability makes a tuple useful when the positions form one stable record. A coordinate pair, an RGB colour, or a function's multi-part result is often easier to understand when its structure is not expected to grow or shrink.
+        </p>
+        <aside class="study-note">
+          <strong>The singleton rule:</strong> <code>("cloudy")</code> is just a string inside parentheses. A one-item tuple needs a trailing comma: <code>("cloudy",)</code>. The comma creates the tuple.
+        </aside>
+
+        <h2>3. Tuple operations create new tuples</h2>
+        <p>
+          Tuples support indexing, slicing, length checks, membership tests, and concatenation. Because a tuple is immutable, slicing or joining does not edit the original tuple; the operation produces another tuple.
+        </p>
+        <pre><code>core = ("tuples", "lists")
+expanded = core + ("iteration",)
+
+print(core)              # ('tuples', 'lists')
+print(expanded)          # ('tuples', 'lists', 'iteration')
+print("lists" in core)   # True
+print(expanded[:2])      # ('tuples', 'lists')</code></pre>
+        <p>
+          This is the same broad sequence model used for strings in Lecture 3. The syntax changes, but the ideas of position, slice boundaries, and traversal carry forward.
+        </p>
+
+        <h2>4. Packing and unpacking connect names to positions</h2>
+        <p>
+          Python can <strong>pack</strong> several values into one tuple and <strong>unpack</strong> that tuple into separate variables. The number of names on the left must match the number of values being unpacked.
+        </p>
+        <pre><code>profile = ("Lance", "Edmonton", "Computer Science")
+name, city, program = profile
+
+print(name)     # Lance
+print(city)     # Edmonton
+print(program)  # Computer Science</code></pre>
+        <p>
+          Tuple unpacking also makes swapping two values concise. Python evaluates the values on the right, packs them together, and then assigns them to the names on the left.
+        </p>
+        <pre><code>left = "A"
+right = "B"
+
+left, right = right, left
+
+print(left, right)  # B A</code></pre>
+
+        <h2>5. Functions can return multiple values as a tuple</h2>
+        <p>
+          Lecture 4 established that a function's returned value can be reused by its caller. A tuple allows one return statement to carry several related results. The caller can keep the tuple or unpack it immediately.
+        </p>
+        <pre><code>def quotient_and_remainder(dividend, divisor):
+    return dividend // divisor, dividend % divisor
+
+quotient, remainder = quotient_and_remainder(17, 5)
+
+print(quotient)   # 3
+print(remainder)  # 2</code></pre>
+        <p>
+          The expression after <code>return</code> creates the tuple <code>(3, 2)</code>. Unpacking then gives each position a meaningful name. This is especially helpful when both values describe one computation.
+        </p>
+
+        <h2>6. Tuples can be traversed directly</h2>
+        <p>
+          A <code>for</code> loop visits tuple elements in order. Direct iteration is the clearest option when the program needs the values but not their index positions.
+        </p>
+        <pre><code>scores = (82, 91, 76, 88)
+total = 0
+
+for score in scores:
+    total += score
+
+average = total / len(scores)
+print(average)  # 84.25</code></pre>
+        <p>
+          The tuple itself remains unchanged. The loop only reads each element and updates a separate accumulator named <code>total</code>.
+        </p>
+
+        <h2>7. Lists are ordered and mutable</h2>
+        <p>
+          A list uses square brackets. Like a tuple, it is ordered, indexed, sliceable, and iterable. Lists commonly hold values of the same kind, although Python permits mixed types and nested lists.
+        </p>
+        <pre><code>topics = ["tuples", "lists", "functions"]
+grid = [[1, 2], [3, 4]]
+
+print(topics[1])  # lists
+print(grid[0])    # [1, 2]
+print(grid[1][0]) # 3</code></pre>
+        <p>
+          In a nested list, the first index selects an inner list and the second selects an element inside it. Reading <code>grid[1][0]</code> from left to right means: take the second inner list, then take its first value.
+        </p>
+
+        <h2>8. List elements can be replaced in place</h2>
+        <p>
+          List mutability means an assignment can replace an element at a particular index. The variable still refers to the same list, but that list now contains a different value.
+        </p>
+        <pre><code>topics = ["tuples", "arrays", "iteration"]
+
+topics[1] = "lists"
+
+print(topics)  # ['tuples', 'lists', 'iteration']</code></pre>
+        <p>
+          This is the first important contrast with tuples. The equivalent tuple assignment would raise a <code>TypeError</code>. Mutability is convenient, but it also creates questions about shared references and side effects. Those questions belong to Part 2.
+        </p>
+
+        <h2>9. Three ways to add list elements</h2>
+        <p>
+          This part ends with a focused comparison. <code>append()</code> adds one item to the end of the existing list. <code>extend()</code> adds each item from another iterable to the existing list. The <code>+</code> operator combines two lists into a new list.
+        </p>
+        <pre><code>topics = ["tuples", "lists"]
+
+combined = topics + ["functions"]  # creates a new list
+topics.append("iteration")         # changes topics
+topics.extend(["indexing", "slicing"])  # changes topics
+
+print(combined)
+# ['tuples', 'lists', 'functions']
+
+print(topics)
+# ['tuples', 'lists', 'iteration', 'indexing', 'slicing']</code></pre>
+        <div class="anatomy-list" aria-label="Comparison of introductory list operations">
+          <div><strong><code>list.append(item)</code></strong><span>Adds one item to the end and mutates the list.</span></div>
+          <div><strong><code>list.extend(items)</code></strong><span>Adds the elements from another iterable and mutates the list.</span></div>
+          <div><strong><code>left + right</code></strong><span>Creates a new combined list while leaving both input lists unchanged.</span></div>
+        </div>
+        <p>
+          A method call such as <code>topics.append(...)</code> uses dot notation: Python performs an operation associated with the list object. These mutating methods return <code>None</code>, so the useful result is the changed list itself, not a separate returned collection.
+        </p>
+        <aside class="study-note">
+          <strong>Part 1 boundary:</strong> Part 2 will continue with removing elements, converting between strings and lists, sorting and reversing, aliasing, cloning, mutation inside functions, and the risks of changing a list while iterating over it.
+        </aside>
+
+        <h2>Practice lab</h2>
+        <p>
+          MIT's in-class questions begin by testing the singleton-tuple rule, index-based list changes, and the difference between list operations. I used those themes to create these original self-checks. Try tracing each example before opening the answer.
+        </p>
+        <div class="practice-set">
+          <details>
+            <summary><span>01</span> Tuple or string?</summary>
+            <div>
+              <pre><code>first = ("cloudy")
+second = ("cold",)
+
+print(type(first).__name__)
+print(type(second).__name__)
+print(len(second))</code></pre>
+              <p><strong>Answer:</strong> Python displays <code>str</code>, <code>tuple</code>, and <code>1</code>. Parentheses alone do not create a one-item tuple; the trailing comma does.</p>
+            </div>
+          </details>
+          <details>
+            <summary><span>02</span> Unpack and swap</summary>
+            <div>
+              <pre><code>point = (4, 9)
+x, y = point
+x, y = y, x
+
+print(x, y)</code></pre>
+              <p><strong>Answer:</strong> The output is <code>9 4</code>. The first assignment unpacks the tuple, and the second packs the values in reverse order before unpacking them again.</p>
+            </div>
+          </details>
+          <details>
+            <summary><span>03</span> Return two related results</summary>
+            <div>
+              <pre><code>def split_seconds(total_seconds):
+    return total_seconds // 60, total_seconds % 60
+
+minutes, seconds = split_seconds(185)
+print(minutes, seconds)</code></pre>
+              <p><strong>Answer:</strong> The output is <code>3 5</code>. The function returns the tuple <code>(3, 5)</code>, which the caller unpacks into two names.</p>
+            </div>
+          </details>
+          <details>
+            <summary><span>04</span> Trace index-based list changes</summary>
+            <div>
+              <pre><code>words = ["life", "answer", 42, 0]
+words[0] = "universe"
+words[1] = "everything"
+words[-1] = words[2]
+
+print(words)</code></pre>
+              <p><strong>Answer:</strong> The list becomes <code>["universe", "everything", 42, 42]</code>. Each assignment replaces an element in the existing list; <code>-1</code> selects the final position.</p>
+            </div>
+          </details>
+          <details>
+            <summary><span>05</span> Compare <code>+</code>, <code>append()</code>, and <code>extend()</code></summary>
+            <div>
+              <pre><code>left = [1, 2]
+right = left + [3]
+left.append(4)
+left.extend([5, 6])
+
+print(left)
+print(right)</code></pre>
+              <p><strong>Answer:</strong> <code>left</code> is <code>[1, 2, 4, 5, 6]</code>, while <code>right</code> remains <code>[1, 2, 3]</code>. Concatenation created a separate list before the two mutating method calls changed <code>left</code>.</p>
+            </div>
+          </details>
+        </div>
+
+        <h2>Key takeaways</h2>
+        <ul>
+          <li>Tuples and lists are compound data types that store ordered sequences of values.</li>
+          <li>Both support indexing, slicing, <code>len()</code>, membership tests, and direct iteration.</li>
+          <li>A tuple is immutable, and a one-item tuple requires a trailing comma.</li>
+          <li>Tuple packing and unpacking make swaps and multi-value function returns concise.</li>
+          <li>A list is mutable, so an element can be replaced through index assignment.</li>
+          <li><code>append()</code> and <code>extend()</code> mutate a list, while <code>+</code> creates a new list.</li>
+          <li>The choice between a tuple and a list should communicate whether the collection is meant to stay fixed or change.</li>
+          <li>Aliasing, cloning, broader list operations, and mutation side effects are intentionally reserved for Part 2.</li>
+        </ul>
+
+        <section class="sources" aria-labelledby="sources-heading">
+          <h2 id="sources-heading">Course material and further practice</h2>
+          <ul>
+            <li><a href="https://ocw.mit.edu/courses/6-0001-introduction-to-computer-science-and-programming-in-python-fall-2016/resources/lecture-5-tuples-lists-aliasing-mutability-and-cloning/" target="_blank" rel="noopener noreferrer">MIT OpenCourseWare: Lecture 5 video and transcript</a></li>
+            <li><a href="https://ocw.mit.edu/courses/6-0001-introduction-to-computer-science-and-programming-in-python-fall-2016/resources/mit6_0001f16_lec5/" target="_blank" rel="noopener noreferrer">MIT OpenCourseWare: Lecture 5 slides</a></li>
+            <li><a href="https://ocw.mit.edu/courses/6-0001-introduction-to-computer-science-and-programming-in-python-fall-2016/pages/in-class-questions-and-video-solutions/lecture-5/" target="_blank" rel="noopener noreferrer">MIT OpenCourseWare: Lecture 5 in-class questions and video solutions</a></li>
+            <li><a href="https://ocw.mit.edu/courses/6-0001-introduction-to-computer-science-and-programming-in-python-fall-2016/" target="_blank" rel="noopener noreferrer">MIT OpenCourseWare: 6.0001 course home</a></li>
+          </ul>
+        </section>
+        <section class="sources" aria-labelledby="related-heading">
+          <h2 id="related-heading">Related articles</h2>
+          <ul>
+            <li><a href="/blogs/july-23-2026.html">Lecture 4: Decomposition, Abstraction, and Functions</a></li>
+            <li><a href="/blogs/july-24-2026.html">Lecture 3: String Manipulation, Guess and Check, Approximations, Bisection</a></li>
+            <li><a href="/blogs/july-7-2025.html">Working with Built-in Python Functions</a></li>
+          </ul>
+        </section>
+      </div>
+
+      <nav class="article-nav" aria-label="Article navigation">
+        <a href="/blogs/july-24-2026.html"><span class="article-meta">Previous article</span><br>Lecture 3: String Manipulation and Search Algorithms</a>
+        <a href="/blogs/blog-index.html"><span class="article-meta">Writing archive</span><br>Browse all articles</a>
+      </nav>
+      <aside class="author-card" aria-label="About the author"><img src="/assets/lance-adhikari-headshot.webp" alt="Lance Adhikari" width="72" height="72" loading="lazy"><div><h2>About Lance</h2><p>Incoming Computer Science student at the University of Alberta documenting what I learn across programming, cybersecurity, data, artificial intelligence, and developer tools.</p><a class="text-link" href="/about.html">More about Lance</a></div></aside>
+      <div class="cta-panel" style="margin-top:2rem"><div><h2>Continue the conversation</h2><p>Have a correction, a better example, or a technical topic to discuss?</p></div><a class="button" href="/contact.html">Contact Lance</a></div>
+    </article>
+  </main>
+  <footer data-site-footer></footer>
+</body>
+</html>

@@ -1,0 +1,432 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Lecture 6: Recursion and Dictionaries | MIT 6.0001 Notes | Lance Adhikari</title>
+  <meta name="description" content="My MIT 6.0001 Lecture 6 study notes on recursion, base cases, call stacks, divide and conquer, dictionaries, frequency maps, and memoized Fibonacci.">
+  <meta name="author" content="Lance Adhikari">
+  <meta name="theme-color" content="#0b1220">
+  <link rel="canonical" href="https://www.lanceadhikari.com/blogs/july-30-2026.html">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Lecture 6: Recursion and Dictionaries">
+  <meta property="og:description" content="My MIT 6.0001 study notes on recursive problem solving, key-value mappings, and memoization.">
+  <meta property="og:url" content="https://www.lanceadhikari.com/blogs/july-30-2026.html">
+  <meta property="og:image" content="https://www.lanceadhikari.com/assets/blog-assets/python-recursion-dictionaries.webp">
+  <meta property="article:published_time" content="2026-07-30">
+  <meta property="article:author" content="Lance Adhikari">
+  <meta property="article:section" content="Python">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Lecture 6: Recursion and Dictionaries">
+  <meta name="twitter:description" content="My MIT 6.0001 study notes on recursive problem solving, key-value mappings, and memoization.">
+  <meta name="twitter:image" content="https://www.lanceadhikari.com/assets/blog-assets/python-recursion-dictionaries.webp">
+  <link rel="icon" type="image/png" href="/assets/site-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/styles.css">
+  <link rel="stylesheet" href="/css/components.css">
+  <script defer src="/javascript/scripts.js"></script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Lecture 6: Recursion and Dictionaries","description":"My MIT 6.0001 Lecture 6 study notes on recursion, base cases, call stacks, divide and conquer, dictionaries, frequency maps, and memoized Fibonacci.","image":"https://www.lanceadhikari.com/assets/blog-assets/python-recursion-dictionaries.webp","datePublished":"2026-07-30","author":{"@type":"Person","name":"Lance Adhikari","url":"https://www.lanceadhikari.com/about.html"},"publisher":{"@type":"Person","name":"Lance Adhikari"},"mainEntityOfPage":"https://www.lanceadhikari.com/blogs/july-30-2026.html","isPartOf":{"@type":"Course","name":"MIT 6.0001 Introduction to Computer Science and Programming in Python","provider":{"@type":"CollegeOrUniversity","name":"Massachusetts Institute of Technology"}}}</script>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
+  <header data-site-header></header>
+  <main id="main-content">
+    <article class="article-shell">
+      <header class="article-header">
+        <p class="eyebrow">Python Study Notes</p>
+        <h1>Lecture 6: Recursion and Dictionaries</h1>
+        <p class="article-meta"><span>By Lance Adhikari</span><time datetime="2026-07-30">July 30, 2026</time><span>12 min read</span><span>MIT 6.0001</span><span>Lecture 6 of 12</span></p>
+        <p>A structured review of solving problems through smaller versions of themselves, organizing data as key-value mappings, and combining both ideas through memoization.</p>
+      </header>
+
+      <img class="article-hero" src="/assets/blog-assets/python-recursion-dictionaries.webp" alt="Nested computations descending to a base case beside a bank of key-value mappings" width="1400" height="788">
+
+      <div class="article-content">
+        <section class="lecture-series-card" aria-labelledby="lecture-series-title">
+          <div class="lecture-series-topline">
+            <div>
+              <p class="lecture-series-label">MIT 6.0001 learning journal</p>
+              <h2 id="lecture-series-title">Introduction to Computer Science and Programming in Python</h2>
+            </div>
+            <strong>6 / 12</strong>
+          </div>
+          <p>This post is part of my lecture-by-lecture review. Each entry turns the lecture into mental models, annotated examples, and original practice questions I can use to test my understanding later.</p>
+          <div class="lecture-progress" role="progressbar" aria-label="Course lecture progress" aria-valuemin="1" aria-valuemax="12" aria-valuenow="6">
+            <span style="--lecture-progress: 50%"></span>
+          </div>
+          <p class="lecture-progress-note">Lecture 6 completed - halfway through the 12-lecture series.</p>
+        </section>
+
+        <p>
+          Lecture 6 introduces two ideas that initially seem separate. <strong>Recursion</strong> is a strategy for solving a problem by reducing it to smaller versions of itself. A <strong>dictionary</strong> stores relationships between unique keys and their associated values. The final example combines them: a dictionary remembers completed recursive work so the program does not calculate the same answer repeatedly.
+        </p>
+        <p>
+          Prof. Eric Grimson frames recursion in two ways. Algorithmically, it is a divide-and-conquer or decrease-and-conquer design technique. Semantically, it is a function calling itself. A correct recursive solution needs a simple stopping case and a recursive step that makes real progress toward it.
+        </p>
+
+        <div class="concept-grid">
+          <section class="concept-card">
+            <p class="concept-number">01</p>
+            <h3>Recursion reduces</h3>
+            <p>A recursive function trusts a smaller version of the same problem, then combines that result into the answer for the current input.</p>
+            <p class="concept-question"><strong>Core question:</strong> What smaller input moves me toward a case I can solve directly?</p>
+          </section>
+          <section class="concept-card">
+            <p class="concept-number">02</p>
+            <h3>Dictionaries map</h3>
+            <p>A dictionary associates each unique, hashable key with a value, making direct lookup clearer than coordinating parallel lists.</p>
+            <p class="concept-question"><strong>Core question:</strong> What meaningful key identifies the value I need?</p>
+          </section>
+        </div>
+
+        <h2>1. The three requirements of recursion</h2>
+        <p>
+          Recursion is not simply “a function that calls itself.” Without a disciplined structure, that description permits a function to call itself forever. A useful recursive design has three parts:
+        </p>
+        <div class="anatomy-list" aria-label="Requirements of a recursive function">
+          <div><strong>Base case</strong><span>A small input whose answer can be returned directly without another recursive call.</span></div>
+          <div><strong>Recursive case</strong><span>A rule that expresses the current answer using a smaller version of the same problem.</span></div>
+          <div><strong>Progress</strong><span>Every recursive call moves closer to a base case, guaranteeing that the chain can terminate.</span></div>
+        </div>
+        <pre><code>def multiply(a, b):
+    """Return a times positive integer b using repeated addition."""
+    if b == 1:
+        return a
+    return a + multiply(a, b - 1)
+
+print(multiply(5, 4))  # 20</code></pre>
+        <p>
+          The base case solves <code>a × 1</code> directly. The recursive case rewrites <code>a × b</code> as <code>a + a × (b - 1)</code>. Because <code>b</code> decreases by one on every call, a positive starting value must eventually reach <code>1</code>.
+        </p>
+
+        <h2>2. Iteration and recursion can express the same computation</h2>
+        <p>
+          An iterative algorithm keeps its progress in state variables that are updated by a loop. A recursive algorithm keeps progress in a chain of function calls. Factorial makes the comparison clear because <code>n!</code> can be built either by multiplying upward or by reducing <code>n!</code> to <code>n × (n - 1)!</code>.
+        </p>
+        <div class="return-print-grid">
+          <section>
+            <h3>Iterative factorial</h3>
+            <pre><code>def factorial_iter(n):
+    product = 1
+    for value in range(1, n + 1):
+        product *= value
+    return product</code></pre>
+          </section>
+          <section>
+            <h3>Recursive factorial</h3>
+            <pre><code>def factorial(n):
+    if n &lt;= 1:
+        return 1
+    return n * factorial(n - 1)</code></pre>
+          </section>
+        </div>
+        <p>
+          Both functions return the same result for non-negative integers. The recursive version closely matches the mathematical definition and can be easier to reason about. The iterative version avoids the overhead and depth limits associated with many function calls. Recursion can be efficient for the programmer without necessarily being efficient for the computer.
+        </p>
+
+        <h2>3. Every recursive call creates a new scope</h2>
+        <p>
+          Calling <code>factorial(4)</code> does not repeatedly overwrite one variable named <code>n</code>. Each call creates a separate local environment with its own binding:
+        </p>
+        <pre><code>factorial(4)
+4 * factorial(3)
+4 * 3 * factorial(2)
+4 * 3 * 2 * factorial(1)
+4 * 3 * 2 * 1
+24</code></pre>
+        <p>
+          The calls first descend toward the base case. The base case returns <code>1</code>, and control then unwinds through the waiting scopes: <code>factorial(2)</code> returns <code>2</code>, <code>factorial(3)</code> returns <code>6</code>, and <code>factorial(4)</code> returns <code>24</code>.
+        </p>
+        <aside class="study-note">
+          <strong>Tracing habit:</strong> Separate the downward call phase from the upward return phase. A recursive expression cannot finish until the smaller call inside it returns.
+        </aside>
+
+        <h2>4. Inductive reasoning explains correctness</h2>
+        <p>
+          The logic behind a recursive proof resembles mathematical induction. First, show that the function is correct for the base case. Then assume it correctly solves a smaller input and show that the recursive step turns that smaller answer into the correct answer for the current input.
+        </p>
+        <p>
+          For <code>multiply(a, b)</code>:
+        </p>
+        <ol>
+          <li><strong>Base:</strong> When <code>b == 1</code>, returning <code>a</code> is correct.</li>
+          <li><strong>Assumption:</strong> Trust that <code>multiply(a, b - 1)</code> correctly returns <code>a × (b - 1)</code>.</li>
+          <li><strong>Step:</strong> Adding one more <code>a</code> produces <code>a × b</code>.</li>
+          <li><strong>Termination:</strong> Repeatedly subtracting one from positive <code>b</code> eventually reaches the base case.</li>
+        </ol>
+        <p>
+          This changes how I read recursive code. I do not need to mentally expand every possible call to understand the algorithm. I need to verify the base case, the smaller problem, the combination step, and the guarantee of progress.
+        </p>
+
+        <h2>5. Divide and conquer with a palindrome</h2>
+        <p>
+          A palindrome reads the same forward and backward. After normalizing the text, the recursive insight is that a string is a palindrome when its outer characters match and its inner substring is also a palindrome.
+        </p>
+        <pre><code>def is_palindrome(text):
+    def letters_only(value):
+        result = ""
+        for character in value.lower():
+            if character in "abcdefghijklmnopqrstuvwxyz":
+                result += character
+        return result
+
+    def check(value):
+        if len(value) &lt;= 1:
+            return True
+        return value[0] == value[-1] and check(value[1:-1])
+
+    return check(letters_only(text))
+
+print(is_palindrome("Able was I, ere I saw Elba"))  # True</code></pre>
+        <p>
+          The base case covers an empty string or a single character. The recursive case removes two characters, so the problem becomes smaller on every call. The use of <code>and</code> also short-circuits: when the outer characters differ, Python can return <code>False</code> without checking the middle.
+        </p>
+        <p>
+          This is divide and conquer in a compact form: solve a difficult problem by reducing it to an easier subproblem and combining that result with a small amount of work.
+        </p>
+
+        <h2>6. Fibonacci reveals overlapping subproblems</h2>
+        <p>
+          In the lecture's rabbit-population model, the count for month <code>n</code> is the sum of the counts from the previous two months. That definition translates directly into recursive code:
+        </p>
+        <pre><code>def fibonacci(n):
+    """Return the lecture's Fibonacci value for non-negative n."""
+    if n == 0 or n == 1:
+        return 1
+    return fibonacci(n - 1) + fibonacci(n - 2)
+
+print(fibonacci(6))  # 13</code></pre>
+        <p>
+          The code is clear, but its call tree repeats work. Computing <code>fibonacci(6)</code> asks for <code>fibonacci(5)</code> and <code>fibonacci(4)</code>. The first branch also calculates <code>fibonacci(4)</code>, so the same result is rebuilt many times.
+        </p>
+        <p>
+          This is an <strong>overlapping subproblem</strong>: different branches need the answer to the same smaller input. The lecture later uses a dictionary to remember those answers.
+        </p>
+
+        <h2>7. Dictionaries map keys directly to values</h2>
+        <p>
+          Before dictionaries, related data might be stored in parallel lists. That approach requires every list to stay the same length and forces the program to coordinate values through matching integer indexes. A dictionary stores each relationship as one key-value pair.
+        </p>
+        <pre><code>grades = {
+    "Ana": "B",
+    "John": "A+",
+    "Denise": "A",
+    "Katy": "A",
+}
+
+print(grades["John"])  # A+
+
+grades["Sylvan"] = "A"
+grades["Ana"] = "B+"
+del grades["Katy"]
+
+print("Denise" in grades)  # True</code></pre>
+        <p>
+          Bracket lookup uses a key rather than a numeric position. Assigning a new key adds a pair, assigning an existing key replaces its value, and <code>del</code> removes the pair. Dictionaries are mutable, so these operations change the original dictionary object.
+        </p>
+
+        <h2>8. Dictionary rules and safe lookup</h2>
+        <div class="anatomy-list" aria-label="Rules for Python dictionary keys and values">
+          <div><strong>Keys are unique</strong><span>Adding an existing key updates its value rather than creating a duplicate key.</span></div>
+          <div><strong>Keys are hashable</strong><span>Strings, numbers, and suitable tuples can be keys; mutable lists and dictionaries cannot.</span></div>
+          <div><strong>Values are flexible</strong><span>Values may repeat and can be immutable or mutable objects, including lists and nested dictionaries.</span></div>
+        </div>
+        <p>
+          Direct lookup with a missing key raises a <code>KeyError</code>. Use membership testing when absence needs special handling, or use <code>get()</code> to supply a default value.
+        </p>
+        <pre><code>inventory = {"cables": 4, "adapters": 2}
+
+if "cables" in inventory:
+    print(inventory["cables"])  # 4
+
+print(inventory.get("monitors", 0))  # 0</code></pre>
+        <aside class="study-note">
+          <strong>Python version update:</strong> The Fall 2016 lecture used Python 3.5 and correctly taught that dictionary order was not guaranteed. In current Python, insertion order has been guaranteed since Python 3.7. A dictionary is still conceptually a mapping rather than a sequence indexed by position.
+        </aside>
+
+        <h2>9. Iterate through keys, values, and pairs</h2>
+        <p>
+          A basic <code>for</code> loop over a dictionary visits its keys. The views returned by <code>keys()</code>, <code>values()</code>, and <code>items()</code> provide explicit ways to traverse the data.
+        </p>
+        <pre><code>grades = {"Ana": "B", "John": "A+", "Denise": "A"}
+
+for student in grades:
+    print(student, grades[student])
+
+for student, grade in grades.items():
+    print(student, grade)</code></pre>
+        <p>
+          The second form unpacks each <code>(key, value)</code> pair and is usually the clearest choice when both pieces are needed. As with lists, changing the size of a dictionary during iteration can cause errors or skipped work, so structural mutations should be handled carefully.
+        </p>
+
+        <h2>10. Frequency dictionaries turn observations into counts</h2>
+        <p>
+          A frequency dictionary maps each distinct item to the number of times it appears. The first occurrence creates a key with count <code>1</code>; later occurrences increment the existing value.
+        </p>
+        <pre><code>def word_frequencies(words):
+    counts = {}
+
+    for word in words:
+        if word in counts:
+            counts[word] += 1
+        else:
+            counts[word] = 1
+
+    return counts
+
+topics = ["recursion", "dictionary", "recursion", "cache"]
+print(word_frequencies(topics))
+# {'recursion': 2, 'dictionary': 1, 'cache': 1}</code></pre>
+        <p>
+          The dictionary eliminates the need to know every possible word in advance. Each observed word becomes its own key, and the associated integer stores the accumulated count.
+        </p>
+        <p>
+          The lecture applies this pattern to song lyrics, then searches the resulting values to identify the most frequent words. The same structure appears in log analysis, vote counting, inventory summaries, and many data-processing tasks.
+        </p>
+
+        <h2>11. Memoization connects recursion and dictionaries</h2>
+        <p>
+          <strong>Memoization</strong> stores the result of a completed computation and reuses it when the same input appears again. A dictionary is a natural cache: the function input becomes the key and the calculated answer becomes the value.
+        </p>
+        <pre><code>def fibonacci_memo(n, memo):
+    if n in memo:
+        return memo[n]
+
+    memo[n] = (
+        fibonacci_memo(n - 1, memo)
+        + fibonacci_memo(n - 2, memo)
+    )
+    return memo[n]
+
+known = {0: 1, 1: 1}
+print(fibonacci_memo(6, known))  # 13</code></pre>
+        <p>
+          Every new value is computed once and saved. Later branches perform a dictionary lookup instead of expanding another recursive subtree. The lecture reports that its basic <code>fib(34)</code> example makes 11,405,773 recursive calls, while the dictionary-backed version makes only 65.
+        </p>
+        <p>
+          This optimization is safe when the function produces the same output for the same input and does not depend on changing external state. Memoization is the point where the lecture's two halves become one design: recursion defines the problem, and the dictionary prevents repeated work.
+        </p>
+
+        <h2>Practice lab</h2>
+        <p>
+          MIT OpenCourseWare does not provide an in-class question set for Lecture 6, so I created six original exercises from the lecture's examples. Try tracing the calls and data structures before opening each explanation.
+        </p>
+        <div class="practice-set">
+          <details>
+            <summary><span>01</span> Trace the call and return phases</summary>
+            <div>
+              <pre><code>def power_of_two(n):
+    if n == 0:
+        return 1
+    return 2 * power_of_two(n - 1)
+
+print(power_of_two(3))</code></pre>
+              <p><strong>Answer:</strong> The output is <code>8</code>. Calls descend through inputs <code>3</code>, <code>2</code>, <code>1</code>, and <code>0</code>. The base case returns <code>1</code>, then the waiting calls return <code>2</code>, <code>4</code>, and finally <code>8</code>.</p>
+            </div>
+          </details>
+          <details>
+            <summary><span>02</span> Repair the missing base case</summary>
+            <div>
+              <pre><code>def countdown(n):
+    print(n)
+    return countdown(n - 1)</code></pre>
+              <p><strong>Answer:</strong> The function never stops on its own because every call creates another call. One repair is:</p>
+              <pre><code>def countdown(n):
+    print(n)
+    if n == 0:
+        return
+    countdown(n - 1)</code></pre>
+              <p>The recursive call now moves toward <code>0</code>, and the base case returns without making another call.</p>
+            </div>
+          </details>
+          <details>
+            <summary><span>03</span> Identify the smaller palindrome problem</summary>
+            <div>
+              <p>When checking whether <code>"racecar"</code> is a palindrome, what recursive input follows the first successful outer-character comparison?</p>
+              <p><strong>Answer:</strong> The next input is <code>"aceca"</code>. The outer <code>r</code> characters match, so the algorithm removes them and asks the same question about the smaller middle substring.</p>
+            </div>
+          </details>
+          <details>
+            <summary><span>04</span> Trace dictionary mutation</summary>
+            <div>
+              <pre><code>inventory = {"usb": 2, "cable": 3}
+inventory["usb"] += 1
+inventory["mouse"] = 1
+del inventory["cable"]
+
+print(inventory.get("usb", 0))
+print(inventory.get("cable", 0))</code></pre>
+              <p><strong>Answer:</strong> Python displays <code>3</code> and <code>0</code>. The USB count is updated, a mouse entry is added, and the cable entry is deleted. <code>get()</code> returns the supplied default for the missing cable key.</p>
+            </div>
+          </details>
+          <details>
+            <summary><span>05</span> Build a frequency map</summary>
+            <div>
+              <pre><code>words = [
+    "recursion",
+    "dictionary",
+    "recursion",
+    "cache",
+    "dictionary",
+    "recursion",
+]</code></pre>
+              <p>What dictionary should <code>word_frequencies(words)</code> return?</p>
+              <p><strong>Answer:</strong> <code>{"recursion": 3, "dictionary": 2, "cache": 1}</code>. Each unique word is a key, and its value records the number of occurrences.</p>
+            </div>
+          </details>
+          <details>
+            <summary><span>06</span> Explain the memoization shortcut</summary>
+            <div>
+              <p>Suppose the memo dictionary already contains <code>{0: 1, 1: 1, 2: 2, 3: 3}</code>. What happens when <code>fibonacci_memo(3, memo)</code> is called?</p>
+              <p><strong>Answer:</strong> The function immediately returns <code>3</code> from the dictionary. It makes no calls for <code>2</code> or <code>1</code> because the answer for key <code>3</code> has already been calculated.</p>
+            </div>
+          </details>
+        </div>
+
+        <h2>Key takeaways</h2>
+        <ul>
+          <li>Recursion solves a problem by reducing it to smaller versions of the same problem.</li>
+          <li>A correct recursive function needs a base case, a recursive case, and guaranteed progress toward the base.</li>
+          <li>Every recursive call creates its own local scope, and results return as the call chain unwinds.</li>
+          <li>Inductive reasoning checks the base case and proves that a correct smaller answer produces a correct larger answer.</li>
+          <li>Recursion can express divide-and-conquer problems clearly, but a clear solution is not automatically computationally efficient.</li>
+          <li>Dictionaries are mutable mappings from unique, hashable keys to flexible values.</li>
+          <li>Membership tests and <code>get()</code> help avoid unexpected <code>KeyError</code> exceptions.</li>
+          <li>Frequency dictionaries provide a reusable pattern for counting observations.</li>
+          <li>Memoization uses a dictionary to cache recursive results and avoid repeated subproblems.</li>
+          <li>Modern Python dictionaries preserve insertion order, although the course's Python 3.5 environment did not guarantee it.</li>
+        </ul>
+
+        <section class="sources" aria-labelledby="sources-heading">
+          <h2 id="sources-heading">Course material and further practice</h2>
+          <ul>
+            <li><a href="https://ocw.mit.edu/courses/6-0001-introduction-to-computer-science-and-programming-in-python-fall-2016/resources/lecture-6-recursion-and-dictionaries/" target="_blank" rel="noopener noreferrer">MIT OpenCourseWare: Lecture 6 video and transcript</a></li>
+            <li><a href="https://ocw.mit.edu/courses/6-0001-introduction-to-computer-science-and-programming-in-python-fall-2016/resources/mit6_0001f16_lec6/" target="_blank" rel="noopener noreferrer">MIT OpenCourseWare: Lecture 6 slides</a></li>
+            <li><a href="https://ocw.mit.edu/courses/6-0001-introduction-to-computer-science-and-programming-in-python-fall-2016/resources/lec6_recursion_dictionaries/" target="_blank" rel="noopener noreferrer">MIT OpenCourseWare: Lecture 6 code</a></li>
+            <li><a href="https://docs.python.org/3/tutorial/datastructures.html#dictionaries" target="_blank" rel="noopener noreferrer">Python documentation: Dictionaries</a></li>
+            <li><a href="https://docs.python.org/3/library/stdtypes.html#mapping-types-dict" target="_blank" rel="noopener noreferrer">Python documentation: Mapping type and insertion order</a></li>
+          </ul>
+        </section>
+        <section class="sources" aria-labelledby="related-heading">
+          <h2 id="related-heading">Related articles</h2>
+          <ul>
+            <li><a href="/blogs/july-28-2026.html">Lecture 5, Part 2: Mutability, Aliasing, and Cloning</a></li>
+            <li><a href="/blogs/july-27-2026.html">Lecture 5, Part 1: Tuples, Lists, and Core Operations</a></li>
+            <li><a href="/blogs/july-23-2026.html">Lecture 4: Decomposition, Abstraction, and Functions</a></li>
+          </ul>
+        </section>
+      </div>
+
+      <nav class="article-nav" aria-label="Article navigation">
+        <a href="/blogs/july-28-2026.html"><span class="article-meta">Previous article</span><br>Lecture 5, Part 2: Mutability, Aliasing, and Cloning</a>
+        <a href="/blogs/blog-index.html"><span class="article-meta">Writing archive</span><br>Browse all articles</a>
+      </nav>
+      <aside class="author-card" aria-label="About the author"><img src="/assets/lance-adhikari-headshot.webp" alt="Lance Adhikari" width="72" height="72" loading="lazy"><div><h2>About Lance</h2><p>Incoming Computer Science student at the University of Alberta documenting what I learn across programming, cybersecurity, data, artificial intelligence, and developer tools.</p><a class="text-link" href="/about.html">More about Lance</a></div></aside>
+      <div class="cta-panel" style="margin-top:2rem"><div><h2>Continue the conversation</h2><p>Have a correction, a better example, or a technical topic to discuss?</p></div><a class="button" href="/contact.html">Contact Lance</a></div>
+    </article>
+  </main>
+  <footer data-site-footer></footer>
+</body>
+</html>

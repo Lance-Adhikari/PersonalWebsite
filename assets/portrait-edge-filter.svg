@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg">
+  <!-- Trim the faint cutout fringe without changing the original portrait. -->
+  <filter id="soften-fringe" color-interpolation-filters="sRGB">
+    <feMorphology in="SourceAlpha" operator="erode" radius="0.4" result="trimmed-alpha"/>
+    <feComposite in="SourceGraphic" in2="trimmed-alpha" operator="in"/>
+  </filter>
+</svg>

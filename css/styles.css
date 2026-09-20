@@ -274,6 +274,17 @@ pre {
   pointer-events: none;
 }
 
+.hero::before {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180' viewBox='0 0 180 180'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.82' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='.55'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  opacity: 0.025;
+  content: "";
+  pointer-events: none;
+}
+
 .hero-layout {
   position: relative;
   z-index: 1;
@@ -370,40 +381,50 @@ pre {
 
 .portrait-frame {
   position: relative;
+  isolation: isolate;
   max-width: 440px;
   margin-inline: auto;
 }
 
-.portrait-frame::before {
+.portrait-frame::before,
+.portrait-frame::after,
+.portrait-dots {
   position: absolute;
-  inset: 14px -14px -14px 14px;
-  border: 1px solid #34435c;
-  border-radius: var(--radius-lg);
+  z-index: 0;
+  pointer-events: none;
   content: "";
+}
+
+/* A diffuse spotlight behind the portrait, with no visible circular edge. */
+.portrait-frame::before {
+  top: 39%;
+  left: 50%;
+  width: 145%;
+  height: 108%;
+  background: radial-gradient(ellipse at center, rgba(42, 91, 238, 0.68) 0%, rgba(35, 79, 211, 0.46) 22%, rgba(25, 59, 155, 0.2) 43%, rgba(16, 36, 83, 0.06) 61%, transparent 76%);
+  filter: blur(30px);
+  transform: translate(-50%, -50%);
+}
+
+.portrait-frame::after,
+.portrait-dots {
+  display: none;
 }
 
 .portrait-frame img {
   position: relative;
+  z-index: 1;
+  display: block;
   width: 100%;
+  height: auto;
+  filter: url("/assets/portrait-edge-filter.svg#soften-fringe");
   aspect-ratio: 4 / 5;
-  object-fit: cover;
-  object-position: 48% center;
-  border: 1px solid #35445d;
-  border-radius: var(--radius-lg);
-}
-
-.portrait-caption {
-  position: absolute;
-  right: -1rem;
-  bottom: 1.5rem;
-  max-width: 235px;
-  padding: 0.85rem 1rem;
-  color: #dbe3ef;
-  background: rgba(18, 28, 46, 0.96);
-  border: 1px solid var(--color-border-dark);
-  border-radius: var(--radius-sm);
-  box-shadow: var(--shadow-md);
-  font-size: 0.83rem;
+  max-width: 100%;
+  margin: 0 auto;
+  object-fit: contain;
+  object-position: center bottom;
+  transform: scale(0.9215);
+  transform-origin: center bottom;
 }
 
 .page-hero .container {
@@ -557,20 +578,16 @@ pre {
 .footer-grid {
   display: grid;
   grid-template-columns: 1.4fr 1fr;
+  align-items: center;
   gap: 3rem;
-  padding-block: 3.5rem 2rem;
+  padding-block: 1.5rem 1rem;
 }
 
 .footer-name {
-  margin-bottom: 0.4rem;
+  margin: 0;
   color: #fff;
   font-size: 1.15rem;
   font-weight: 700;
-}
-
-.footer-tagline {
-  max-width: 520px;
-  margin-bottom: 0;
 }
 
 .footer-links {
@@ -595,7 +612,7 @@ pre {
 }
 
 .footer-bottom {
-  padding-block: 1.1rem 1.5rem;
+  padding-block: 0.8rem 1rem;
   border-top: 1px solid var(--color-border-dark);
   font-size: 0.82rem;
 }
@@ -623,6 +640,14 @@ pre {
   clip: rect(0, 0, 0, 0) !important;
   white-space: nowrap !important;
   border: 0 !important;
+}
+
+@media (min-width: 981px) {
+  .portrait-frame img {
+    transform: translateY(-1.625rem) scale(1.072626);
+    transform-origin: center bottom;
+  }
+
 }
 
 @media (max-width: 980px) {
@@ -691,11 +716,6 @@ pre {
   .section-heading > .text-link,
   .section-heading > .button {
     margin-top: 1rem;
-  }
-
-  .portrait-caption {
-    right: 0.65rem;
-    bottom: 0.65rem;
   }
 
   .footer-grid {

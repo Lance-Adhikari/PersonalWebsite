@@ -3,7 +3,6 @@
 
   const siteLinks = [
     ["Home", "/index.html", "home"],
-    ["About", "/about.html", "about"],
     ["Projects", "/projects.html", "projects"],
     ["Experience", "/experience.html", "experience"],
     ["Writing", "/blogs/blog-index.html", "writing"],
@@ -14,7 +13,6 @@
   function currentSection() {
     const path = window.location.pathname.toLowerCase();
     if (path.includes("/blogs/")) return "writing";
-    if (path.includes("about")) return "about";
     if (path.includes("projects") || path.includes("dictator-project")) return "projects";
     if (path.includes("experience") || path.includes("volunteer-work") || path.includes("conferences") || path.includes("certificates")) return "experience";
     if (path.includes("resume")) return "resume";
@@ -81,11 +79,9 @@
       <div class="container footer-grid">
         <div>
           <p class="footer-name">Lance Adhikari</p>
-          <p class="footer-tagline">Computer Science · Cybersecurity · Software Development</p>
         </div>
         <nav class="footer-links" aria-label="Footer navigation">
           <a href="https://github.com/Lance-Adhikari" target="_blank" rel="noopener noreferrer">GitHub</a>
-          <a href="mailto:lanceatadhikari@gmail.com">Email</a>
           <a href="/resume.html">Resume</a>
           <a href="/contact.html">Contact</a>
         </nav>

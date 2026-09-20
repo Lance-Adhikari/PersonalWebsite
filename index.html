@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Lance Adhikari | Computer Science & Cybersecurity Portfolio</title>
-  <meta name="description" content="Portfolio of Lance Adhikari, an incoming Computer Science student at the University of Alberta building projects in cybersecurity, software development, data, and technology education.">
+  <meta name="description" content="Portfolio of Lance Adhikari, a first-year Computer Science student at UAlberta building projects in cybersecurity, software development, data, and technology education.">
   <meta name="author" content="Lance Adhikari">
   <meta name="theme-color" content="#0b1220">
   <link rel="canonical" href="https://www.lanceadhikari.com/">
@@ -21,7 +21,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet">
-  <link rel="preload" as="image" href="/assets/lance-adhikari-headshot.webp" type="image/webp">
+  <link rel="preload" as="image" href="/assets/lance-hero-transparent.png" type="image/png">
   <link rel="stylesheet" href="/css/styles.css">
   <link rel="stylesheet" href="/css/components.css">
   <script defer src="/javascript/scripts.js"></script>
@@ -33,7 +33,7 @@
     "url": "https://www.lanceadhikari.com/",
     "image": "https://www.lanceadhikari.com/assets/lance-adhikari-headshot.webp",
     "email": "mailto:lanceatadhikari@gmail.com",
-    "description": "Incoming Computer Science student at the University of Alberta interested in cybersecurity, software development, data, and technology education.",
+    "description": "First-year Computer Science student at UAlberta interested in cybersecurity, software development, data, and technology education.",
     "alumniOf": {"@type": "HighSchool", "name": "Dr. Anne Anderson High School"},
     "sameAs": [
       "https://github.com/Lance-Adhikari",
@@ -49,9 +49,8 @@
     <section class="hero" aria-labelledby="home-title">
       <div class="container hero-layout">
         <div>
-          <p class="eyebrow">Incoming Computer Science Student at the University of Alberta</p>
           <h1 id="home-title">Building secure, useful, and thoughtful technology.</h1>
-          <p class="hero-copy">I’m Lance Adhikari, a developer and technology creator interested in cybersecurity, software engineering, data, and technology education.</p>
+          <p class="hero-copy">I’m Lance Adhikari, a first-year computer science student at the University of Alberta. I’m currently exploring cybersecurity, software engineering, data, and technology education through my studies and projects.</p>
           <div class="hero-actions">
             <a class="button" href="/projects.html">View Projects</a>
             <a class="button button-secondary" href="/resume.html">View Resume</a>
@@ -59,76 +58,14 @@
           </div>
         </div>
         <div class="portrait-frame">
-          <img src="/assets/lance-adhikari-headshot.webp" alt="Portrait of Lance Adhikari at a cybersecurity conference" width="1200" height="1200">
-          <p class="portrait-caption">Cybersecurity · Software engineering · Technical communication</p>
+          <span class="portrait-dots" aria-hidden="true"></span>
+          <img src="/assets/lance-hero-transparent.png" alt="Portrait of Lance Adhikari" width="941" height="1672" fetchpriority="high" decoding="async">
         </div>
       </div>
     </section>
 
-    <section class="section section-white" aria-labelledby="featured-projects-title">
-      <div class="container">
-        <div class="section-heading">
-          <div class="section-heading-copy">
-            <p class="eyebrow">Featured projects</p>
-            <h2 id="featured-projects-title">Technical work with a clear purpose.</h2>
-            <p>Selected projects span community infrastructure, secure-development practice, data analysis, and research-driven interaction design.</p>
-          </div>
-          <a class="text-link" href="/projects.html">Explore all projects</a>
-        </div>
-        <div class="project-feature-grid">
-          <article class="project-card">
-            <div class="project-card-media is-logo"><img src="/assets/community-book-exchange.webp" alt="Community Book Exchange logo" width="500" height="500"></div>
-            <div class="project-card-body">
-              <div class="project-card-kicker"><span>Community platform</span><span class="status status-complete">Three-year contribution</span></div>
-              <h3>Community Book Exchange</h3>
-              <p>A full-stack platform supporting community access to books and resources.</p>
-              <ul class="project-outcomes"><li>Contributed more than 270 hours over three years.</li><li>Worked with HTML, CSS, JavaScript, JSON, PHP, and MySQL.</li></ul>
-              <ul class="tag-list" aria-label="Technologies"><li class="tag">JavaScript</li><li class="tag">PHP</li><li class="tag">MySQL</li></ul>
-              <div class="project-actions"><a class="button button-small" href="https://bookexchange.necase.ca/" target="_blank" rel="noopener noreferrer">Live site</a><a class="button button-small button-secondary" href="/projects.html#community-book-exchange">Case study</a></div>
-            </div>
-          </article>
-
-          <article class="project-card">
-            <div class="project-card-media"><img src="/assets/blog-assets/github-ai-security.webp" alt="Illustration of security analysis applied to code" width="1400" height="788" loading="lazy"></div>
-            <div class="project-card-body">
-              <div class="project-card-kicker"><span>Cybersecurity learning lab</span><span class="status status-learning">Learning lab</span></div>
-              <h3>Threat Modelling Mini Lab</h3>
-              <p>A Python command-line workflow for moving from system context to testable security requirements.</p>
-              <ul class="project-outcomes"><li>Applies STRIDE to assets, components, and trust boundaries.</li><li>Calculates simple risk scores and generates a Markdown report.</li></ul>
-              <ul class="tag-list" aria-label="Technologies"><li class="tag">Python</li><li class="tag">JSON</li><li class="tag">STRIDE</li></ul>
-              <div class="project-actions"><a class="button button-small" href="https://github.com/Lance-Adhikari/threat-modelling-mini-lab" target="_blank" rel="noopener noreferrer">GitHub</a><a class="button button-small button-secondary" href="/projects.html#learning-labs">Details</a></div>
-            </div>
-          </article>
-
-          <article class="project-card">
-            <div class="project-card-media"><img src="/assets/blog-assets/relational-databases.webp" alt="Illustration representing structured data and relational databases" width="1280" height="720" loading="lazy"></div>
-            <div class="project-card-body">
-              <div class="project-card-kicker"><span>Log analysis learning lab</span><span class="status status-learning">Learning lab</span></div>
-              <h3>Payments Log Analysis Practice</h3>
-              <p>A documented Python exercise for turning fake application logs into spreadsheet-ready transaction data.</p>
-              <ul class="project-outcomes"><li>Parses request and response entries with regular expressions and XML tools.</li><li>Exports structured CSV output using demonstration data only.</li></ul>
-              <ul class="tag-list" aria-label="Technologies"><li class="tag">Python</li><li class="tag">Regex</li><li class="tag">XML</li><li class="tag">CSV</li></ul>
-              <div class="project-actions"><a class="button button-small" href="https://github.com/Lance-Adhikari/payments-log-analysis-practice" target="_blank" rel="noopener noreferrer">GitHub</a><a class="button button-small button-secondary" href="/projects.html#learning-labs">Details</a></div>
-            </div>
-          </article>
-
-          <article class="project-card">
-            <div class="project-card-media"><img src="/assets/omar-al-bashir-timeline.webp" alt="Screenshot of the interactive Omar al-Bashir historical timeline" width="1400" height="875" loading="lazy"></div>
-            <div class="project-card-body">
-              <div class="project-card-kicker"><span>Interactive research project</span><span class="status status-complete">Completed</span></div>
-              <h3>Interactive Omar al-Bashir Timeline</h3>
-              <p>A research-led timeline that organizes complex historical events into an accessible frontend experience.</p>
-              <ul class="project-outcomes"><li>Uses keyboard-friendly interaction and responsive layouts.</li><li>Connects chronological content with a dedicated sources page.</li></ul>
-              <ul class="tag-list" aria-label="Technologies"><li class="tag">HTML</li><li class="tag">CSS</li><li class="tag">JavaScript</li><li class="tag">Accessibility</li></ul>
-              <div class="project-actions"><a class="button button-small" href="/dictator-project/">Live demo</a><a class="button button-small button-secondary" href="/projects.html#omar-timeline">Details</a></div>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section section-dark" aria-labelledby="home-cta-title">
-      <div class="container"><div class="cta-panel"><div><p class="eyebrow">Discuss the work</p><h2 id="home-cta-title">Have a project, internship, or technical question in mind?</h2><p>I’m open to opportunities where I can keep learning while contributing careful development and clear communication.</p></div><a class="button" href="/contact.html">Contact Lance</a></div></div>
+    <section class="section section-white" aria-labelledby="home-cta-title">
+      <div class="container"><div class="cta-panel cta-panel-light"><div><p class="eyebrow">Discuss the work</p><h2 id="home-cta-title">Have a project, internship, or technical question in mind?</h2><p>I’m open to opportunities where I can keep learning while contributing careful development and clear communication.</p></div><a class="button" href="/contact.html">Contact Lance</a></div></div>
     </section>
   </main>
   <footer data-site-footer></footer>

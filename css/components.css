@@ -313,6 +313,21 @@
   color: var(--color-text-muted-dark);
 }
 
+.cta-panel-light {
+  color: var(--color-text-dark);
+  background: var(--color-background-light);
+  border: 1px solid var(--color-border-light);
+  box-shadow: var(--shadow-sm);
+}
+
+.cta-panel-light p {
+  color: var(--color-text-muted);
+}
+
+.cta-panel-light .eyebrow {
+  color: var(--color-primary);
+}
+
 .profile-layout,
 .experience-feature,
 .contact-layout {
@@ -463,6 +478,10 @@
   object-fit: cover;
   background: #eef1f5;
   border-bottom: 1px solid var(--color-border-light);
+}
+
+.credential-card img.credential-image-contained {
+  object-fit: contain;
 }
 
 .credential-media {
